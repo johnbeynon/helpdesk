@@ -1,6 +1,6 @@
 Dummy::Application.routes.draw do
 
-  mount HelpDesk::Engine => '/support', :as => 'helpdesk'
+  mount Helpdesk::Engine => '/support', :as => 'helpdesk'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
