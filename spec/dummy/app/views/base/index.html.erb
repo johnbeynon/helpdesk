@@ -1,0 +1,9 @@
+<h2>Welcome!</h2>
+<% if current_user %>
+  <%= current_user.email %><br />
+  <%= link_to 'Logout', destroy_user_session_path %>
+<% else %>
+  <%= link_to 'Login', new_user_session_path %>
+<% end %>
+<br />
+<%= link_to 'Support', helpdesk.root_url %>

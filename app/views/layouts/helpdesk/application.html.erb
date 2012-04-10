@@ -6,8 +6,12 @@
   <%= javascript_include_tag "helpdesk/application" %>
   <%= csrf_meta_tags %>
 </head>
-<body>
-
+<body bgcolor="red">
+<h1>HelpDesk</h1> 
+<ul>
+    <%= debug current_user %>
+    <li><%= link_to 'Your Site', main_app.root_url %></li>
+</ul>
 <%= yield %>
 
 </body>

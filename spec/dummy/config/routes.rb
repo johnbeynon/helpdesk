@@ -1,7 +1,10 @@
 Dummy::Application.routes.draw do
 
-  mount Helpdesk::Engine => '/support', :as => 'helpdesk'
+  devise_for :users
+
+  mount Helpdesk::Engine => '/support'#, :constraints => { :subdomain => 'support' } 
   # The priority is based upon order of creation:
+  root :to => "base#index"
   # first created -> highest priority.
 
   # Sample of regular route:
