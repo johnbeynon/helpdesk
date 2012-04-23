@@ -1,4 +1,4 @@
-# Helpdesk {<img src="https://secure.travis-ci.org/johnbeynon/helpdesk.png?branch=master" alt="Build Status" />}[http://travis-ci.org/johnbeynon/helpdesk]
+# Helpdesk [![Build Status](https://secure.travis-ci.org/johnbeynon/helpdesk.png?branch=master)](http://travis-ci.org/johnbeynon/helpdesk)
 Helpdesk is a Rails engine that provides simple helpdesk functionality directly into your site.
 
 It should be considered a Work in progress if you find it and attempt to install it.
