@@ -1,3 +1,11 @@
 <h1>Ticket #<%= @ticket.id %></h1>
 <%= render 'form' %>
 <h2>Comments</h2>
+<% @ticket.comments.each do |comment| %>
+  <% if comment.persisted? %>
+    <%= comment.comment %>
+    <br />
+    <small><%= comment.created_at %> by <%= comment.author %></small>
+    <hr />
+  <% end %>
+<% end %>

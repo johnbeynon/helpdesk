@@ -14,6 +14,7 @@ module Helpdesk
 
     def show
       @ticket = Ticket.find(params[:id])
+      1.times{@ticket.comments.build}
     end
 
     def create
@@ -21,5 +22,13 @@ module Helpdesk
         redirect_to admin_root_url
       end
     end
+
+    def update
+      @ticket = Ticket.find(params[:id])
+      if @ticket.update_attributes(params[:ticket])
+        redirect_to admin_root_url
+      end
+    end
+ 
   end
 end

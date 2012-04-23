@@ -20,6 +20,13 @@
     <%= f.input :description %>
   <% else %>
     <%= @ticket.description %>
+    <%= f.simple_fields_for :comments do |tickets_form| %>
+      <% unless tickets_form.object.persisted? %>
+        <%= tickets_form.input :comment %>
+        <%= tickets_form.input :public, :hint => 'Requester can see this comment (public comment)' %>
+        <%= tickets_form.input :author_id, :as => :hidden, :input_html => { :value => helpdesk_user.id } %>
+      <% end %>
+    <% end %>
   <% end %>
   <div class="form-actions">
     <%= f.button :submit, :class => 'btn-primary' %>
