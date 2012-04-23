@@ -1,8 +1,8 @@
 module Helpdesk
-  class Admin::DashboardController < ApplicationController # ActionController::Base
-  layout 'helpdesk/application'
+  class Admin::DashboardController < Admin::BaseController
+    
     def index
-#        render :layout => 'helpdesk/application'
+      #@tickets = Ticket.all
     end
   end
 end

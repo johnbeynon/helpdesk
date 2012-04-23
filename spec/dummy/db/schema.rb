@@ -11,7 +11,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120405124828) do
+ActiveRecord::Schema.define(:version => 20120420204444) do
+
+  create_table "helpdesk_tickets", :force => true do |t|
+    t.string   "subject"
+    t.text     "description"
+    t.integer  "requester_id"
+    t.integer  "assignee_id"
+    t.string   "status"
+    t.string   "issue_type"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
@@ -26,6 +37,7 @@ ActiveRecord::Schema.define(:version => 20120405124828) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
+    t.boolean  "helpdesk_admin"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

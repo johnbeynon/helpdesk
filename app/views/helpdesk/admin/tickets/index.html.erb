@@ -1,0 +1,34 @@
+<h1><% if params[:tickets] && params[:tickets] == 'unassigned' %>Unassigned<% else %>My<% end %> Tickets</h1>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Status</th>
+      <th>ID</th>
+      <th>Issue Type</th>
+      <th>Subject</th>
+      <th>Requester</th>
+      <th>Requested</th>
+      <th>Assignee</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+<% @tickets.each do |ticket| %>
+  <tr>
+    <td><%= ticket.status %></td>
+    <td><%= ticket.id %></td>
+    <td><%= ticket.issue_type %></td>
+    <td><%= ticket.subject %></td>
+    <td><%= ticket.requester if ticket.requester %></td>
+    <td><%= ticket.created_at %></td>
+    <td><%= ticket.assignee if ticket.assignee %></td>
+    <td><%= link_to 'Show', admin_ticket_url(ticket) %></td>
+  </tr>
+<% end %>
+  </tbody>
+</table>
+
+<br />
+
