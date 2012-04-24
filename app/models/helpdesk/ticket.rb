@@ -1,6 +1,8 @@
 module Helpdesk
   class Ticket < ActiveRecord::Base
-    attr_accessible :description, :requester_id, :assignee_id, :subject, :status, :issue_type, :comments_attributes
+    attr_accessible :subject, :description 
+    attr_accessible :requester_id, :assignee_id, :status, :issue_type, :comments_attributes
+    
     belongs_to :requester, :class_name => Helpdesk.user_class.to_s
     belongs_to :assignee, :class_name => Helpdesk.user_class.to_s
     has_many :comments, :order => "helpdesk_comments.created_at DESC"
