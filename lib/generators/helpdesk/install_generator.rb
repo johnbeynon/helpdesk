@@ -3,7 +3,7 @@ require 'securerandom'
 module Helpdesk
   module Generators
     class InstallGenerator < Rails::Generators::Base
-      source_root File.expand_path("../../templates", __FILE__)
+      source_root File.expand_path("../templates", __FILE__)
 
       desc "Creates a Helpdesk initializer and copy locale files to your application."
 
@@ -12,7 +12,7 @@ module Helpdesk
       end
 
       def copy_locale
-        copy_file "../../../config/locales/en.yml", "config/locales/helpdesk.en.yml"
+        copy_file "../../../../config/locales/en.yml", "config/locales/helpdesk.en.yml"
       end
 
       def show_readme

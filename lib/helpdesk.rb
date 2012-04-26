@@ -15,7 +15,9 @@ module Helpdesk
   end
 
   def self.user_class
-    @@user_class.constantize
+    if @@user_class.is_a?(String)
+      @@user_class.constantize
+    end
   end
 
 end
