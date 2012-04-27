@@ -10,6 +10,8 @@ module Helpdesk
 
   mattr_accessor :issue_types
   
+  mattr_accessor :mail_server
+  
   def self.setup
     yield self
   end

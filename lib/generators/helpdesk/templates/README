@@ -1,1 +1,23 @@
-Helpdesk readme
+===============================================================================
+
+You need to do some manual setup to get Helpdesk working:
+
+1.  Review settings in new config/initializers/helpdesk.rb and update where
+    neccessary.
+
+2.  Mount the engine into your application by editing your config/routes.rb
+
+    mount Helpdesk::Engine, :at => "support"
+
+3.  Install and run the migrations
+
+    rake helpdesk:install:migrations
+
+    rake db:migrate
+
+4.  Add a helpdesk_user method to your applications application_controller.rb
+    that exposes your current_user
+  
+5.
+
+===============================================================================

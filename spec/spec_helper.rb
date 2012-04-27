@@ -1,20 +1,24 @@
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 ENV["RAILS_ENV"] ||= 'test'
-ENV['SKIP_HELPDESK_INITIALIZER'] = 'true'
-require File.expand_path("../../spec/dummy/config/environment", __FILE__)
+require File.expand_path("../dummy/config/environment", __FILE__)
 require 'rspec/rails'
 require 'rspec/autorun'
 require 'shoulda-matchers'
+require 'capybara/rails'
+require 'capybara/dsl'
+require 'factory_girl'
+
+#ENGINE_RAILS_ROOT=File.join(File.dirname(__FILE__), '../')
 
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
-Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
-
-ENV['SKIP_HELPDESK_INITIALIZER'] = 'false'
+#Dir[File.join(ENGINE_RAILS_ROOT, "spec/support/**/*.rb")].each {|f| require f }
+# Load support files
+ Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each { |f| require f }
 
 RSpec.configure do |config|
-  # ## Mock Framework
-  #
+  config.include Capybara::DSL 
+  config.include Helpdesk::Engine.routes.url_helpers
   # If you prefer to use mocha, flexmock or RR, uncomment the appropriate line:
   #
   # config.mock_with :mocha

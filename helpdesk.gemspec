@@ -15,15 +15,20 @@ Gem::Specification.new do |s|
 
   s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.rdoc"]
   s.require_paths = ['lib']
+
+  s.add_development_dependency "launchy"
+  s.add_development_dependency 'rspec-rails'
+  s.add_development_dependency 'capybara'
+  s.add_development_dependency 'devise'
+  s.add_development_dependency "factory_girl"
+  s.add_development_dependency "foreman"
+  s.add_development_dependency "sqlite3"
+  s.add_development_dependency "shoulda-matchers"
+
+  
   s.add_dependency "bootstrap-sass"
   s.add_dependency "rails", "~> 3.2.3"
   s.add_dependency 'sass-rails', '~> 3.2.3'
   s.add_dependency 'simple_form'
   s.add_dependency 'state_machine'
-  s.add_development_dependency 'rspec-rails'
-  s.add_development_dependency 'devise'
-  s.add_development_dependency "sqlite3"
-  s.add_development_dependency "shoulda-matchers"
-  s.add_development_dependency "factory_girl"
-  s.add_development_dependency "steak"
 end
