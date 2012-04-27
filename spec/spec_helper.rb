@@ -4,8 +4,6 @@ require File.expand_path("../dummy/config/environment", __FILE__)
 require 'rspec/rails'
 require 'rspec/autorun'
 require 'shoulda-matchers'
-require 'capybara/rails'
-require 'capybara/dsl'
 require 'factory_girl'
 
 #ENGINE_RAILS_ROOT=File.join(File.dirname(__FILE__), '../')
@@ -17,7 +15,6 @@ require 'factory_girl'
  Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each { |f| require f }
 
 RSpec.configure do |config|
-  config.include Capybara::DSL 
   config.include Helpdesk::Engine.routes.url_helpers
   # If you prefer to use mocha, flexmock or RR, uncomment the appropriate line:
   #
