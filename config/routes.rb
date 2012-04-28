@@ -1,7 +1,7 @@
 Helpdesk::Engine.routes.draw do
 
   root :to => "dashboard#index"
-  resources :tickets, :except => [ :destroy ]
+  resources :tickets, :except => [ :edit, :destroy ]
 
   # Admin only roots
   namespace :admin do

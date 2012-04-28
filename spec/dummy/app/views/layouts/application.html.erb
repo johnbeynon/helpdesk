@@ -6,8 +6,26 @@
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
-<body bgcolor="yellow">
-  <h1>My Application</h1>
+<body>
+  <h1>My Awesome website</h1>
+  <% if current_user %>
+    <%= current_user.email %><br />
+    <%= link_to 'Logout', main_app.destroy_user_session_path %>
+  <% else %>
+    <%= link_to 'Login', new_user_session_path %>
+  <% end %>
+  <br />
+  <ul>
+    <li><%= link_to 'Home', main_app.root_url %></li>
+    <li><%= link_to 'Support', helpdesk.root_url %>
+      <ul>
+        <% if current_user %>
+          <li><%= link_to 'My Tickets', helpdesk.tickets_url %></li>
+        <% end %>
+        <li><%= link_to 'New Ticket', helpdesk.new_ticket_url %></li>
+      </ul>
+    </li>
+  </ul>
   <%= yield %>
 </body>
 </html>
