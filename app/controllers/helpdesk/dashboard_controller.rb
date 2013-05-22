@@ -1,5 +1,5 @@
 module Helpdesk
-  class DashboardController < Helpdesk::ApplicationController
+  class DashboardController < ::ApplicationController
     def index
     end
   end

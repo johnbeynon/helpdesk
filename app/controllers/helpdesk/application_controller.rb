@@ -1,5 +1,5 @@
 module Helpdesk
-  class ApplicationController < ::ApplicationController
+  class ApplicationController < ActionController::Base
     before_filter :ensure_user, :if => Proc.new { Helpdesk.require_user }
 
     def ensure_user
@@ -9,8 +9,13 @@ module Helpdesk
     end
 
     def helpdesk_admin?
-      helpdesk_user && helpdesk_user.helpdesk_admin?
+      helpdesk_user && (can? :manage, 'helpdesk')
     end
     helper_method :helpdesk_admin?
+    
+
+
+
+
   end
 end

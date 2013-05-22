@@ -27,6 +27,8 @@ module Helpdesk
       @ticket = Ticket.find(params[:id])
       if @ticket.update_attributes(params[:ticket])
         redirect_to admin_root_url
+      else
+        render action: "new"
       end
     end
  

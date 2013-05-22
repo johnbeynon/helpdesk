@@ -1,0 +1,27 @@
+= simple_form_for([:admin, @ticket], :html => {:class => 'form-horizontal' }) do |f|
+  - if @ticket.errors.any?
+    %div.error_explanation
+      %h2
+        = "#{pluralize(@ticket.errors.count, "error")} prohibited this ticket from being saved:"
+      %ul
+        - @ticket.errors.full_messages.each do |msg|
+          %li
+            = msg
+  = f.input :requester_id, :collection => User.all
+  = f.input :subject 
+  = f.input :status, :collection => %w{nowy otwarty oczekujący rozwiązany} 
+  = f.input :assignee_id, :collection => User.where('helpdesk_admin = ?', true) 
+  = f.input :ticket_type_id, :collection => Helpdesk::TicketType.active
+  - if @ticket.new_record?
+    = f.input :description 
+  - else
+    = @ticket.description
+    
+    = f.simple_fields_for :comments do |tickets_form|
+      - unless tickets_form.object.persisted?
+        = tickets_form.input :comment 
+        = tickets_form.input :public, :hint => 'Requester can see this comment (public comment)' 
+        = tickets_form.input :author_id, :as => :hidden, :input_html => { :value => helpdesk_user.id } 
+  %div.form-actions
+    = f.button :submit, :class => 'btn-primary'
+    = submit_tag 'Anuluj', :type => :reset, :class => "btn btn-danger"

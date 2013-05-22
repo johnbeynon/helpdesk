@@ -1,5 +1,5 @@
 module Helpdesk
-  class Admin::BaseController < ApplicationController
+  class Admin::BaseController < ::ApplicationController
     layout 'helpdesk/admin'
     
     before_filter :authenticate_helpdesk_admin
@@ -7,8 +7,13 @@ module Helpdesk
 
     private
 
+    def helpdesk_admin?
+      helpdesk_user && (can? :manage, 'helpdesk')
+    end
+
+
     def authenticate_helpdesk_admin
-      if !helpdesk_user || !helpdesk_user.helpdesk_admin?
+      unless helpdesk_admin?
         redirect_to root_url
       end
     end

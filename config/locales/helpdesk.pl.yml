@@ -1,0 +1,24 @@
+pl:
+
+  helpdesk:
+    name: Helpdesk OpiekunRodziny.pl
+    new_ticket: Nowe zgłoszenie
+    my_tickets: Moje zgłoszenia
+    unassigned_ticketes: Nieprzypisane zgłoszenia
+    dashboard: Dashboard
+    ticket: Zgłoszenie
+    comments: Komentarze
+
+
+  activerecord:
+    models:
+      helpdesk: helpdesk
+      helpdesk/ticket: Zgłoszenie
+    attributes:
+      helpdesk/ticket:
+        requester_id: Zgłaszający
+        subject: Temat
+        status: Status
+        assignee_id: Przypisane
+        ticket_type_id: Rodzaj zgłoszenia
+        description: Opis
