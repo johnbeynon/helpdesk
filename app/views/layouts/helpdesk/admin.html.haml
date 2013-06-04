@@ -5,27 +5,23 @@
       = t :name, :scope => :helpdesk
     = stylesheet_link_tag    "helpdesk/admin", :media => "all"
     = javascript_include_tag "helpdesk/application"
+    = javascript_tag "$(document).ready(function(){ $('.dropdown-toggle').dropdown();$('.alert').alert();})"
     = csrf_meta_tags
+    = yield :head
   %body
-    %div.navbar.navbar-fixed-top
-      %div.navbar-inner
-        %div.container
-          = link_to t('helpdesk.name'), "#", :class=>"brand"
-          %ul.nav.pull-right
-            %li
-              =link_to 'Back to site', main_app.root_url
-    %div.container
-      %div.row
-        %div.span3
-          %div.well
-            %ul.nav.nav-list
-              %li
-                = link_to t('helpdesk.dashboard'), admin_root_url
-              %li
-                = link_to t('helpdesk.new_ticket'), new_admin_ticket_url
-              %li
-                = link_to "#{t('helpdesk.my_tickets')} (#{@my_tickets.count})", admin_tickets_url 
-              %li
-                = link_to "#{t('helpdesk.unassigned_ticketes')} (#{Helpdesk::Ticket.unassigned.count})", admin_tickets_url(:tickets => 'unassigned')
-        %div.span9
-          = yield 
+    .container
+      = render 'layouts/helpdesk/topmenu'
+      .content
+        .row
+          .span3
+            =yield :left
+          .span9
+            .flash
+            - flash.each do |type, message|
+              %div{:class => "alert alert-#{type}", "data-alert"=>"alert"}
+                =link_to "x",'#', :class=>'close', :'data-dismiss'=>"alert" 
+                %p= message  
+            =yield
+  =yield :scripts 
+
+

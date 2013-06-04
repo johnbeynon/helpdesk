@@ -1,0 +1,14 @@
+= render 'menu'
+
+.row
+  .span3
+    %br
+  .span11
+
+    %h1 Edycja pytania
+
+    = render 'form'
+
+    = link_to 'Show', [:admin,@faq]
+    \|
+    = link_to 'Back', admin_faqs_path

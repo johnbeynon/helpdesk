@@ -1,0 +1,17 @@
+= render 'menu'
+
+%h1
+  -if params[:tickets] && params[:tickets] == 'unassigned'
+    = t('helpdesk.tickets.unassigned')
+  -elsif params[:tickets] && params[:tickets] == 'closed'
+    = t('helpdesk.tickets.closed')
+  -elsif params[:tickets] && params[:tickets] == 'active'
+    = t('helpdesk.tickets.active')
+  -elsif params[:tickets] && params[:tickets] == 'all'
+    = t('helpdesk.tickets.all')
+  -else
+    = t('helpdesk.tickets.my')
+
+- @tickets.each do |ticket|
+  = render 'ticket', ticket: ticket, show_button:true
+  

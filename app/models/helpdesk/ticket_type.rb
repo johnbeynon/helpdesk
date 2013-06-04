@@ -6,7 +6,8 @@ module Helpdesk
 
     default_scope order('position ASC')
 
-    scope :active, where('active  = ? ', 1)  
+    scope :active, where('active  = ? ', true)
+    scope :inactive, where('active  = ? ', false)
 
   end
 end

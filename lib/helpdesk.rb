@@ -8,6 +8,8 @@ module Helpdesk
 
   mattr_accessor :user_class
 
+  mattr_accessor :display_user
+
   mattr_accessor :issue_types
   
   mattr_accessor :mail_server

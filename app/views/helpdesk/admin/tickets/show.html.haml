@@ -1,15 +1,24 @@
-%h1
-  = t('helpdesk.ticket')
-  = "##{@ticket.id}"
-= render 'form'
-%h2
-  = t('helpdesk.comments')
-- @ticket.comments.each do |comment|
-  - if comment.persisted?
-    = comment.comment
-    %br
-    %small
-      = comment.created_at
-      = t('helpdesk.by') 
-      = comment.author.name
-    %hr
+= render 'menu'
+
+= render 'ticket', :ticket=>@ticket, show_button:false
+
+= simple_form_for([:admin, @ticket], :html => {:class => 'form-vertical' }) do |f|
+  - if @ticket.errors.any?
+    %div.error_explanation
+      %h2
+        = "#{pluralize(@ticket.errors.count, "error")} prohibited this ticket from being saved:"
+      %ul
+        - @ticket.errors.full_messages.each do |msg|
+          %li
+            = msg
+
+  = f.simple_fields_for :comments,@ticket.comments.build do |tickets_form|
+    - unless tickets_form.object.persisted?
+      = tickets_form.input :comment, :input_html=>{class: 'comment-textarea'}
+      / , :as => :ckeditor, :input_html => { :ckeditor => {:toolbar => 'mini'},:language => I18n.locale}
+
+      = tickets_form.input :public, :hint => t('helpdesk.tickets.visible_to_autor') 
+      = tickets_form.input :author_id, :as => :hidden, :input_html => { :value => helpdesk_user.id } 
+  %div.form-actions
+    = f.button :submit, :class => 'btn-primary'
+    = submit_tag 'Anuluj', :type => :reset, :class => "btn btn-danger"

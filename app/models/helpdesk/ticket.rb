@@ -1,5 +1,21 @@
 module Helpdesk
   class Ticket < ActiveRecord::Base
+
+    STATUSES = [
+      [ :new,        'Nowe:', 'label-important',3],
+      [ :open,        'Otworzone:', 'label-warning',2],
+      [ :waiting,     'Otworzone: oczekujące', 'label-info',2],
+      [ :solved,      'Zamknięte: problem rozwiązany','label-success',0],
+      [ :not_fixable, 'Zamknięte: nienaprawialne','label-inverse',-1],
+      [ :unreachable, 'Zamknięte: klient nieosiągalny','label-inverse',-1],
+      [ :bug,         'Zamknięte: Przeniesione do bug tracker\'a','label-inverse',-1]
+    ]
+    STATUS_OPTIONS = STATUSES.map { |i| [i[1], i[0]] }
+    STATUS_BY_KEY = Hash[*STATUSES.map { |i| [i[0], i[1]] }.flatten]
+    STATUS_CLASS_BY_KEY= Hash[*STATUSES.map { |i| [i[0], i[2]] }.flatten]
+    STATUS_STATUS_BY_KEY= Hash[*STATUSES.map { |i| [i[0], i[3]] }.flatten]
+    OPEN_STATUSES_KEYS =  STATUSES.map { |i| (i[3]>0 ? i[0] : nil)}.compact
+
     attr_accessible :subject, :description
     attr_accessible :requester_id, :assignee_id, :status, :comments_attributes,:ticket_type_id
 
@@ -9,15 +25,19 @@ module Helpdesk
     belongs_to :ticket_type, :class_name => Helpdesk::TicketType
     has_many :comments, :order => "helpdesk_comments.created_at DESC"
 
-    scope :unassigned, where('assignee_id is null')
+    scope :active,  where('status IN (?) ',OPEN_STATUSES_KEYS)
+    scope :unassigned,  where('status IN (?) ',OPEN_STATUSES_KEYS).where('assignee_id is null')
+    scope :closed, where('status NOT IN (?)',OPEN_STATUSES_KEYS)
+    default_scope includes(:comments=>[:author])
+    .includes(:requester)
+    .includes(:assignee)
+    .includes(:ticket_type)
+    .order('id DESC')
 
-    validates_presence_of :description
+    validates_presence_of :description,:requester_id,:ticket_type_id
 
     accepts_nested_attributes_for :comments
 
-    state_machine :status, :initial => :nowy do
-
-    end
 
     before_create :set_subject
     #after_create  :send_email
@@ -37,12 +57,22 @@ module Helpdesk
       self.subject.strip!
     end
 
+
+
     def send_email
-      NotificationsMailer.sugestion_sent_to_us(self).deliver
+      NotificationsMailer.ticket_sent_to_us(self).deliver
       unless email.empty?
-        NotificationsMailer.sugestion_sent(self).deliver
+        NotificationsMailer.ticket_sent(self).deliver
       end
 
+    end
+
+    def open?
+      if self.status.blank? || STATUS_STATUS_BY_KEY[self.status.to_sym] > 0
+        true
+      else
+        false
+      end
     end
 
   end

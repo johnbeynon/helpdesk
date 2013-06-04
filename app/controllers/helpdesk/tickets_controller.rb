@@ -1,5 +1,5 @@
 module Helpdesk
-  class TicketsController < ApplicationController
+  class TicketsController < ::ApplicationController
     # GET /tickets
     # GET /tickets.json
     def index

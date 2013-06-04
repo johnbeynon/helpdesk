@@ -1,0 +1,59 @@
+= render 'menu'
+
+%h1
+  -if params[:faqs] && params[:faqs] == 'active'
+    = t('helpdesk.faqs.active')
+  -elsif params[:faqs] && params[:faqs] == 'inactive'
+    = t('helpdesk.faqs.inactive')
+  -else
+    = t('helpdesk.faqs.all')
+
+
+
+
+%ul.unstyled#faqs
+  - @faqs.each do |faq|
+    %li.row{id:"faqs_#{faq.id}",style:'padding:5px 0px;'}
+      %div.handle.span2{style:'cursor:move'}
+        %span
+          = ico('move')
+        %span.badge.badge-info
+          = "link#{faq.id}"
+        - if faq.active
+          %span.label.label-success
+            = t('helpdesk.faqs.faq.active')
+        - else
+          %span.label
+            = t('helpdesk.faqs.faq.inactive')
+      %div.span5
+        = faq.title
+      %div.span2  
+        = link_to t('helpdesk.show'), admin_faq_path(faq), class: 'btn btn-info btn-mini'
+        = link_to t('helpdesk.edit'), edit_admin_faq_path(faq),class: 'btn btn-primary btn-mini'
+        = link_to t('helpdesk.destroy'), admin_faq_path(faq), method: :delete, data: { confirm: 'Are you sure?' },class: 'btn btn-danger btn-mini'
+
+
+- content_for :scripts do
+  :javascript
+    $(document).ready(function(){
+      $('#faqs').sortable({
+      axis: 'y',
+      dropOnEmpty: false,
+      handle: '.handle',
+      cursor: 'crosshair',
+      items: 'li',
+      opacity: 0.4,
+      scroll: true,
+      update: function(){
+      $.ajax({
+      type: 'post',
+      data: $('#faqs').sortable('serialize'),
+      dataType: 'script',
+      complete: function(request){
+        $('#faqs').effect('highlight');
+      },
+      url: '#{sort_admin_faqs_path}'
+        })
+      }
+      });
+    });

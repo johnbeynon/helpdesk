@@ -1,0 +1,9 @@
+- content_for :left do
+  = menu_left t('helpdesk.faqs.title') do
+    = menu_li ico('pencil') + t('helpdesk.faqs.new'), new_admin_faq_url
+    %li.divider
+    = menu_li ico('envelope') + "#{t('helpdesk.faqs.active')} (#{Helpdesk::Faq.active.count})", admin_faqs_url(:faqs => 'active')
+
+    = menu_li ico('info-sign') + "#{t('helpdesk.faqs.inactive')} (#{Helpdesk::Faq.inactive.count})", admin_faqs_url(:faqs => 'inactive')
+    %li.divider
+    = menu_li ico('list') + t('helpdesk.faqs.all'), admin_faqs_url(:faqs => 'all')

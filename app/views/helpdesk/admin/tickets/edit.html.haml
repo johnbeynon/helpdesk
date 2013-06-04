@@ -1,0 +1,16 @@
+= render 'menu'
+%h2
+  = t('helpdesk.ticket')
+  = "##{@ticket.subject}"
+= render 'form'
+%h2
+  = t('helpdesk.comments.title')
+- @ticket.comments.each do |comment|
+  - if comment.persisted?
+    = comment.comment
+    %br
+    %small
+      = comment.created_at
+      = t('helpdesk.by') 
+      = comment.author.name
+    %hr

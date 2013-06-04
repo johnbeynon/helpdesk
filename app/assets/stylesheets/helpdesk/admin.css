@@ -2,4 +2,5 @@
  *= require_self
  *= require helpdesk/imports
  *= require helpdesk/admin/bootstrap_overrides
+ *= require helpdesk/admin/tickets
 */

@@ -1,0 +1,14 @@
+.comment{
+  min-height: 50px;
+}
+.comment-left{
+  display:block;
+  width:100px;
+  height:50px;
+  float:left;
+}
+
+.comment-textarea{
+  height: 100px;
+  width: 482px;
+}

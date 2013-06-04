@@ -1,36 +1,61 @@
-module Helpdesk
-  class Admin::TicketsController < Admin::BaseController
-    def index
-      if params[:tickets] == 'unassigned'
-        @tickets = Ticket.unassigned
-      else
-        @tickets = my_tickets.all
-      end
-    end
-    
-    def new
-      @ticket = Ticket.new
-    end
+class Helpdesk::Admin::TicketsController < Helpdesk::Admin::BaseController
 
-    def show
-      @ticket = Ticket.find(params[:id])
-      1.times{@ticket.comments.build}
+  def index
+    if params[:tickets] == 'unassigned'
+      @tickets = Helpdesk::Ticket.unassigned
+    elsif params[:tickets] == 'closed'
+      @tickets = Helpdesk::Ticket.closed
+    elsif params[:tickets] == 'active'
+      @tickets = Helpdesk::Ticket.active
+    elsif params[:tickets] == 'all'
+      @tickets = Helpdesk::Ticket.all
+    else
+      @tickets = my_tickets.all
     end
-
-    def create
-      if Ticket.create(params[:ticket])
-        redirect_to admin_root_url
-      end
-    end
-
-    def update
-      @ticket = Ticket.find(params[:id])
-      if @ticket.update_attributes(params[:ticket])
-        redirect_to admin_root_url
-      else
-        render action: "new"
-      end
-    end
- 
+    render 'list'
   end
+
+  def assign
+    @ticket = Helpdesk::Ticket.find(params[:id])
+    if @ticket.update_column(:assignee_id, helpdesk_user)
+      redirect_to admin_ticket_path,
+        notice: t('helpdesk.tickets.is_now_assigned',subject: @ticket.subject)
+    else
+      redirect_to admin_ticket_path
+    end
+  end
+
+  def new
+    @ticket = Helpdesk::Ticket.new
+    @ticket.status = Ticket::STATUSES[0][0]
+  end
+
+  def edit
+    @ticket = Helpdesk::Ticket.find(params[:id])
+    
+  end
+
+  def show
+    @ticket = Helpdesk::Ticket.find(params[:id])
+    
+  end
+
+  def create
+    @ticket = Helpdesk::Ticket.new(params[:ticket])
+    if @ticket.save
+      redirect_to admin_ticket_path
+    else
+      render action: "new"
+    end
+  end
+
+  def update
+    @ticket = Helpdesk::Ticket.find(params[:id])
+    if @ticket.update_attributes(params[:ticket])
+      redirect_to admin_ticket_path
+    else
+      render action: "new"
+    end
+  end
+
 end

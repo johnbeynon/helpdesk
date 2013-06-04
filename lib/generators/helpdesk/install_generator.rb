@@ -12,7 +12,8 @@ module Helpdesk
       end
 
       def copy_locale
-        copy_file "../../../../config/locales/en.yml", "config/locales/helpdesk.en.yml"
+        copy_file "../../../../config/locales/helpdesk.en.yml", "config/locales/helpdesk.en.yml"
+        copy_file "../../../../config/locales/helpdesk.pl.yml", "config/locales/helpdesk.pl.yml"
       end
 
       def show_readme

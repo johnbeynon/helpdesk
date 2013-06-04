@@ -1,8 +1,8 @@
 body {
-padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+padding-top: 30px; /* 60px to make the container go all the way to the bottom of the topbar */
 }
 
-.container, .navbar-fixed-top .container, .navbar-fixed-bottom .container {
+/*.container, .navbar-fixed-top .container, .navbar-fixed-bottom .container {
   width: 1170px;
-
+}*/
 

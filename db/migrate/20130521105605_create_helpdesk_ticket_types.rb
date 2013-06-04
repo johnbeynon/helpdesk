@@ -2,7 +2,7 @@ class CreateHelpdeskTicketTypes < ActiveRecord::Migration
   def up
     create_table :helpdesk_ticket_types do |t|
       t.integer :position
-      t.boolean :active
+      t.boolean :active,:default=>1,:null=>false
 
       t.timestamps
     end

@@ -1,0 +1,19 @@
+= render 'menu'
+
+%p#notice= notice
+
+%p
+  %b Aktywne:
+  = @faq.active
+%p
+  %b Title:
+  = @faq.title
+%p
+  %b Text:
+  = simple_format(@faq.text)
+
+
+
+= link_to 'Edit', edit_admin_faq_path(@faq)
+\|
+= link_to 'Back', admin_faqs_path

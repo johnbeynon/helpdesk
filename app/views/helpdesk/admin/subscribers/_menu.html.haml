@@ -1,0 +1,9 @@
+- content_for :left do
+  = menu_left t('helpdesk.subscribers.title') do
+    = menu_li ico('pencil') + t('helpdesk.subscribers.new'), new_admin_subscriber_url
+    %li.divider
+    = menu_li ico('envelope') + "#{t('helpdesk.subscribers.confirmed')} (#{Helpdesk::Subscriber.confirmed.count})", admin_subscribers_url(:subscribers => 'confirmed')
+
+    = menu_li ico('info-sign') + "#{t('helpdesk.subscribers.unconfirmed')} (#{Helpdesk::Subscriber.unconfirmed.count})", admin_subscribers_url(:subscribers => 'unconfirmed')
+    %li.divider
+    = menu_li ico('list') + t('helpdesk.subscribers.all'), admin_subscribers_url(:subscribers => 'all')

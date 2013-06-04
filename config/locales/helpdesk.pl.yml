@@ -1,13 +1,58 @@
 pl:
 
   helpdesk:
-    name: Helpdesk OpiekunRodziny.pl
-    new_ticket: Nowe zgłoszenie
-    my_tickets: Moje zgłoszenia
-    unassigned_ticketes: Nieprzypisane zgłoszenia
-    dashboard: Dashboard
+    show: Pokaż
+    edit: Edytuj
+    destroy: Usuń
+    name: Helpdesk
+    tickets:
+      new: Nowe zgłoszenie
+      my: Moje zgłoszenia
+      unassigned: Nieprzypisane zgłoszenia
+      closed: Zamkniete zgłoszenia
+      all: Wszystkie zgłoszenia
+      title: Zgłoszenia
+      active: Aktywne zgłoszenia
+      assignee_to: Przypisane do
+      assign_me: Biore to
+      not_assigned: Nie przypisany
+      is_now_assigned: "Zgłoszenie %{subject} zostało przypisane do Ciebie"
+      visible_to_autor: Widoczny dla zgłaszającego - wyślij emaila
     ticket: Zgłoszenie
-    comments: Komentarze
+    comments:
+      title: Komentarze
+      note: Notatka
+      send: Wysłane
+      received: Odebrane
+      note: notatka 
+      author: Odp. autora
+    ticket_types:
+      title: Rodzaje zgłoszeń
+      new: Nowy rodzaj zgłoszenia
+      all: Wszystkie rodzaje zgłoszeń
+      active: Aktywne rodzaje zgłoszeń
+      inactive: Nieaktywne rodzaje zgłoszeń
+
+    dashboard: Dashboard
+
+    subscribers: 
+      title: Subskrynenci
+      confirmed: Potwierdzeni subskrynenci
+      unconfirmed: Niepotwierdzeni
+      all: Wszyscy subskrynenci
+      new: Dodaj subskrynenta
+
+    faqs:
+      title: FAQ
+      active: Aktywne pytania
+      inactive: Nieaktywne pytania
+      all: Wszystkie pytania
+      new: Nowe pytanie
+      by: przez
+      faq:
+        active: aktywne
+        inactive: nieaktywne
+
 
 
   activerecord:

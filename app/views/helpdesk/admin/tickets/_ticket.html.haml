@@ -1,0 +1,54 @@
+%table.table.table-bordered
+  %tbody
+    %tr{:class=>ticket.ticket_type.tr_class}
+      %td{colspan:2}
+        %h4  
+          ="##{ticket.subject}"
+    %tr
+      %td{style:'width:100px'}  
+        = I18n::l(ticket.created_at, :format=>:short)
+        - if ticket.requester
+          = ticket.requester.name
+      %td{rowspan:2}
+        = status_label Helpdesk::Ticket::STATUS_BY_KEY[ticket.status.to_sym], Helpdesk::Ticket::STATUS_CLASS_BY_KEY[ticket.status.to_sym]
+        = ticket.ticket_type.title
+
+        = simple_format ticket.description
+    %tr
+      %td
+        - if ticket.assignee
+          = t('helpdesk.tickets.assignee_to')
+          = ticket.assignee.send Helpdesk.display_user.to_sym
+        - else
+          = t('helpdesk.tickets.not_assigned')
+          = link_to ico('star','white') + t('helpdesk.tickets.assign_me'), assign_admin_ticket_path(ticket),class: 'btn btn-mini btn-info'
+    %tr
+      %td
+        %span.btn.disabled
+          = ico('comment') 
+          = ticket.comments.size
+      %td
+        %ul.comments.unstyled
+          - ticket.comments.each do |comment|
+            - if comment.persisted?
+              %li.comment
+                %div.comment-left
+                  - if comment.public
+                    = status_label ico('envelope','white') + t('helpdesk.comments.send') ,'label-success'
+                  - else
+                    = status_label t('helpdesk.comments.note'),''
+                %div.comment-header
+                  -if comment.author == ticket.requester
+                    = status_label ico('user','white')+ t('helpdesk.comments.author'),'label-info'
+                    
+                  = comment.author.name
+                  %small
+                    = time_ago_in_words(comment.created_at)
+                    temu
+                %div.comment-body
+                  = comment.comment
+  
+    %tr{:class=>ticket.ticket_type.tr_class}
+      %td{colspan:2}
+        - if show_button
+          = link_to 'Show', admin_ticket_url(ticket), class: 'btn btn-block'
