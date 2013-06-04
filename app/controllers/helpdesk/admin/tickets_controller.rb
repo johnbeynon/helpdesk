@@ -27,7 +27,7 @@ class Helpdesk::Admin::TicketsController < Helpdesk::Admin::BaseController
 
   def new
     @ticket = Helpdesk::Ticket.new
-    @ticket.status = Ticket::STATUSES[0][0]
+    @ticket.status = Helpdesk::Ticket::STATUSES[0][0]
   end
 
   def edit
