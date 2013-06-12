@@ -1,0 +1,27 @@
+!!!
+%html
+  %head
+    %title
+      = t :name, :scope => :helpdesk
+    = stylesheet_link_tag    "helpdesk/application", :media => "all"
+    = javascript_include_tag "helpdesk/application"
+    = javascript_tag "$(document).ready(function(){ $('.dropdown-toggle').dropdown();$('.alert').alert();})"
+    = csrf_meta_tags
+    = yield :head
+  %body
+    .container
+      = render 'layouts/helpdesk/topuser'
+      .content
+        .row
+          .span3
+            =yield :left
+          .span9
+            .flash
+            - flash.each do |type, message|
+              %div{:class => "alert alert-#{type}", "data-alert"=>"alert"}
+                =link_to "x",'#', :class=>'close', :'data-dismiss'=>"alert" 
+                %p= message  
+            =yield
+  =yield :scripts 
+
+

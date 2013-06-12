@@ -1,5 +1,5 @@
 module Helpdesk
-  module ApplicationHelper
+  module HelpdeskHelper
     def menu_left(title,&block)
       content_tag(:fieldset) do
         content_tag(:legend ,title) +
@@ -17,9 +17,10 @@ module Helpdesk
 
     def status_label(lbl,cls)
       content_tag(:span, class: "label #{cls}") do
-        lbl
+        lbl 
       end
     end
+    
 
     def ico(name,color='black')
       raw("<i class=\"icon-#{name} icon-#{color}\"></i> ")

@@ -16,3 +16,4 @@
 //= require bootstrap
 //= require ckeditor/init
 //= require jquery.ui.all
+

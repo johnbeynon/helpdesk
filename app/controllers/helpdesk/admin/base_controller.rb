@@ -2,7 +2,8 @@ module Helpdesk
   module Admin
     class BaseController < ::ApplicationController
 
-      helper Helpdesk::ApplicationHelper
+      helper Helpdesk::Engine.helpers
+      # helper Helpdesk::ApplicationHelper
       before_filter :authenticate_helpdesk_admin
       before_filter :my_tickets
 
@@ -24,6 +25,7 @@ module Helpdesk
           .includes(:assignee)
           .includes(:ticket_type)
           .where('assignee_id = ?', helpdesk_user.id)
+          .active
         end
     end
   end

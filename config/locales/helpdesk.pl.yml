@@ -18,6 +18,8 @@ pl:
       not_assigned: Nie przypisany
       is_now_assigned: "Zgłoszenie %{subject} zostało przypisane do Ciebie"
       visible_to_autor: Widoczny dla zgłaszającego - wyślij emaila
+      you_have_no_tickets: "Brak zgłoszeń"
+      ticket_closed: Zgłoszenie zamkniete
     ticket: Zgłoszenie
     comments:
       title: Komentarze
@@ -26,6 +28,7 @@ pl:
       received: Odebrane
       note: notatka 
       author: Odp. autora
+      helpdesk: Odp. BOK
     ticket_types:
       title: Rodzaje zgłoszeń
       new: Nowy rodzaj zgłoszenia
@@ -59,7 +62,11 @@ pl:
     models:
       helpdesk: helpdesk
       helpdesk/ticket: Zgłoszenie
+      helpdesk/comment: Komentarz
     attributes:
+      helpdesk/comment:
+        comment: Dodatkowy opis
+        public: Widoczny/Wyślij
       helpdesk/ticket:
         requester_id: Zgłaszający
         subject: Temat
@@ -67,3 +74,4 @@ pl:
         assignee_id: Przypisane
         ticket_type_id: Rodzaj zgłoszenia
         description: Opis
+        comments: Dodatkowy opis

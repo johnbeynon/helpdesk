@@ -10,7 +10,7 @@ class Helpdesk::Admin::TicketsController < Helpdesk::Admin::BaseController
     elsif params[:tickets] == 'all'
       @tickets = Helpdesk::Ticket.all
     else
-      @tickets = my_tickets.all
+      @tickets = my_tickets.active
     end
     render 'list'
   end
@@ -52,6 +52,9 @@ class Helpdesk::Admin::TicketsController < Helpdesk::Admin::BaseController
   def update
     @ticket = Helpdesk::Ticket.find(params[:id])
     if @ticket.update_attributes(params[:ticket])
+      unless @ticket.assignee
+        @ticket.update_column(:assignee_id, helpdesk_user)
+      end
       redirect_to admin_ticket_path
     else
       render action: "new"

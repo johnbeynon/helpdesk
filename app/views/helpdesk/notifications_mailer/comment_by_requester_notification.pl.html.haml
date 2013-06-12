@@ -1,0 +1,42 @@
+!!!
+%html
+  %body
+    %div
+      %h1
+        Pojawiła się nowa odpowiedź do zgłoszenie:
+        = @comment.ticket.ticket_type.title
+      %div.content
+        %p
+          Treść wysłana:
+          %br
+          = simple_format(@comment.comment)
+        %br
+        %br
+        %p
+          Zgłaszający:
+          %br
+          = @comment.author.name
+          = @comment.author.email
+        %br
+        %br
+      %p
+        Pod tym adresem możesz zobaczyć tą odpowiedź na zgłoszenie:
+        %a{:href=>admin_ticket_url(:locale=>I18n.locale, :id=>@comment.ticket, :anchor=>"comment#{@comment.id}")}<>
+          = admin_ticket_url(:locale=>I18n.locale, :id=>@comment.ticket,:anchor=>"comment#{@comment.id}")
+      %p
+        Życzymy miłego dnia!
+        %br
+          = Helpdesk.site_name
+        %br
+          %a{:href=>Helpdesk.site_address}
+            = Helpdesk.site_address
+      %div
+        Ta wiadomość została wygenrowana automatycznie. Nie odpowiadaj na nią. Jeśli nie zainicjowałeś akcji wysyłania tej wiadomości zgłoś to nam
+        %a{:href=>root_url}
+          klikając tutaj.
+
+    
+
+
+
+

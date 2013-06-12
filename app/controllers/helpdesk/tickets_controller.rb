@@ -1,49 +1,58 @@
 module Helpdesk
-  class TicketsController < ::ApplicationController
+  class TicketsController < ApplicationController
     # GET /tickets
     # GET /tickets.json
     def index
-      @tickets = Ticket.where(:requester_id => helpdesk_user.id)
-  
+      if params[:tickets] == 'closed'
+        @tickets = Helpdesk::Ticket.where(:requester_id => helpdesk_user.id).closed
+        @tickets_count = Helpdesk::Ticket.where(:requester_id => helpdesk_user.id).active.count
+      else
+        @tickets = Helpdesk::Ticket.where(:requester_id => helpdesk_user.id).active
+        @tickets_count = @tickets.size
+      end
+
+
       respond_to do |format|
         format.html # index.html.erb
         format.json { render json: @tickets }
       end
     end
-  
+
     # GET /tickets/1
     # GET /tickets/1.json
     def show
       @ticket = Ticket.find(params[:id])
-  
+
       respond_to do |format|
         format.html # show.html.erb
         format.json { render json: @ticket }
       end
     end
-  
+
     # GET /tickets/new
     # GET /tickets/new.json
     def new
       @ticket = Ticket.new
-  
+      @ticket.status = Helpdesk::Ticket::STATUSES[0][0]
+
       respond_to do |format|
         format.html # new.html.erb
         format.json { render json: @ticket }
       end
     end
-  
+
     # GET /tickets/1/edit
     def edit
       @ticket = Ticket.find(params[:id])
     end
-  
+
     # POST /tickets
     # POST /tickets.json
     def create
       @ticket = Ticket.new(params[:ticket])
       @ticket.requester = helpdesk_user
-  
+      @ticket.status = Helpdesk::Ticket::STATUSES[0][0]
+
       respond_to do |format|
         if @ticket.save
           format.html { redirect_to tickets_url, notice: 'Ticket was successfully created.' }
@@ -54,12 +63,12 @@ module Helpdesk
         end
       end
     end
-  
+
     # PUT /tickets/1
     # PUT /tickets/1.json
     def update
       @ticket = Ticket.find(params[:id])
-  
+
       respond_to do |format|
         if @ticket.update_attributes(params[:ticket])
           format.html { redirect_to @ticket, notice: 'Ticket was successfully updated.' }
@@ -70,6 +79,6 @@ module Helpdesk
         end
       end
     end
-  
+
   end
 end

@@ -1,0 +1,28 @@
+!!!
+%html
+  %body
+    %div
+      %h1
+        ="#{@comment.ticket.requester.name}, pojawiła się nowa odpowiedź do zgłoszenia: #{@comment.ticket.subject}"
+      %div
+        %p
+          Pod tym adresem możesz zobaczyć odpowiedź i swoje zgłoszenie:
+          %a{:href=>ticket_url(:locale=>I18n.locale, :id=>@comment.ticket, :anchor=>"comment#{@comment.id}")}<>
+            = ticket_url(:locale=>I18n.locale, :id=>@comment.ticket,:anchor=>"comment#{@comment.id}")
+      %p
+        Życzymy miłego dnia!
+        %br
+          = Helpdesk.site_name
+        %br
+          %a{:href=>Helpdesk.site_address}
+            = Helpdesk.site_address
+      %div
+        Ta wiadomość została wygenrowana automatycznie. Nie odpowiadaj na nią. Jeśli nie zainicjowałeś akcji wysyłania tej wiadomości zgłoś to nam
+        %a{:href=>root_url}
+          klikając tutaj.
+
+    
+
+
+
+

@@ -1,0 +1,32 @@
+!!!
+%html
+  %body
+    %div
+      %h1
+        #{@comment.author.name}, dziękujemy za przesłanie odpowiedzi do zgłoszenia
+      %div
+        %p
+          Odpowiedź dotyczyła Twojego zgłoszenia - 
+          = @comment.ticket.subject
+        %p
+          Treść odpowiedzi:
+          %br
+          = simple_format(@comment.comment)
+        %p
+          Pod tym adresem możesz śledzić zgłoszenie:
+          %a{:href=>ticket_url(:locale=>I18n.locale, :id=>@comment.ticket)}<>
+            = ticket_url(:locale=>I18n.locale, :id=>@comment.ticket)
+          %br
+          Cenimy Twój czas, dlatego staramy się odpowiadać, tak szybko jak to możliwe.
+        %p
+          Życzymy miłego dnia!
+          %br
+            = Helpdesk.site_name
+          %br
+            %a{:href=>Helpdesk.site_address}
+              = Helpdesk.site_address
+        %div
+          Ta wiadomość została wygenrowana automatycznie. Nie odpowiadaj na nią. Jeśli nie zainicjowałeś akcji wysyłania tej wiadomości zgłoś to nam
+          %a{:href=>root_url}
+            klikając tutaj.
+  

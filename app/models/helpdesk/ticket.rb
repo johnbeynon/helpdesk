@@ -23,7 +23,9 @@ module Helpdesk
     belongs_to :requester, :class_name => Helpdesk.user_class.to_s
     belongs_to :assignee, :class_name => Helpdesk.user_class.to_s
     belongs_to :ticket_type, :class_name => Helpdesk::TicketType
-    has_many :comments, :order => "helpdesk_comments.created_at DESC"
+    has_many :comments, :order => "created_at DESC"
+
+
 
     scope :active,  where('status IN (?) ',OPEN_STATUSES_KEYS)
     scope :unassigned,  where('status IN (?) ',OPEN_STATUSES_KEYS).where('assignee_id is null')
@@ -40,7 +42,7 @@ module Helpdesk
 
 
     before_create :set_subject
-    #after_create  :send_email
+    after_create  :send_email
 
     def set_subject
       if self.created_at.nil?
@@ -60,11 +62,10 @@ module Helpdesk
 
 
     def send_email
-      NotificationsMailer.ticket_sent_to_us(self).deliver
-      unless email.empty?
-        NotificationsMailer.ticket_sent(self).deliver
+      Helpdesk::NotificationsMailer.ticket_created_notification(self).deliver
+      unless requester.email.empty?
+        Helpdesk::NotificationsMailer.ticket_created_confirmation(self).deliver if Helpdesk.send_confirmation_emails
       end
-
     end
 
     def open?

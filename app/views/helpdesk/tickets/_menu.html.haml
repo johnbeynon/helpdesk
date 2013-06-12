@@ -1,0 +1,8 @@
+- content_for :left do
+  = menu_left t('helpdesk.tickets.title') do
+    = menu_li ico('bullhorn') + "#{t('helpdesk.tickets.active')} (#{@tickets_count})", tickets_url(:tickets => 'active')
+    = menu_li ico('hdd') + "#{t('helpdesk.tickets.closed')}", tickets_url(:tickets => 'closed')
+    %li.divider
+    = menu_li ico('pencil') + t('helpdesk.ticket.new'), new_ticket_url
+
+

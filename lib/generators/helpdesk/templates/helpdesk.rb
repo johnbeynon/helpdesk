@@ -12,4 +12,19 @@ require 'helpdesk'
   
   # Ticket issue types
   config.issue_types = ['bug', 'change request', 'new feature']
+
+  # Helpdesk email for notification
+  config.email = 'helpdesk@example.com'
+
+  # Send confirmation emails
+  config.send_confirmation_emails = true
+
+  # Site name in email footer
+  config.site_name = "Example Helpdesk Team"
+
+  # Site address in email footer
+  config.site_address = "www.example.com"
+
+  # Helpdesk title
+  config.helpdesk_name = "Example Helpdesk"
 end

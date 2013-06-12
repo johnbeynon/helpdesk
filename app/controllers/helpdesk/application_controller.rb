@@ -1,6 +1,12 @@
 module Helpdesk
-  class ApplicationController < ActionController::Base
+  class ApplicationController < ::ApplicationController
     before_filter :ensure_user, :if => Proc.new { Helpdesk.require_user }
+    
+    helper Helpdesk::Engine.helpers
+    
+
+
+    layout 'helpdesk/user'
 
     def ensure_user
       if !helpdesk_user

@@ -12,3 +12,33 @@
   height: 100px;
   width: 482px;
 }
+
+.comment-body{
+  margin-left: 100px;
+}
+
+:target {
+    background-color: #ffa;
+    -webkit-transition: background-color 1s linear;
+    -moz-transition: background-color 1s linear;
+    -o-transition: background-color 1s linear;
+    transition: background-color 1s linear;
+}
+
+a.anchor{
+  opacity: 0;
+  -moz-transition: opacity .25s linear, visibility .1s linear .5s;
+  -webkit-transition: opacity .25s linear, visibility .1s linear .5s;
+  -o-transition: opacity .25s linear, visibility .1s linear .5s;
+  transition: opacity .25s linear, visibility .1s linear .5s;
+  visibility: hidden;
+}
+ .comment:hover a.anchor
+  {
+  opacity: 1;
+  -moz-transition: opacity .25s linear, visibility linear .5s;
+  -webkit-transition: opacity .25s linear, visibility linear .5s;
+  -o-transition: opacity .25s linear, visibility linear .5s;
+  transition: opacity .25s linear, visibility  linear .5s;  
+    visibility: visible;
+  }

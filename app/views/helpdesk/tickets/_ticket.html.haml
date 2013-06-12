@@ -19,17 +19,14 @@
         - if ticket.assignee
           = t('helpdesk.tickets.assignee_to')
           = ticket.assignee.send Helpdesk.display_user.to_sym
-        - else
-          = t('helpdesk.tickets.not_assigned')
-          = link_to ico('star','white') + t('helpdesk.tickets.assign_me'), assign_admin_ticket_path(ticket),class: 'btn btn-mini btn-info'
     %tr
       %td
         %span.btn.disabled
           = ico('comment') 
-          = ticket.comments.size
+          = ticket.comments.pub.size
       %td
         %ul.comments.unstyled
-          - ticket.comments.each do |comment|
+          - ticket.comments.pub.each do |comment|
             - if comment.persisted?
               %li.comment{:id=>"comment#{comment.id}"}
                 %div.comment-left
@@ -41,8 +38,8 @@
                   %a{class:'anchor', href: "#comment#{comment.id}"}
                     = "#"
                 %div.comment-header
-                  -if comment.author == ticket.requester
-                    = status_label ico('user','white')+ t('helpdesk.comments.author'),'label-info'
+                  -if comment.author != ticket.requester
+                    = status_label ico('user','white')+ t('helpdesk.comments.helpdesk'),'label-info'
                     
                   = comment.author.name
                   %small
@@ -54,7 +51,4 @@
     %tr{:class=>ticket.ticket_type.tr_class}
       %td{colspan:2}
         - if show_button
-          = link_to 'Show', admin_ticket_url(ticket), class: 'btn btn-block'
-        -elsif edit_button
-          = link_to 'Edit', edit_admin_ticket_url(ticket), class: 'btn btn-primary'
-          
+          = link_to ticket.subject, ticket_url(ticket), class: 'btn btn-block'

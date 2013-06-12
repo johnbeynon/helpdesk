@@ -1,5 +1,5 @@
 module Helpdesk
-  class FaqsController < ::ApplicationController
+  class FaqsController < ApplicationController
     # GET /faqs
     # GET /faqs.json
     def index

@@ -11,7 +11,7 @@ Gem::Specification.new do |s|
   s.email       = ["john@beynon.org.uk, waclaw@luczak.it"]
   s.homepage    = "http://github.com/johnbeynon/helpdesk"
   s.summary     = "Rails mountable engine providing basic helpdesk functionality for your applications"
-  s.description = "Helpesk includes: tickets, ticket_types, "
+  s.description = "Helpesk includes: tickets, ticket_types, faq, subscribers"
 
   s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.rdoc"]
   s.require_paths = ['lib']
@@ -24,6 +24,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency "foreman"
   s.add_development_dependency "sqlite3"
   s.add_development_dependency "shoulda-matchers"
+  s.add_development_dependency "letter_opener"
 
   
   s.add_dependency "bootstrap-sass"

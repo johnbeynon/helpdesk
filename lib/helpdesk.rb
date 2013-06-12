@@ -13,6 +13,18 @@ module Helpdesk
   mattr_accessor :issue_types
   
   mattr_accessor :mail_server
+
+  mattr_accessor :email
+
+  mattr_accessor :send_confirmation_emails
+  @@send_confirmation_emails = false
+
+  mattr_accessor :site_name
+
+  mattr_accessor :site_address
+
+  mattr_accessor :helpdesk_name  
+  @@helpdesk_name = "Helpdesk"
   
   def self.setup
     yield self

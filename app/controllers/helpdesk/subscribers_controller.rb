@@ -1,5 +1,5 @@
 module Helpdesk
-  class SubscribersController < ::ApplicationController
+  class SubscribersController < ApplicationController
     # GET /subscribers
     # GET /subscribers.json
     def index
