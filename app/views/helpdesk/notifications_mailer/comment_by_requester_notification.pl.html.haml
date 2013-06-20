@@ -15,7 +15,7 @@
         %p
           Zgłaszający:
           %br
-          = @comment.author.name
+          = @comment.author.send Helpdesk.display_user.to_sym
           = @comment.author.email
         %br
         %br

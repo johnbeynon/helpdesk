@@ -17,7 +17,5 @@ Helpdesk::Engine.routes.draw do
     resources :tickets, :except => [ :edit, :destroy ]
     root :to => "tickets#index"
     
-
-
   end
 end

@@ -5,6 +5,7 @@ pl:
     edit: Edytuj
     destroy: Usuń
     name: Helpdesk
+    new_ticket: Nowe zgłoszenie
     tickets:
       new: Nowe zgłoszenie
       my: Moje zgłoszenia
@@ -20,6 +21,8 @@ pl:
       visible_to_autor: Widoczny dla zgłaszającego - wyślij emaila
       you_have_no_tickets: "Brak zgłoszeń"
       ticket_closed: Zgłoszenie zamkniete
+      subject: Temat zgłoszenia
+      description: Treść
     ticket: Zgłoszenie
     comments:
       title: Komentarze

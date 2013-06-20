@@ -17,7 +17,7 @@
       %td
         - if subscriber.confirmed
           = ico('ok')
-      %td= subscriber.name
+      %td= subscriber.send Helpdesk.display_user.to_sym
       %td= subscriber.email
       
       %td= subscriber.lang

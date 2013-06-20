@@ -8,7 +8,7 @@ module Helpdesk
     isolate_namespace Helpdesk
 
     initializer "Helpdesk precompile hook" do |app|
-      app.config.assets.precompile += ['helpdesk/admin.css']
+      app.config.assets.precompile += ['helpdesk/admin.css','helpdesk/application.css','helpdesk/application.js']
     end
 
     config.to_prepare do

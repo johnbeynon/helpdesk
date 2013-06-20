@@ -22,7 +22,7 @@
           -if comment.author == @ticket.requester
             = status_label ico('user','white')+ t('helpdesk.comments.author'),'label-info'
             
-          = comment.author.name
+          = comment.author.send Helpdesk.display_user.to_sym
           %small
             = time_ago_in_words(comment.created_at)
             temu

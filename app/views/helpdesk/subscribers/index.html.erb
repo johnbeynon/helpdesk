@@ -14,7 +14,7 @@
 
 <% @subscribers.each do |subscriber| %>
   <tr>
-    <td><%= subscriber.name %></td>
+    <td><%= subscriber.send Helpdesk.display_user.to_sym %></td>
     <td><%= subscriber.email %></td>
     <td><%= subscriber.lang %></td>
     <td><%= subscriber.hashcode %></td>

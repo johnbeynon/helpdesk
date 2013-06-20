@@ -5,9 +5,11 @@ module Helpdesk
         content_tag(:legend ,title) +
         content_tag( :ul, class: 'nav nav-list') do
           capture(&block)
+
         end
       end
     end
+    
 
     def menu_li(lbl, path, *args)
       options = args.extract_options!
@@ -17,13 +19,17 @@ module Helpdesk
 
     def status_label(lbl,cls)
       content_tag(:span, class: "label #{cls}") do
-        lbl 
+        lbl
       end
     end
-    
 
     def ico(name,color='black')
       raw("<i class=\"icon-#{name} icon-#{color}\"></i> ")
+    end
+
+    def parent_layout(layout)
+      @view_flow.set(:layout,output_buffer)
+      self.output_buffer = render(:file => "layouts/#{layout}")
     end
   end
 end

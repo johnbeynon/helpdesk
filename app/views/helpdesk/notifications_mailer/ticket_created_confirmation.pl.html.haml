@@ -3,7 +3,7 @@
   %body
     %div
       %h1
-        #{@ticket.requester.name}, dziękujemy za przesłanie zgłoszenia
+        #{@ticket.requester.send Helpdesk.display_user.to_sym}, dziękujemy za przesłanie zgłoszenia
       %div
         %p
           Temat Twojego zgłoszenia to

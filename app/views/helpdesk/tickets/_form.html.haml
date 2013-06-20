@@ -1,24 +1,36 @@
-= simple_form_for(@ticket, :html => {:class => 'form-horizontal' }) do |f|
-  - if @ticket.errors.any?
-    %div.error_explanation
-      %h2
-        = "#{pluralize(@ticket.errors.count, "error")} prohibited this ticket from being saved:"
-      %ul
-        - @ticket.errors.full_messages.each do |msg|
-          %li
-            = msg
-  = f.input :subject 
-  = f.input :ticket_type_id, collection: Helpdesk::TicketType.active, include_blank: false
-  - if @ticket.new_record?
-    = f.input :description 
-  - else
-    = @ticket.description
+= simple_form_for @ticket,html:{class: :feedback} do |f|
+  %fieldset<>
+    - if @ticket.errors.any?
+      %div.error_explanation
+        %h2
+          = "#{pluralize(@ticket.errors.count, "error")} prohibited this ticket from being saved:"
+        %ul
+          - @ticket.errors.full_messages.each do |msg|
+            %li
+              = msg
+    / = f.input :subject 
+    / = f.input :ticket_type_id, collection: Helpdesk::TicketType.active, include_blank: false
+    %div.subject
+      %input{:value=>@ticket.subject,:name=>"ticket[subject]",:type => "text",:placeholder => t('helpdesk.tickets.subject')}
+      %select{:name=>"ticket[ticket_type_id]"}
+        - SugestionType.all.each do |type|
+          %option{:value=>type.id, selected: type.id == @ticket.ticket_type_id}
+            = type.get_name
     
-    = f.simple_fields_for :comments do |tickets_form|
-      - unless tickets_form.object.persisted?
-        = tickets_form.input :comment 
-        = tickets_form.input :public, :hint => 'Requester can see this comment (public comment)' 
-        = tickets_form.input :author_id, :as => :hidden, :input_html => { :value => helpdesk_user.id } 
-  %div.form-actions
-    = f.button :submit, :class => 'btn-primary'
-    = submit_tag 'Anuluj', :type => :reset, :class => "btn btn-danger"
+    - if @ticket.new_record?
+      %div.content
+        %textarea{:value=>@ticket.description,:name=>"ticket[description]",:type => "text",:placeholder => t('helpdesk.tickets.description')}
+    - else
+      = @ticket.description
+      
+      = f.simple_fields_for :comments do |tickets_form|
+        - unless tickets_form.object.persisted?
+          = tickets_form.input :comment 
+          = tickets_form.input :public, :hint => 'Requester can see this comment (public comment)' 
+          = tickets_form.input :author_id, :as => :hidden, :input_html => { :value => helpdesk_user.id } 
+    %hr
+    %div.textRight
+      %a#feedbackCancel{:class=>"btn white"}
+        Anuluj
+      %input{:type => "submit",:value => 'Wyślij', :class=>"btn"}
+    %div.clearBoth

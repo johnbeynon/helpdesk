@@ -3,7 +3,7 @@
   %body
     %div
       %h1
-        #{@comment.author.name}, dziękujemy za przesłanie odpowiedzi do zgłoszenia
+        #{@comment.author.send Helpdesk.display_user.to_sym}, dziękujemy za przesłanie odpowiedzi do zgłoszenia
       %div
         %p
           Odpowiedź dotyczyła Twojego zgłoszenia - 

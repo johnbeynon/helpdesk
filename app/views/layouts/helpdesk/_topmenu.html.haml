@@ -1,6 +1,7 @@
 .navbar
   .navbar-inner
     / .container
+    =link_to Helpdesk.site_address, main_app.root_path, :class=>'brand', :title => t('helpdesk.name')
     =link_to t('helpdesk.name'), admin_root_path, :class=>'brand', :title => t('helpdesk.name')
     %nav
       %ul.nav
@@ -18,4 +19,4 @@
                 =link_to t('users.sign_out'),main_app.destroy_user_session_path, :method => :delete, :class => 'icon exit blue'
         -else
           =menu_li t('users.sign_in'),new_user_session_path, {:class => "power"}
-          =menu_li t('users.sign_up'),new_user_registration_path, {:class => "signup"}
+          =menu_li t('users.sign_up'),new_user_registration_path, {:class => "signup"} 

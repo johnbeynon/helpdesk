@@ -21,6 +21,7 @@ module Helpdesk
     # GET /tickets/1
     # GET /tickets/1.json
     def show
+      @tickets_count = Helpdesk::Ticket.where(:requester_id => helpdesk_user.id).active.count
       @ticket = Ticket.find(params[:id])
 
       respond_to do |format|
@@ -32,6 +33,7 @@ module Helpdesk
     # GET /tickets/new
     # GET /tickets/new.json
     def new
+      @tickets_count = Helpdesk::Ticket.where(:requester_id => helpdesk_user.id).active.count
       @ticket = Ticket.new
       @ticket.status = Helpdesk::Ticket::STATUSES[0][0]
 

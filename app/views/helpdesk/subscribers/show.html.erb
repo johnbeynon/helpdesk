@@ -2,7 +2,7 @@
 
 <p>
   <b>Name:</b>
-  <%= @subscriber.name %>
+  <%= @subscriber.send Helpdesk.display_user.to_sym %>
 </p>
 
 <p>
