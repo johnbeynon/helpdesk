@@ -28,8 +28,8 @@ Gem::Specification.new do |s|
 
 
   s.add_dependency "bootstrap-sass"
-  s.add_dependency "rails", "~> 3.2.3"
-  s.add_dependency 'sass-rails', '~> 3.2.3'
+  s.add_dependency "rails", ">= 3.2.3"
+  s.add_dependency 'sass-rails', '>= 3.2.3'
   s.add_dependency 'simple_form'
   s.add_dependency 'state_machine'
   s.add_dependency 'globalize3'
