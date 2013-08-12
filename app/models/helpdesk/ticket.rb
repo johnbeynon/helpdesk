@@ -3,8 +3,8 @@ module Helpdesk
 
     STATUSES = [
       [ :new,        'Nowe:', 'label-important',3],
-      [ :open,        'Otworzone:', 'label-warning',2],
-      [ :waiting,     'Otworzone: oczekujące', 'label-info',2],
+      [ :open,        'Otwarte:', 'label-warning',2],
+      [ :waiting,     'Otwarte: oczekujące', 'label-info',2],
       [ :solved,      'Zamknięte: problem rozwiązany','label-success',0],
       [ :not_fixable, 'Zamknięte: nienaprawialne','label-inverse',-1],
       [ :unreachable, 'Zamknięte: klient nieosiągalny','label-inverse',-1],
