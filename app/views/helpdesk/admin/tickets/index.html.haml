@@ -28,7 +28,7 @@
         %td= ticket.subject
         %td
           - if ticket.requester
-            = ticket.requester.name
+            = ticket.requester.send Helpdesk.display_user.to_sym
             %br 
             = ticket.requester.phone
             %br 

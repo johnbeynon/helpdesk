@@ -44,7 +44,14 @@ module Helpdesk
 
 
     before_create :set_subject
+    before_create :set_status
     after_create  :send_email
+
+    def set_status
+      if self.status.blank?
+        self.status = :new
+      end
+    end
 
     def set_subject
       if self.created_at.nil?

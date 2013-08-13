@@ -10,7 +10,7 @@ pl:
       new: Nowe zgłoszenie
       my: Moje zgłoszenia
       unassigned: Nieprzypisane zgłoszenia
-      closed: Zamkniete zgłoszenia
+      closed: Zamknięte zgłoszenia
       all: Wszystkie zgłoszenia
       title: Zgłoszenia
       active: Aktywne zgłoszenia
@@ -20,7 +20,7 @@ pl:
       is_now_assigned: "Zgłoszenie %{subject} zostało przypisane do Ciebie"
       visible_to_autor: Widoczny dla zgłaszającego - wyślij emaila
       you_have_no_tickets: "Brak zgłoszeń"
-      ticket_closed: Zgłoszenie zamkniete
+      ticket_closed: Zgłoszenie zamknięte
       subject: Temat zgłoszenia
       description: Treść
     ticket: Zgłoszenie
