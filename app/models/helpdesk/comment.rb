@@ -13,10 +13,10 @@ module Helpdesk
     def send_email
       if self.public?
         if ticket.requester == author
-          Helpdesk::NotificationsMailer.comment_by_requester_notification(self).deliver
+          Helpdesk::NotificationsMailer.comment_by_requester_notification(self).deliver if ticket.requester
           Helpdesk::NotificationsMailer.comment_by_requester_confirmation(self).deliver if Helpdesk.send_confirmation_emails
         else
-          Helpdesk::NotificationsMailer.comment_by_helpdesk_notification(self).deliver
+          Helpdesk::NotificationsMailer.comment_by_helpdesk_notification(self).deliver if ticket.requester
           Helpdesk::NotificationsMailer.comment_by_helpdesk_confirmation(self).deliver if Helpdesk.send_confirmation_emails
         end
       end

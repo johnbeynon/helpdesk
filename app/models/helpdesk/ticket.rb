@@ -25,7 +25,7 @@ module Helpdesk
     belongs_to :requester, :class_name => Helpdesk.user_class.to_s
     belongs_to :assignee, :class_name => Helpdesk.user_class.to_s
     belongs_to :ticket_type, :class_name => Helpdesk::TicketType
-    has_many :comments, :order => "created_at DESC"
+    has_many :comments, :order => "created_at DESC",:dependent => :destroy
 
 
 
