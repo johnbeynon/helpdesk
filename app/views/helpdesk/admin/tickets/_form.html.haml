@@ -7,17 +7,17 @@
         - @ticket.errors.full_messages.each do |msg|
           %li
             = msg
-  = f.input :requester_id, :collection => User.all
-  = f.input :subject 
+  = f.input :requester_id, :collection => (Helpdesk.user_class).all,:label_method=>Helpdesk.display_user_uniq_info.to_sym
+  = f.input :subject
   = f.input :status, :collection => Helpdesk::Ticket::STATUS_OPTIONS, include_blank: false
-  = f.input :assignee_id, :collection => User.where('helpdesk_admin = ?', true) 
+  = f.input :assignee_id, :collection => User.where('helpdesk_admin = ?', true)
   = f.input :ticket_type_id, :collection => Helpdesk::TicketType.active,include_blank: false
   - if @ticket.new_record?
-    = f.input :description 
+    = f.input :description
   - else
     = simple_format @ticket.description
-    
-  
+
+
   %div.form-actions
     = f.button :submit, :class => 'btn-primary'
     = submit_tag 'Anuluj', :type => :reset, :class => "btn btn-danger"

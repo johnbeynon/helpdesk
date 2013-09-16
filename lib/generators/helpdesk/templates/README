@@ -17,7 +17,12 @@ You need to do some manual setup to get Helpdesk working:
 
 4.  Add a helpdesk_user method to your applications application_controller.rb
     that exposes your current_user
-  
+
+    Example, for devise gem:
+    def helpdesk_user
+      current_user
+    end
+
 5.
 
 ===============================================================================

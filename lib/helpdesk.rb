@@ -10,8 +10,10 @@ module Helpdesk
 
   mattr_accessor :display_user
 
+  mattr_accessor :display_user_uniq_info
+
   mattr_accessor :issue_types
-  
+
   mattr_accessor :mail_server
 
   mattr_accessor :email
@@ -23,9 +25,9 @@ module Helpdesk
 
   mattr_accessor :site_address
 
-  mattr_accessor :helpdesk_name  
+  mattr_accessor :helpdesk_name
   @@helpdesk_name = "Helpdesk"
-  
+
   def self.setup
     yield self
   end

@@ -2,10 +2,10 @@
   %tbody
     %tr{:class=>ticket.ticket_type.tr_class}
       %td{colspan:2}
-        %h4  
+        %h4
           ="##{ticket.subject}"
     %tr
-      %td{style:'width:100px'}  
+      %td{style:'width:100px'}
         = I18n::l(ticket.created_at, :format=>:short)
         - if ticket.requester
           = ticket.requester.send Helpdesk.display_user.to_sym
@@ -13,7 +13,7 @@
         = status_label Helpdesk::Ticket::STATUS_BY_KEY[ticket.status.to_sym], Helpdesk::Ticket::STATUS_CLASS_BY_KEY[ticket.status.to_sym]
         = ticket.ticket_type.title
 
-        = simple_format ticket.description
+        = auto_link(simple_format(ticket.description), :html => { :target => "_blank" })
     %tr
       %td
         - if ticket.assignee
@@ -22,7 +22,7 @@
     %tr
       %td
         %span.btn.disabled
-          = ico('comment') 
+          = ico('comment')
           = ticket.comments.pub.size
       %td
         %ul.comments.unstyled
@@ -40,14 +40,14 @@
                 %div.comment-header
                   -if comment.author != ticket.requester
                     = status_label ico('user','white')+ t('helpdesk.comments.helpdesk'),'label-info'
-                    
+
                   = comment.author.send Helpdesk.display_user.to_sym
                   %small
                     = time_ago_in_words(comment.created_at)
                     temu
                 %div.comment-body
-                  = simple_format comment.comment
-  
+                  = auto_link(simple_format(comment.comment), :html => { :target => "_blank" })
+
     %tr{:class=>ticket.ticket_type.tr_class}
       %td{colspan:2}
         - if show_button
