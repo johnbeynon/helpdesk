@@ -6,7 +6,12 @@
         ="#{@comment.ticket.requester.send Helpdesk.display_user.to_sym}, pojawiła się nowa odpowiedź do zgłoszenia: #{@comment.ticket.subject}"
       %div
         %p
-          Pod tym adresem możesz zobaczyć odpowiedź i swoje zgłoszenie:
+          Treść odpowiedzi:
+          %br
+          = simple_format(@comment.comment)
+        %br
+        %p
+          Pod tym adresem, będąc zalogowanym, możesz odpowiedzieć oraz zobaczyć historie zgłoszenia:
           %a{:href=>ticket_url(:locale=>I18n.locale, :id=>@comment.ticket, :anchor=>"comment#{@comment.id}")}<>
             = ticket_url(:locale=>I18n.locale, :id=>@comment.ticket,:anchor=>"comment#{@comment.id}")
       %p
@@ -21,7 +26,7 @@
         %a{:href=>root_url}
           klikając tutaj.
 
-    
+
 
 
 

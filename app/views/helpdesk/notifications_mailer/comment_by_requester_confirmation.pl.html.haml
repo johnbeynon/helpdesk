@@ -6,14 +6,14 @@
         #{@comment.author.send Helpdesk.display_user.to_sym}, dziękujemy za przesłanie odpowiedzi do zgłoszenia
       %div
         %p
-          Odpowiedź dotyczyła Twojego zgłoszenia - 
+          Odpowiedź dotyczyła Twojego zgłoszenia -
           = @comment.ticket.subject
         %p
           Treść odpowiedzi:
           %br
           = simple_format(@comment.comment)
         %p
-          Pod tym adresem możesz śledzić zgłoszenie:
+          Pod tym adresem, będąc zalogowanym, możesz śledzić zgłoszenie:
           %a{:href=>ticket_url(:locale=>I18n.locale, :id=>@comment.ticket)}<>
             = ticket_url(:locale=>I18n.locale, :id=>@comment.ticket)
           %br
@@ -29,4 +29,4 @@
           Ta wiadomość została wygenrowana automatycznie. Nie odpowiadaj na nią. Jeśli nie zainicjowałeś akcji wysyłania tej wiadomości zgłoś to nam
           %a{:href=>root_url}
             klikając tutaj.
-  
+

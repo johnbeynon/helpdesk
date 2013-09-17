@@ -7,7 +7,7 @@
         - @ticket.errors.full_messages.each do |msg|
           %li
             = msg
-  = f.input :requester_id, :collection => (Helpdesk.user_class).all,:label_method=>Helpdesk.display_user_uniq_info.to_sym
+  = f.input :requester_id, :collection => (Helpdesk.user_class).all,:label_method=>Helpdesk.display_user_uniq_info.to_sym, input_html: { class: 'chosen-select' }
   = f.input :subject
   = f.input :status, :collection => Helpdesk::Ticket::STATUS_OPTIONS, include_blank: false
   = f.input :assignee_id, :collection => User.where('helpdesk_admin = ?', true)

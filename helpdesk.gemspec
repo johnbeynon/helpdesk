@@ -26,6 +26,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency "shoulda-matchers"
   s.add_development_dependency "letter_opener"
 
+  s.add_dependency "chosen-rails"
   s.add_dependency "rails_autolink"
   s.add_dependency "bootstrap-sass"
   s.add_dependency "rails", ">= 3.2.3"
