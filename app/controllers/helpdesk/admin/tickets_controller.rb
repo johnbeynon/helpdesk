@@ -32,18 +32,18 @@ class Helpdesk::Admin::TicketsController < Helpdesk::Admin::BaseController
 
   def edit
     @ticket = Helpdesk::Ticket.find(params[:id])
-    
+
   end
 
   def show
     @ticket = Helpdesk::Ticket.find(params[:id])
-    
+
   end
 
   def create
     @ticket = Helpdesk::Ticket.new(params[:ticket])
     if @ticket.save
-      redirect_to admin_ticket_path
+      redirect_to admin_ticket_path(@ticket)
     else
       render action: "new"
     end

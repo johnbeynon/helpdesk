@@ -9,7 +9,7 @@ module Helpdesk
         end
       end
     end
-    
+
 
     def menu_li(lbl, path, *args)
       options = args.extract_options!
