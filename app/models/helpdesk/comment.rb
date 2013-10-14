@@ -8,6 +8,13 @@ module Helpdesk
     scope :pub,  where('public = ?',true)
 
     after_create :send_email
+    after_create :check_reopen
+
+    def check_reopen
+      if ticket.requester == author
+        ticket.update_column(:status ,:waiting)
+      end
+    end
 
 
     def send_email
