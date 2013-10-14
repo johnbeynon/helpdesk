@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.version     = Helpdesk::VERSION
   s.authors     = ["John Beynon Wacław Łuczak"]
   s.email       = ["john@beynon.org.uk, waclaw@luczak.it"]
-  s.homepage    = "http://github.com/johnbeynon/helpdesk"
+  s.homepage    = "http://github.com/wacaw/helpdesk"
   s.summary     = "Rails mountable engine providing basic helpdesk functionality for your applications"
   s.description = "Helpesk includes: tickets, ticket_types, faq, subscribers"
 
