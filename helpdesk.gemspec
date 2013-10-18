@@ -12,6 +12,7 @@ Gem::Specification.new do |s|
   s.homepage    = "http://github.com/wacaw/helpdesk"
   s.summary     = "Rails mountable engine providing basic helpdesk functionality for your applications"
   s.description = "Helpesk includes: tickets, ticket_types, faq, subscribers"
+  s.license     = 'MIT'
 
   s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile"]
   s.require_paths = ['lib']

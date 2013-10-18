@@ -1,0 +1,20 @@
+%div.content
+  %div.pageContainer
+    %h1
+      Często zadawane pytania
+    %ol#faq
+      - @faqs.each do |faq|
+        %li{:id=>"link#{faq.id}"}
+          %h3
+            = link_to faq.title, "\#link#{faq.id}"
+          %div{style:"display:none"}
+            = raw faq.text
+
+- content_for :scripts do
+  :javascript
+    $(document).ready(function(){
+      $('ol#faq li h3').click(function () {
+        $(this).parent().find('div').slideToggle('fast');
+      });
+      $("a[href='" + window.location.hash + "']").click();
+    });
