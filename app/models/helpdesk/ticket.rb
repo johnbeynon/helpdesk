@@ -62,7 +62,7 @@ module Helpdesk
 
       new_subject = "#{sprintf '%02d',time.year-2000}#{sprintf '%02d',time.month}#{sprintf '%02d',time.day}"
 
-      day_num = Sugestion.where(created_at: Date.today.beginning_of_day..Date.today.end_of_day).count+1
+      day_num = Helpdesk::Ticket.where(created_at: Date.today.beginning_of_day..Date.today.end_of_day).count+1
       new_subject += "-#{sprintf '%04d',day_num}: "
       self.subject = new_subject + subject.to_s
       self.subject.strip!

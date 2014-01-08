@@ -29,7 +29,7 @@ pl:
       note: Notatka
       send: Wysłane
       received: Odebrane
-      note: notatka 
+      note: notatka
       author: Odp. autora
       helpdesk: Odp. BOK
     ticket_types:
@@ -41,12 +41,12 @@ pl:
 
     dashboard: Dashboard
 
-    subscribers: 
-      title: Subskrynenci
+    subscribers:
+      title: Subskrybenci
       confirmed: Potwierdzeni subskrynenci
       unconfirmed: Niepotwierdzeni
-      all: Wszyscy subskrynenci
-      new: Dodaj subskrynenta
+      all: Wszyscy subskrybenci
+      new: Dodaj subskrybenta
 
     faqs:
       title: FAQ

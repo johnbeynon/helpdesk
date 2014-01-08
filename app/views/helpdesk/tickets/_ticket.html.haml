@@ -51,4 +51,4 @@
     %tr{:class=>ticket.ticket_type.tr_class}
       %td{colspan:2}
         - if show_button
-          = link_to ticket.subject, ticket_url(ticket), class: 'btn btn-block'
+          = link_to ticket.subject, ticket_url(I18n.locale,ticket), class: 'btn btn-block'

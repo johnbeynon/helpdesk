@@ -2,16 +2,18 @@ class Helpdesk::Admin::TicketsController < Helpdesk::Admin::BaseController
 
   def index
     if params[:tickets] == 'unassigned'
-      @tickets = Helpdesk::Ticket.unassigned
+      @tickets = Helpdesk::Ticket.unassigned.scoped
     elsif params[:tickets] == 'closed'
-      @tickets = Helpdesk::Ticket.closed
+      @tickets = Helpdesk::Ticket.closed.scoped
     elsif params[:tickets] == 'active'
-      @tickets = Helpdesk::Ticket.active
+      @tickets = Helpdesk::Ticket.active.scoped
     elsif params[:tickets] == 'all'
-      @tickets = Helpdesk::Ticket.all
+      @tickets = Helpdesk::Ticket.all.scoped
     else
-      @tickets = my_tickets.active
+      @tickets = my_tickets.active.scoped
     end
+    @tickets = @tickets.page(params[:page])
+
     render 'list'
   end
 

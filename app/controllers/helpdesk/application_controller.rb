@@ -1,9 +1,9 @@
 module Helpdesk
-  class ApplicationController < ::ApplicationController
+  class ApplicationController < ApplicationController
     before_filter :ensure_user, :if => Proc.new { Helpdesk.require_user }
-    
+
     helper Helpdesk::Engine.helpers
-    
+
 
 
     layout 'helpdesk/user'
@@ -14,11 +14,15 @@ module Helpdesk
       end
     end
 
-    def helpdesk_admin?
-      helpdesk_user && (can? :manage, 'helpdesk')
+    def default_url_options(options={})
+      { :locale => I18n.locale}
     end
-    helper_method :helpdesk_admin?
-    
+
+    # def helpdesk_admin?
+    #   helpdesk_user && (can? :manage, 'helpdesk')
+    # end
+    # helper_method :helpdesk_admin?
+
 
 
   end

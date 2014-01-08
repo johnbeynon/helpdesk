@@ -19,6 +19,18 @@ module Helpdesk
       def show_readme
         readme "README" if behavior == :invoke
       end
+
+
+
+      def add_engine_to_route
+        route "mount Helpdesk::Engine, :at => '/helpdesk'"
+      end
+
+      def run_rake
+        rake "helpdesk:install:migrations"
+        rake "db:migrate"
+      end
+
     end
   end
 end

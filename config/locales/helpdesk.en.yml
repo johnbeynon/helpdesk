@@ -1,7 +1,80 @@
 en:
 
   helpdesk:
-    name: Helpdesk Foo
-    new_ticket: New Ticket
-    my_tickets: My Tickets
+    Show: Show
+    edit: Edit
+    Destroy: Delete
+    name: Helpdesk
+    new_ticket: New
+    tickets:
+      new: New Issue
+      my: My Issue
+      unassigned: Wnassigned
+      closed: Closed Issues
+      all: All issues
+      title: Issues
+      active: Active Issues
+      assignee_to: Assigned to
+      assign_me: I take it
+      not_assigned: Not assigned
+      is_now_assigned: "Issue % {subject} has been assigned to you"
+      visible_to_autor: Visible to the author - send an email
+      you_have_no_tickets: "No issues "
+      ticket_closed: Issues closed
+      subject: Subject of
+      Description: Content
+    ticket: Issue
+    comments:
+      title: Comments
+      note: Memo
+      send: Sent
+      received: Received
+      note: note
+      author: Re. author
+      helpdesk: Re. BOK
+    ticket_types:
+      title: Types of issues
+      new: A new type of issues
+      all: All kinds of issues
+      active: Active types of issues
+      inactive: Inactive types of issues
 
+    dashboard: Dashboard
+
+    subscribers:
+      title: Subscribers
+      confirmed: Confirmed subskrybenci
+      unconfirmed: Unconfirmed
+      all: All Subscribers
+      new: Add Subscriber
+
+    faqs:
+      title: FAQ
+      active: Active Questions
+      inactive: Inactive questions
+      all: All the questions
+      new: New Question
+      by: by
+      faq:
+        active: active
+        inactive: inactive
+
+
+
+  activerecord:
+    models:
+      Helpdesk: helpdesk
+      helpdesk/ticket: Issue
+      helpdesk/comment: Comment
+    attributes:
+      helpdesk/comment:
+        comment: Additional description
+        public: Visible/Send Email
+      helpdesk/ticket:
+        requester_id: Requester
+        subject: Subject
+        Status: Status
+        assignee_id: Assigned
+        ticket_type_id: Type of notification
+        Description: Description
+        comments: More details

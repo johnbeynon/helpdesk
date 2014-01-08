@@ -29,7 +29,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency "chosen-rails"
   s.add_dependency "rails_autolink"
-  s.add_dependency "bootstrap-sass"
+  s.add_dependency "bootstrap-sass","2.3.2.2"
   s.add_dependency "rails", ">= 3.2.3"
   s.add_dependency 'sass-rails', '>= 3.2.3'
   s.add_dependency 'simple_form'
@@ -37,4 +37,5 @@ Gem::Specification.new do |s|
   s.add_dependency 'globalize3'
   s.add_dependency 'batch_translations'
   s.add_dependency 'ckeditor'
+  s.add_dependency 'kaminari'
 end

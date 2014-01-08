@@ -8,7 +8,7 @@
 
 %table.table.table-hover
   %thead
-    %tr 
+    %tr
       %th= t('helpdesk.status')
       %th ID
       %th Issue Type
@@ -16,7 +16,7 @@
       %th Requester
       %th Requested
       %th Assignee
-      %th 
+      %th
 
   %tbody
     - @tickets.each do |ticket|
@@ -29,12 +29,14 @@
         %td
           - if ticket.requester
             = ticket.requester.send Helpdesk.display_user.to_sym
-            %br 
+            %br
             = ticket.requester.phone
-            %br 
+            %br
             = ticket.requester.email
         %td= I18n::l(ticket.created_at, :format=>:short)
         %td= ticket.assignee if ticket.assignee
         %td= link_to 'Show', admin_ticket_url(ticket)
 %br
+
+= paginate @tickets
 

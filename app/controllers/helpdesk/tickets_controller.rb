@@ -1,5 +1,5 @@
 module Helpdesk
-  class TicketsController < ApplicationController
+  class TicketsController < Helpdesk::ApplicationController
     # GET /tickets
     # GET /tickets.json
     def index
@@ -22,7 +22,7 @@ module Helpdesk
     # GET /tickets/1.json
     def show
       @tickets_count = Helpdesk::Ticket.where(:requester_id => helpdesk_user.id).active.count
-      @ticket = Ticket.find(params[:id])
+      @ticket = Helpdesk::Ticket.find(params[:id])
 
       respond_to do |format|
         format.html # show.html.erb
@@ -34,7 +34,7 @@ module Helpdesk
     # GET /tickets/new.json
     def new
       @tickets_count = Helpdesk::Ticket.where(:requester_id => helpdesk_user.id).active.count
-      @ticket = Ticket.new
+      @ticket = Helpdesk::Ticket.new
       @ticket.status = Helpdesk::Ticket::STATUSES[0][0]
 
       respond_to do |format|
@@ -45,13 +45,13 @@ module Helpdesk
 
     # GET /tickets/1/edit
     def edit
-      @ticket = Ticket.find(params[:id])
+      @ticket = Helpdesk::Ticket.find(params[:id])
     end
 
     # POST /tickets
     # POST /tickets.json
     def create
-      @ticket = Ticket.new(params[:ticket])
+      @ticket = Helpdesk::Ticket.new(params[:ticket])
       @ticket.requester = helpdesk_user
       @ticket.status = Helpdesk::Ticket::STATUSES[0][0]
 
@@ -69,7 +69,7 @@ module Helpdesk
     # PUT /tickets/1
     # PUT /tickets/1.json
     def update
-      @ticket = Ticket.find(params[:id])
+      @ticket = Helpdesk::Ticket.find(params[:id])
 
       respond_to do |format|
         if @ticket.update_attributes(params[:ticket])

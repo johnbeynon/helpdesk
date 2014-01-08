@@ -1,6 +1,6 @@
 module Helpdesk
   module Admin
-    class BaseController < ::ApplicationController
+    class BaseController < Helpdesk::ApplicationController
 
       helper Helpdesk::Engine.helpers
       # helper Helpdesk::ApplicationHelper
