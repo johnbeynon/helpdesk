@@ -1,5 +1,5 @@
 module Helpdesk
-  class FaqsController < ApplicationController
+  class FaqsController < Helpdesk::ApplicationController
     def index
       @faqs = Helpdesk::Faq.active
     end

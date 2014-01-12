@@ -1,5 +1,5 @@
 module Helpdesk
-  class DashboardController < ApplicationController
+  class DashboardController < Helpdesk::ApplicationController
 
 
     before_filter :my_tickets
