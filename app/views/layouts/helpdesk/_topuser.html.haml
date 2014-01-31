@@ -1,10 +1,19 @@
-.navbar
-  .navbar-inner
-    / .container
-    =link_to Helpdesk.site_address, main_app.root_path, :class=>'brand', :title => Helpdesk.site_address
-    =link_to Helpdesk.name, root_path, :class=>'brand', :title => Helpdesk.name
-    %nav
-      %ul.nav
-        = menu_li t('helpdesk.tickets.title'),tickets_path
-        = menu_li t('helpdesk.faq'),faqs_path
+%nav.navbar.navbar-default#site_topmmenu{role: 'navigation'}
+  .navbar-header
+    %button.navbar-toggle{"data-target" => "#bs-navbar-collapse-1", "data-toggle" => "collapse", type: "button"}
+      %span.sr-only Toggle navigation
+      %span.icon-bar
+      %span.icon-bar
+      %span.icon-bar
+    =link_to Helpdesk.site_address, main_app.root_path, :class=>'navbar-brand', :title => Helpdesk.site_address
+    =link_to Helpdesk.name, root_path, :class=>'navbar-brand', :title => Helpdesk.name
+  #bs-navbar-collapse-1.collapse.navbar-collapse.in
+    %ul.nav.navbar-nav
+      = menu_li t('helpdesk.tickets.title'),tickets_path
+      = menu_li t('helpdesk.faq'),faqs_path
+
+
+
+
+
 

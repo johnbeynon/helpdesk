@@ -8,11 +8,14 @@ class Helpdesk::Admin::TicketsController < Helpdesk::Admin::BaseController
     elsif params[:tickets] == 'active'
       @tickets = Helpdesk::Ticket.active.scoped
     elsif params[:tickets] == 'all'
-      @tickets = Helpdesk::Ticket.all.scoped
+      @tickets = Helpdesk::Ticket.scoped
     else
       @tickets = my_tickets.active.scoped
     end
-    @tickets = @tickets.page(params[:page])
+    @tickets = @tickets.includes(:requester)
+                        .includes(:assignee)
+                        .includes(:ticket_type)
+                        .page(params[:page])
 
     render 'list'
   end

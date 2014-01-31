@@ -7,11 +7,11 @@
     %tr{:class=>@ticket.ticket_type.tr_class}
 
       %td
-        
+
         - unless @ticket.open?
           = t('helpdesk.tickets.ticket_closed')
         -else
-          = simple_form_for([:admin, @ticket], :html => {:class => 'form-horizontal' }) do |f|
+          = simple_form_for([:admin, @ticket]) do |f|
             - if @ticket.errors.any?
               %div.error_explanation
                 %h2
@@ -21,16 +21,16 @@
                     %li
                       = msg
             = f.input :status, :collection => Helpdesk::Ticket::STATUS_OPTIONS, include_blank: false
-            = f.input :assignee_id, :collection => User.where('helpdesk_admin = ?', true) 
-                      
+            = f.input :assignee_id, :collection => User.where('helpdesk_admin = ?', true)
+
 
             = f.simple_fields_for :comments,@ticket.comments.build do |tickets_form|
               - unless tickets_form.object.persisted?
                 = tickets_form.input :comment, :input_html=>{class: 'comment-textarea'}
                 / , :as => :ckeditor, :input_html => { :ckeditor => {:toolbar => 'mini'},:language => I18n.locale}
 
-                = tickets_form.input :public, :hint => t('helpdesk.tickets.visible_to_autor') 
-                = tickets_form.input :author_id, :as => :hidden, :input_html => { :value => helpdesk_user.id } 
+                = tickets_form.input :public, :hint => t('helpdesk.tickets.visible_to_autor')
+                = tickets_form.input :author_id, :as => :hidden, :input_html => { :value => helpdesk_user.id }
             %div.form-actions
-              = f.button :submit, :class => 'btn-primary'
+              = f.button :submit, :class => 'btn btn-primary'
               = submit_tag 'Anuluj', :type => :reset, :class => "btn btn-danger"

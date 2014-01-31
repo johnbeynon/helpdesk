@@ -1,5 +1,5 @@
 = render 'menu'
-%h2
+- content_for :title do
   = t('helpdesk.ticket')
   = "##{@ticket.subject}"
 = render 'form'
@@ -12,7 +12,7 @@
       %li.comment{:id=>"comment#{comment.id}"}
         %div.comment-left
           - if comment.public
-            = status_label ico('envelope','white') + t('helpdesk.comments.send') ,'label-success'
+            = status_label ico('envelope') + t('helpdesk.comments.send') ,'label-success'
           - else
             = status_label t('helpdesk.comments.note'),''
           %br
@@ -20,8 +20,8 @@
             = "#"
         %div.comment-header
           -if comment.author == @ticket.requester
-            = status_label ico('user','white')+ t('helpdesk.comments.author'),'label-info'
-            
+            = status_label ico('user')+ t('helpdesk.comments.author'),'label-info'
+
           = comment.author.send Helpdesk.display_user.to_sym if comment.author
           %small
             = time_ago_in_words(comment.created_at)

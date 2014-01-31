@@ -11,7 +11,7 @@ Helpdesk::Engine.routes.draw do
         post :sort, on: :collection
       end
       resources :subscribers
-      root :to => "dashboard#index"
+      root :to => "tickets#index"
     end
 
     resources :faqs, :only => [ :index ]

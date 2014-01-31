@@ -1,6 +1,7 @@
 = render 'menu'
 
-%h1  Subscribers
+- content_for :title do
+  Subscribers
 
 %table.table.table-hover
   %tr
@@ -19,7 +20,7 @@
           = ico('ok')
       %td= subscriber.send Helpdesk.display_user.to_sym
       %td= subscriber.email
-      
+
       %td= subscriber.lang
       %td= I18n::l(subscriber.created_at, :format=>:short)
       / %td= link_to 'Show', admin_subscriber_path(subscriber)

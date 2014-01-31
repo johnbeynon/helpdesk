@@ -13,7 +13,7 @@
     %div.subject
       %input{:value=>@ticket.subject,:name=>"ticket[subject]",:type => "text",:placeholder => t('helpdesk.tickets.subject')}
       %select{:name=>"ticket[ticket_type_id]"}
-        - Helpdesk::TicketType.all.each do |type|
+        - Helpdesk::TicketType.includes(:translations).all.each do |type|
           %option{:value=>type.id, selected: type.id == @ticket.ticket_type_id}
             = type.title
 
@@ -32,5 +32,5 @@
     %div.textRight
       %a#feedbackCancel{:class=>"btn white"}
         Anuluj
-      %input{:type => "submit",:value => 'Wyślij', :class=>"btn"}
+      %input{:type => "submit",:value => 'Wyślij', :class=>"btn btn-primary"}
     %div.clearBoth

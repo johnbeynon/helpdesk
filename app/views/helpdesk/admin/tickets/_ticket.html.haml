@@ -20,7 +20,7 @@
           = ticket.assignee.send Helpdesk.display_user_uniq_info.to_sym
         - else
           = t('helpdesk.tickets.not_assigned')
-          = link_to ico('star','white') + t('helpdesk.tickets.assign_me'), assign_admin_ticket_path(ticket),class: 'btn btn-mini btn-info'
+          = link_to ico('star') + t('helpdesk.tickets.assign_me'), assign_admin_ticket_path(ticket),class: 'btn btn-mini btn-info'
     %tr
       %td
         %span.btn.disabled
@@ -33,7 +33,7 @@
               %li.comment{:id=>"comment#{comment.id}"}
                 %div.comment-left
                   - if comment.public
-                    = status_label ico('envelope','white') + t('helpdesk.comments.send') ,'label-success'
+                    = status_label ico('envelope') + t('helpdesk.comments.send') ,'label-success'
                   - else
                     = status_label t('helpdesk.comments.note'),''
                   %br
@@ -41,7 +41,7 @@
                     = "#"
                 %div.comment-header
                   -if comment.author == ticket.requester
-                    = status_label ico('user','white')+ t('helpdesk.comments.author'),'label-info'
+                    = status_label ico('user')+ t('helpdesk.comments.author'),'label-info'
                   = comment.author.send Helpdesk.display_user_uniq_info.to_sym if comment.author
                   %small
                     = time_ago_in_words(comment.created_at)

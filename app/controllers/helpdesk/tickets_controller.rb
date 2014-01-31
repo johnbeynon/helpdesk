@@ -4,10 +4,10 @@ module Helpdesk
     # GET /tickets.json
     def index
       if params[:tickets] == 'closed'
-        @tickets = Helpdesk::Ticket.where(:requester_id => helpdesk_user.id).closed
+        @tickets = Helpdesk::Ticket.where(:requester_id => helpdesk_user.id).closed.page(params[:page])
         @tickets_count = Helpdesk::Ticket.where(:requester_id => helpdesk_user.id).active.count
       else
-        @tickets = Helpdesk::Ticket.where(:requester_id => helpdesk_user.id).active
+        @tickets = Helpdesk::Ticket.where(:requester_id => helpdesk_user.id).active.page(params[:page])
         @tickets_count = @tickets.size
       end
 

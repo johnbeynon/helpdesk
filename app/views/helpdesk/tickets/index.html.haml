@@ -1,4 +1,4 @@
-%h1
+- content_for :title do
   -if params[:tickets] && params[:tickets] == 'closed'
     = t('helpdesk.tickets.closed')
 
@@ -13,3 +13,4 @@
   = t('helpdesk.tickets.you_have_no_tickets')
 - @tickets.each do |ticket|
   = render 'ticket', ticket: ticket, show_button:true
+= paginate @tickets

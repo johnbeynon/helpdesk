@@ -1,4 +1,4 @@
 = render 'menu'
-%h1
+- content_for :title do
   = t('helpdesk.new_ticket')
-= render 'form' 
+= render 'form'

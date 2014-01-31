@@ -1,6 +1,6 @@
 = render 'menu'
 
-%h1
+- content_for :title do
   -if params[:faqs] && params[:faqs] == 'active'
     = t('helpdesk.faqs.active')
   -elsif params[:faqs] && params[:faqs] == 'inactive'
@@ -27,7 +27,7 @@
             = t('helpdesk.faqs.faq.inactive')
       %div.span5
         = faq.title
-      %div.span2  
+      %div.span2
         = link_to t('helpdesk.show'), admin_faq_path(faq), class: 'btn btn-info btn-mini'
         = link_to t('helpdesk.edit'), edit_admin_faq_path(faq),class: 'btn btn-primary btn-mini'
         = link_to t('helpdesk.destroy'), admin_faq_path(faq), method: :delete, data: { confirm: 'Are you sure?' },class: 'btn btn-danger btn-mini'

@@ -28,11 +28,11 @@
 
             = f.simple_fields_for :comments,@ticket.comments.build do |tickets_form|
               - unless tickets_form.object.persisted?
-                = tickets_form.input :comment, :input_html=>{class: 'comment-textarea'}
+                = tickets_form.input :comment, :input_html=>{class: 'comment-textarea',rows: 5}
                 / , :as => :ckeditor, :input_html => { :ckeditor => {:toolbar => 'mini'},:language => I18n.locale}
 
                 = tickets_form.input :public, :input_html => {:value=>1},:as=>:hidden
                 = tickets_form.input :author_id, :as => :hidden, :input_html => { :value => helpdesk_user.id }
             %div
-              = f.button :submit, :class => 'btn-primary'
-              = submit_tag 'Anuluj', :type => :reset, :class => "btn btn-danger"
+              = f.button :submit, :class => 'btn btn-primary'
+              = submit_tag 'Anuluj', :type => :reset, :class => "btn btn-default"

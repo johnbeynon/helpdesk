@@ -26,10 +26,11 @@ Gem::Specification.new do |s|
   s.add_development_dependency "sqlite3"
   s.add_development_dependency "shoulda-matchers"
   s.add_development_dependency "letter_opener"
+  s.add_development_dependency "bullet"
 
   s.add_dependency "chosen-rails"
   s.add_dependency "rails_autolink"
-  s.add_dependency "bootstrap-sass","2.3.2.2"
+  s.add_dependency "bootstrap-sass",'~> 3.1.0'
   s.add_dependency "rails", ">= 3.2.3"
   s.add_dependency 'sass-rails', '>= 3.2.3'
   s.add_dependency 'simple_form'

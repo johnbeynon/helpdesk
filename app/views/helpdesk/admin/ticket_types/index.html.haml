@@ -1,6 +1,6 @@
 = render 'menu'
 
-%h1
+- content_for :title do
   -if params[:ticket_types] && params[:ticket_types] == 'active'
     = t('helpdesk.ticket_types.active')
   -elsif params[:ticket_types] && params[:ticket_types] == 'inactive'
