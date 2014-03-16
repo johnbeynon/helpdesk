@@ -5,6 +5,8 @@ require 'rails/all'
 Bundler.require
 require "helpdesk"
 require 'devise'
+require 'kaminari'
+require 'haml-rails'
 
 module Dummy
   class Application < Rails::Application

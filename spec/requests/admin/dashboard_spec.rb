@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe "dashboard" do
-  
+
   context "a logged in user" do
 
     before do
@@ -12,9 +12,9 @@ describe "dashboard" do
       visit admin_root_path
       current_path.should_not == admin_root_path
     end
-    
+
   end
- 
+
   context "a logged in admin user" do
     before do
        sign_in(FactoryGirl.create(:admin))
@@ -23,7 +23,7 @@ describe "dashboard" do
     it "should show the admin dashboad" do
         visit admin_root_path
         current_path.should == admin_root_path
-        page.should have_content "Dashboard"
+        page.should have_content "www.example.com"
     end
   end
 end

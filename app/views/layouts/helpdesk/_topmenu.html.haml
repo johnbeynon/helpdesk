@@ -16,7 +16,7 @@
         = menu_li t('helpdesk.faqs.title'),admin_faqs_path
 
         %li.dropdown.user(data-dropdown="dropdown")
-          = link_to current_user.display_name, "#",:class=>"dropdown-toggle"
+          = link_to current_user.send(Helpdesk.display_user.to_sym), "#",:class=>"dropdown-toggle"
           %ul.dropdown-menu
             %li.signout
               =link_to 'Wróć do aplikacji',main_app.root_path

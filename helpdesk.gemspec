@@ -28,6 +28,12 @@ Gem::Specification.new do |s|
   s.add_development_dependency "letter_opener"
   s.add_development_dependency "bullet"
 
+  s.add_runtime_dependency "kaminari"
+  s.add_development_dependency "haml-rails"
+
+  s.add_development_dependency 'sass', '~> 3.2.10'
+  s.add_development_dependency 'compass', '0.12.2'
+
   s.add_dependency "chosen-rails"
   s.add_dependency "rails_autolink"
   s.add_dependency "bootstrap-sass",'~> 3.1.0'
@@ -38,5 +44,5 @@ Gem::Specification.new do |s|
   s.add_dependency 'globalize3'
   s.add_dependency 'batch_translations'
   s.add_dependency 'ckeditor'
-  s.add_dependency 'kaminari'
+  #s.add_dependency 'kaminari'
 end

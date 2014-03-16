@@ -14,20 +14,22 @@ inputs = %w[
 # Instead of creating top-level custom input classes like TextInput, we wrap it into a module and override
 # mapping in SimpleForm::FormBuilder directly
 #
-SimpleFormBootstrapInputs = Module.new
-inputs.each do |input_type|
-  superclass = "SimpleForm::Inputs::#{input_type}".constantize
+unless Module.const_defined?(:SimpleFormBootstrapInputs)
+  SimpleFormBootstrapInputs = Module.new
+  inputs.each do |input_type|
+    superclass = "SimpleForm::Inputs::#{input_type}".constantize
 
-  new_class = SimpleFormBootstrapInputs.const_set(input_type, Class.new(superclass) do
-    def input_html_classes
-      super.push('form-control')
-    end
-  end)
+    new_class = SimpleFormBootstrapInputs.const_set(input_type, Class.new(superclass) do
+      def input_html_classes
+        super.push('form-control')
+      end
+    end)
 
-  # Now override existing usages of superclass with new_class
-  SimpleForm::FormBuilder.mappings.each do |(type, target_class)|
-    if target_class == superclass
-      SimpleForm::FormBuilder.map_type(type, to: new_class)
+    # Now override existing usages of superclass with new_class
+    SimpleForm::FormBuilder.mappings.each do |(type, target_class)|
+      if target_class == superclass
+        SimpleForm::FormBuilder.map_type(type, to: new_class)
+      end
     end
   end
 end
@@ -71,7 +73,7 @@ SimpleForm.setup do |config|
     b.use :placeholder
     b.wrapper tag: 'div', class: 'controls' do |input|
       input.wrapper tag: 'div', class: 'input-group' do |prepend|
-    prepend.use :label , class: 'input-group-addon' ###Please note setting class here fro the label does not currently work (let me know if you know a workaround as this is the final hurdle)
+    prepend.use :label , wrap_with: {class: "input-group-addon"} ###Please note setting class here fro the label does not currently work (let me know if you know a workaround as this is the final hurdle)
         prepend.use :input
       end
       input.use :hint,  wrap_with: { tag: 'span', class: 'help-block' }
@@ -85,7 +87,7 @@ SimpleForm.setup do |config|
     b.wrapper tag: 'div', class: 'controls' do |input|
       input.wrapper tag: 'div', class: 'input-group' do |prepend|
         prepend.use :input
-    prepend.use :label , class: 'input-group-addon' ###Please note setting class here fro the label does not currently work (let me know if you know a workaround as this is the final hurdle)
+    prepend.use :label , wrap_with: {class: "input-group-addon"} ###Please note setting class here fro the label does not currently work (let me know if you know a workaround as this is the final hurdle)
       end
       input.use :hint,  wrap_with: { tag: 'span', class: 'help-block' }
       input.use :error, wrap_with: { tag: 'span', class: 'help-block has-error' }

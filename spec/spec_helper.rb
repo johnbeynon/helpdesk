@@ -14,6 +14,7 @@ require 'factory_girl'
 # Load support files
  Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each { |f| require f }
 
+
 RSpec.configure do |config|
   config.include Helpdesk::Engine.routes.url_helpers
   # If you prefer to use mocha, flexmock or RR, uncomment the appropriate line:

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120423113938) do
+ActiveRecord::Schema.define(:version => 20130522090420) do
 
   create_table "helpdesk_comments", :force => true do |t|
     t.integer  "ticket_id"
@@ -22,15 +22,63 @@ ActiveRecord::Schema.define(:version => 20120423113938) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "helpdesk_faq_translations", :force => true do |t|
+    t.integer  "helpdesk_faq_id", :null => false
+    t.string   "locale",          :null => false
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+    t.string   "title"
+    t.text     "text"
+  end
+
+  add_index "helpdesk_faq_translations", ["helpdesk_faq_id"], :name => "index_helpdesk_faq_translations_on_helpdesk_faq_id"
+  add_index "helpdesk_faq_translations", ["locale"], :name => "index_helpdesk_faq_translations_on_locale"
+
+  create_table "helpdesk_faqs", :force => true do |t|
+    t.integer  "position"
+    t.boolean  "active",     :default => false, :null => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+  end
+
+  create_table "helpdesk_subscribers", :force => true do |t|
+    t.string   "name"
+    t.string   "email"
+    t.string   "lang"
+    t.string   "hashcode"
+    t.boolean  "confirmed",  :default => false, :null => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+  end
+
+  create_table "helpdesk_ticket_type_translations", :force => true do |t|
+    t.integer  "helpdesk_ticket_type_id", :null => false
+    t.string   "locale",                  :null => false
+    t.datetime "created_at",              :null => false
+    t.datetime "updated_at",              :null => false
+    t.string   "title"
+  end
+
+  add_index "helpdesk_ticket_type_translations", ["helpdesk_ticket_type_id"], :name => "index_554cec9438d399db021564d4a79520a28d0749cc"
+  add_index "helpdesk_ticket_type_translations", ["locale"], :name => "index_helpdesk_ticket_type_translations_on_locale"
+
+  create_table "helpdesk_ticket_types", :force => true do |t|
+    t.integer  "position"
+    t.boolean  "active",     :default => true, :null => false
+    t.string   "tr_class"
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
+  end
+
   create_table "helpdesk_tickets", :force => true do |t|
     t.string   "subject"
     t.text     "description"
     t.integer  "requester_id"
     t.integer  "assignee_id"
     t.string   "status"
-    t.string   "issue_type"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.integer  "ticket_type_id"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
   end
 
   create_table "users", :force => true do |t|
