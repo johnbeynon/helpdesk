@@ -17,13 +17,13 @@ In your `Gemfile`, add the following dependencies:
 In <b>Rails 3</b>, add this to your Gemfile and run the +bundle+ command.
 
 ```ruby
-gem "helpdesk", '= 0.0.14'
+gem "helpdesk", '0.0.14'
 ```
 
 In <b>Rails 4</b>, add this to your Gemfile and run the +bundle+ command.
 
 ```ruby
-gem "helpdesk", ">= 0.0.2"
+gem "helpdesk", ">= 0.0.20"
 ```
 ### 2. Run installation
 
