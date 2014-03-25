@@ -1,7 +1,7 @@
 %div.content
   %div.pageContainer
     %h1
-      Często zadawane pytania
+      = t('helpdesk.faqs.title_s')
     %ol#faq
       - @faqs.each do |faq|
         %li{:id=>"link#{faq.id}"}

@@ -1,3 +1,3 @@
 module Helpdesk
-  VERSION = "0.0.14"
+  VERSION = "0.0.2"
 end

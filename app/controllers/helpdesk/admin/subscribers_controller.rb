@@ -9,7 +9,7 @@ class Helpdesk::Admin::SubscribersController < Helpdesk::Admin::BaseController
   end
 
   def create
-    @subscriber = Helpdesk::Subscriber.new(params[:subscriber])
+    @subscriber = Helpdesk::Subscriber.new(subscriber_params)
     if @subscriber.save
       redirect_to admin_subscribers_path, notice: t('subscribers.created')
     else
@@ -26,7 +26,7 @@ class Helpdesk::Admin::SubscribersController < Helpdesk::Admin::BaseController
   def update
     @subscriber = Helpdesk::Subscriber.find(params[:id])
 
-    if @subscriber.update_attributes(params[:subscriber])
+    if @subscriber.update_attributes(subscriber_params)
       redirect_to admin_subscribers_path, notice: 'Subscriber was successfully updated.'
     else
       render action: "edit"
@@ -39,5 +39,11 @@ class Helpdesk::Admin::SubscribersController < Helpdesk::Admin::BaseController
     @subscriber = Helpdesk::Subscriber.find_by_hashcode(params[:hashcode])
     @subscriber.destroy
     redirect_to root_path
+  end
+
+  private
+
+  def subscriber_params
+    params.require(:subscriber).permit(:confirmed, :email, :hashcode, :lang, :name)
   end
 end

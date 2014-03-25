@@ -6,6 +6,7 @@ class CreateHelpdeskTicketTypes < ActiveRecord::Migration
       t.string :tr_class
       t.timestamps
     end
+
     Helpdesk::TicketType.create_translation_table! :title => :string
 
 

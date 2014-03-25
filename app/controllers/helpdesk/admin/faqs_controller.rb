@@ -52,7 +52,7 @@ class Helpdesk::Admin::FaqsController < Helpdesk::Admin::BaseController
   # POST /faqs
   # POST /faqs.json
   def create
-    @faq = Helpdesk::Faq.new(params[:faq])
+    @faq = Helpdesk::Faq.new(faq_params)
 
     respond_to do |format|
       if @faq.save
@@ -71,7 +71,7 @@ class Helpdesk::Admin::FaqsController < Helpdesk::Admin::BaseController
     @faq = Helpdesk::Faq.find(params[:id])
 
     respond_to do |format|
-      if @faq.update_attributes(params[:faq])
+      if @faq.update_attributes(faq_params)
         format.html { redirect_to admin_faqs_url, notice: 'Faq was successfully updated.' }
         format.json { head :no_content }
       else
@@ -91,5 +91,10 @@ class Helpdesk::Admin::FaqsController < Helpdesk::Admin::BaseController
       format.html { redirect_to admin_faqs_url }
       format.json { head :no_content }
     end
+  end
+
+  private
+  def faq_params
+    params.require(:faq).permit(:active, :position, :title, :text, translations_attributes:[:id,:locale,:title,:text])
   end
 end

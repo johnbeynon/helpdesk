@@ -12,8 +12,6 @@ module Helpdesk
 
   mattr_accessor :display_user_uniq_info
 
-  mattr_accessor :issue_types
-
   mattr_accessor :mail_server
 
   mattr_accessor :email

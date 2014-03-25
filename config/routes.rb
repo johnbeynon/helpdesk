@@ -16,7 +16,7 @@ Helpdesk::Engine.routes.draw do
 
     resources :faqs, :only => [ :index ]
     resources :tickets, :except => [ :edit, :destroy ]
-    root :to => "tickets#index"
+    root :to => "faqs#index"
 
   end
 end

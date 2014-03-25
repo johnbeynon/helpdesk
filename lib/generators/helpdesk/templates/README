@@ -5,19 +5,27 @@ You need to do some manual setup to get Helpdesk working:
 1.  Review settings in new config/initializers/helpdesk.rb and update where
     neccessary.
 
-2.  Add a helpdesk_user & helpdesk_admin method to your applications application_controller.rb
-    that exposes your current_user
+2.  Add 3 methods to your applications application_controller.rb
+        * helpdesk_user - to exposes your current_user
+        * helpdesk_admin? - to check privileges
+        * helpdesk_admins_collection - to list all admin
 
-    Example, for devise gem:
-        helper_method :helpdesk_user
+    Example, for app with devise&rolify gems:
+    application_controller.rb:
+
+        helper_method :helpdesk_user,:helpdesk_admin?,:helpdesk_admin_collection
         def helpdesk_user
           current_user
         end
 
         def helpdesk_admin?
-          current_user.admin?
+          current_user.has_role? :admin
         end
 
-3.  Notnihg to do! Yey!
+        def helpdesk_admin_collection
+          (Helpdesk.user_class).with_role(:admin)
+        end
+
+3.  Restart app
 
 ===============================================================================

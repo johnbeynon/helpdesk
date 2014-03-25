@@ -1,6 +1,7 @@
 pl:
 
   helpdesk:
+    lang: Język
     show: Pokaż
     edit: Edytuj
     destroy: Usuń
@@ -23,6 +24,17 @@ pl:
       ticket_closed: Zgłoszenie zamknięte
       subject: Temat zgłoszenia
       description: Treść
+      cancel: Anuluj
+      send: Wyślij
+      statuses:
+        new: "Nowe"
+        open: "Otwarte"
+        waiting: "Otwarte: oczekujące"
+        solved: "Zamknięte: problem rozwiązany"
+        not_fixable: "Zamknięte: nienaprawialne"
+        unreachable: "Zamknięte: klient nieosiągalny"
+        bug: "Zamknięte: Przeniesione do bug tracker'a"
+
     ticket: Zgłoszenie
     faq: FAQ
     comments:
@@ -51,6 +63,7 @@ pl:
 
     faqs:
       title: FAQ
+      title_s: Często zadawane pytania
       active: Aktywne pytania
       inactive: Nieaktywne pytania
       all: Wszystkie pytania
@@ -59,6 +72,31 @@ pl:
       faq:
         active: aktywne
         inactive: nieaktywne
+
+    mailer:
+      comment_by_helpdesk_confirmation:
+        title: "Wysłano odpowiedź do zgłoszenia"
+        re_ticket: "Odpowiedź dotyczy zgłoszenia"
+        response_content: "Treść odpowiedzi:"
+      comment_by_requester_notification:
+        title: "Pojawiła się nowa odpowiedź do zgłoszenie:"
+        comment_content: "Treść odpowiedzi:"
+      comment_by_requester_confirmation:
+        title:  "%{user}, dziękujemy za przesłanie odpowiedzi do zgłoszenia"
+        subject: "Odpowiedź dotyczy Twojego zgłoszenia - %{subject}"
+        comment_content: "Treść odpowiedzi:"
+      ticket_created_confirmation:
+        title: "%{user}, dziękujemy za przesłanie zgłoszenia"
+        subject: Temat Twojego zgłoszenia to
+        ticket_content: "Treść zgłoszenia:"
+        info_time: "Cenimy Twój czas, dlatego staramy się odpowiadać, tak szybko jak to możliwe."
+      ticket_created_notification:
+        title: "Pojawiło się nowe zgłoszenie:"
+        requester_info: "Informacje o zgłaszającym:"
+        ticket_content: "Treść zgłoszenia:"
+      ticket_url_title: "Pod tym adresem można śledzić zgłoszenie:"
+      footer_info: "Ta wiadomość została wygenerowana automatycznie. Nie odpowiadaj na nią. Jeśli nie zainicjowałeś akcji wysyłania tej wiadomości zgłoś to nam <a href=\"%{url}\">klikając tutaj</a>."
+      footer_nice: "Życzymy miłego dnia"
 
 
 

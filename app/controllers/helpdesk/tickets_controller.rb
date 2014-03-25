@@ -1,5 +1,8 @@
 module Helpdesk
   class TicketsController < Helpdesk::ApplicationController
+
+    helper TicketsHelper
+
     # GET /tickets
     # GET /tickets.json
     def index
@@ -43,15 +46,8 @@ module Helpdesk
       end
     end
 
-    # GET /tickets/1/edit
-    def edit
-      @ticket = Helpdesk::Ticket.find(params[:id])
-    end
-
-    # POST /tickets
-    # POST /tickets.json
     def create
-      @ticket = Helpdesk::Ticket.new(params[:ticket])
+      @ticket = Helpdesk::Ticket.new(ticket_params)
       @ticket.requester = helpdesk_user
       @ticket.status = Helpdesk::Ticket::STATUSES[0][0]
 
@@ -72,7 +68,9 @@ module Helpdesk
       @ticket = Helpdesk::Ticket.find(params[:id])
 
       respond_to do |format|
-        if @ticket.update_attributes(params[:ticket])
+        if @ticket.update_attributes(ticket_params)
+          puts ticket_params
+          puts paramsp
           format.html { redirect_to @ticket, notice: 'Ticket was successfully updated.' }
           format.json { head :no_content }
         else
@@ -80,6 +78,13 @@ module Helpdesk
           format.json { render json: @ticket.errors, status: :unprocessable_entity }
         end
       end
+    end
+
+
+    private
+
+    def ticket_params
+      params.require(:ticket).permit( :ticket_type_id, :subject, :description,comments_attributes:[:author_id, :comment, :public])
     end
 
   end

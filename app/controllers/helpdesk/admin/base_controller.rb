@@ -14,7 +14,7 @@ module Helpdesk
 
         def authenticate_helpdesk_admin
           unless helpdesk_admin?
-            redirect_to main_app.root_url
+            redirect_to main_app.root_url, notice:'You have no power here!'
           end
         end
 

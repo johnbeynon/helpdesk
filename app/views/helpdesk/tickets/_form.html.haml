@@ -30,7 +30,7 @@
           = tickets_form.input :author_id, :as => :hidden, :input_html => { :value => helpdesk_user.id }
     %hr
     %div.textRight
-      %a#feedbackCancel{:class=>"btn white"}
-        Anuluj
-      %input{:type => "submit",:value => 'Wyślij', :class=>"btn btn-primary"}
+      %a.class.btn.btn-default{href: root_path }
+        = t('helpdesk.tickets.cancel')
+      %input{:type => "submit",:value => t('helpdesk.tickets.send'), :class=>"btn btn-primary"}
     %div.clearBoth

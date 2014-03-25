@@ -16,9 +16,6 @@ require 'helpdesk'
   # Base application sign in route name
   config.sign_in_url = 'sign_in_url'
 
-  # Ticket issue types
-  config.issue_types = ['bug', 'change request', 'new feature']
-
   # Helpdesk email for notification
   config.email = 'helpdesk@example.com'
 

@@ -1,5 +1,7 @@
 class Helpdesk::NotificationsMailer < ActionMailer::Base
 
+  layout 'mailer_layout'
+
   def ticket_created_notification(ticket)
     @ticket = ticket
     mail(:subject=>"#{Helpdesk.helpdesk_name} | #{ticket.subject}",
@@ -11,7 +13,6 @@ class Helpdesk::NotificationsMailer < ActionMailer::Base
     mail(:subject=>"#{Helpdesk.helpdesk_name} | #{ticket.subject}",
          :to => ticket.requester.email)
   end
-
 
   def comment_by_requester_notification(comment)
     @comment = comment

@@ -1,29 +1,7 @@
 module Helpdesk
   class SubscribersController < Helpdesk::ApplicationController
-    # GET /subscribers
-    # GET /subscribers.json
-    def index
-      @subscribers = Subscriber.all
 
-      respond_to do |format|
-        format.html # index.html.erb
-        format.json { render json: @subscribers }
-      end
-    end
 
-    # GET /subscribers/1
-    # GET /subscribers/1.json
-    def show
-      @subscriber = Subscriber.find(params[:id])
-
-      respond_to do |format|
-        format.html # show.html.erb
-        format.json { render json: @subscriber }
-      end
-    end
-
-    # GET /subscribers/new
-    # GET /subscribers/new.json
     def new
       @subscriber = Subscriber.new
 
@@ -33,15 +11,8 @@ module Helpdesk
       end
     end
 
-    # GET /subscribers/1/edit
-    def edit
-      @subscriber = Subscriber.find(params[:id])
-    end
-
-    # POST /subscribers
-    # POST /subscribers.json
     def create
-      @subscriber = Subscriber.new(params[:subscriber])
+      @subscriber = Subscriber.new(subscriber_params)
 
       respond_to do |format|
         if @subscriber.save
@@ -60,7 +31,7 @@ module Helpdesk
       @subscriber = Subscriber.find(params[:id])
 
       respond_to do |format|
-        if @subscriber.update_attributes(params[:subscriber])
+        if @subscriber.update_attributes(subscriber_params)
           format.html { redirect_to @subscriber, notice: 'Subscriber was successfully updated.' }
           format.json { head :no_content }
         else
@@ -80,6 +51,12 @@ module Helpdesk
         format.html { redirect_to subscribers_url }
         format.json { head :no_content }
       end
+    end
+
+    private
+
+    def subscriber_params
+      params.require(:subscriber).permit(:email,:lang, :name)
     end
   end
 end

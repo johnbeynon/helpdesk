@@ -1,0 +1,15 @@
+- content_for :title do
+  = t('helpdesk.mailer.comment_by_helpdesk_confirmation.title')
+%p
+  = t('helpdesk.mailer.comment_by_helpdesk_confirmation.re_ticket')
+  = @comment.ticket.subject
+%p
+  = t('helpdesk.mailer.comment_by_helpdesk_confirmation.response_content')
+  %br
+  = simple_format(@comment.comment)
+%br
+%p
+  = t('helpdesk.mailer.ticket_url_title')
+  %a{:href=>ticket_url(:locale=>I18n.locale, :id=>@comment.ticket)}<>
+    = ticket_url(:locale=>I18n.locale, :id=>@comment.ticket)
+  %br

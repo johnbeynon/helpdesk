@@ -20,8 +20,8 @@
                   - @ticket.errors.full_messages.each do |msg|
                     %li
                       = msg
-            = f.input :status, :collection => Helpdesk::Ticket::STATUS_OPTIONS, include_blank: false
-            = f.input :assignee_id, :collection => User.where('helpdesk_admin = ?', true)
+            = f.input :status, :collection => tickets_statuses_for_select, include_blank: false
+            = f.input :assignee_id, :collection => helpdesk_admin_collection
 
 
             = f.simple_fields_for :comments,@ticket.comments.build do |tickets_form|

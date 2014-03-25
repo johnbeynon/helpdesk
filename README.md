@@ -11,16 +11,50 @@ It should be considered a Work in progress if you find it and attempt to install
 
 * Coming Soon!
 
-## <a name="installation"></a>Installation
+## Installation
+### 1. Install helpdesk gem
 In your `Gemfile`, add the following dependencies:
+In <b>Rails 3</b>, add this to your Gemfile and run the +bundle+ command.
 
-gem 'helpdesk'
+```ruby
+gem "helpdesk", '= 0.0.14'
+```
 
-Run:
+In <b>Rails 4</b>, add this to your Gemfile and run the +bundle+ command.
 
-$ bundle install
+```ruby
+gem "helpdesk", ">= 0.0.2"
+```
+### 2. Run installation
 
-And then run:
+```
+rails g helpdesk:install
+```
+That creates a Helpdesk initializer and copy locale files to your application.
 
-$ rails g helpdesk:install
+### 3. Add 3 methods to your applications application_controller.rb
+   * helpdesk_user - to exposes your current_user
+   * helpdesk_admin? - to check privileges
+   * helpdesk_admins_collection - to list all admin
 
+Example, for app with devise&rolify gems:
+```ruby
+class ApplicationController < ActionController::Base
+[...]
+      helper_method :helpdesk_user,:helpdesk_admin?,:helpdesk_admin_collection
+      def helpdesk_user
+        current_user
+      end
+
+      def helpdesk_admin?
+        current_user.has_role? :admin
+      end
+
+      def helpdesk_admin_collection
+        (Helpdesk.user_class).with_role(:admin)
+      end
+end
+```
+
+### 4. Restart app
+and visit http://localhost:3000/helpdesk

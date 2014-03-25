@@ -10,7 +10,8 @@
         - if ticket.requester
           = ticket.requester.send Helpdesk.display_user_uniq_info.to_sym
       %td{rowspan:2}
-        = status_label Helpdesk::Ticket::STATUS_BY_KEY[ticket.status.to_sym], Helpdesk::Ticket::STATUS_CLASS_BY_KEY[ticket.status.to_sym]
+        = status_label humanize_with_i18n(ticket.status,'helpdesk.tickets.statuses'), Helpdesk::Ticket::STATUS_CLASS_BY_KEY[ticket.status.to_sym]
+
         = ticket.ticket_type.title
         = auto_link(simple_format(ticket.description), :html => { :target => "_blank" })
     %tr

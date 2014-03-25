@@ -17,7 +17,7 @@ class Helpdesk::Admin::TicketTypesController < Helpdesk::Admin::BaseController
   end
 
   def create
-    @ticket_type = Helpdesk::TicketType.new(params[:ticket_type])
+    @ticket_type = Helpdesk::TicketType.new(ticket_type_params)
     if @ticket_type.save
       redirect_to admin_ticket_types_url, notice: 'Ticket type was successfully created.'
     else
@@ -27,7 +27,7 @@ class Helpdesk::Admin::TicketTypesController < Helpdesk::Admin::BaseController
 
   def update
     @ticket_type = Helpdesk::TicketType.find(params[:id])
-    if @ticket_type.update_attributes(params[:ticket_type])
+    if @ticket_type.update_attributes(ticket_type_params)
       redirect_to admin_ticket_types_url, notice: 'Ticket type was successfully updated.'
     else
       render action: "edit"
@@ -42,5 +42,11 @@ class Helpdesk::Admin::TicketTypesController < Helpdesk::Admin::BaseController
       format.html { redirect_to admin_ticket_types_url }
       format.json { head :no_content }
     end
+  end
+
+  private
+
+  def ticket_type_params
+    params.require(:ticket_type).permit(:active,:position,:title,:tr_class. translations_attributes:[:title])
   end
 end

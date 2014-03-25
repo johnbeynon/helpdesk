@@ -17,6 +17,7 @@ require 'factory_girl'
 
 RSpec.configure do |config|
   config.include Helpdesk::Engine.routes.url_helpers
+  config.include Capybara::DSL
   # If you prefer to use mocha, flexmock or RR, uncomment the appropriate line:
   #
   # config.mock_with :mocha

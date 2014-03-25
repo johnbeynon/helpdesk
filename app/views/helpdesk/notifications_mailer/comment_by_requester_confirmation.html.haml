@@ -1,0 +1,16 @@
+- content_for :title do
+  = t('helpdesk.mailer.comment_by_requester_confirmation.title', user: @comment.ticket.requester.send(Helpdesk.display_user.to_sym))
+%p
+  = t('helpdesk.mailer.comment_by_requester_confirmation.subject', subject: @comment.ticket.subject)
+%p
+  = t('helpdesk.mailer.comment_by_requester_confirmation.comment_content')
+  %br
+  = simple_format(@comment.comment)
+%br
+%p
+  = t('helpdesk.mailer.ticket_url_title')
+  %a{:href=>ticket_url(:locale=>I18n.locale, :id=>@comment.ticket)}<>
+    = ticket_url(:locale=>I18n.locale, :id=>@comment.ticket)
+  %br
+  = t('helpdesk.mailer.ticket_created_confirmation.info_time')
+

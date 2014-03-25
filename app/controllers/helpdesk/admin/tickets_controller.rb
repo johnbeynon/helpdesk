@@ -10,7 +10,7 @@ class Helpdesk::Admin::TicketsController < Helpdesk::Admin::BaseController
     elsif params[:tickets] == 'all'
       @tickets = Helpdesk::Ticket.scoped
     else
-      @tickets = my_tickets.active.scoped
+      @tickets = my_tickets.active
     end
     @tickets = @tickets.includes(:requester)
                         .includes(:assignee)
@@ -46,7 +46,7 @@ class Helpdesk::Admin::TicketsController < Helpdesk::Admin::BaseController
   end
 
   def create
-    @ticket = Helpdesk::Ticket.new(params[:ticket])
+    @ticket = Helpdesk::Ticket.new(ticket_params)
     if @ticket.save
       redirect_to admin_ticket_path(@ticket)
     else
@@ -56,7 +56,7 @@ class Helpdesk::Admin::TicketsController < Helpdesk::Admin::BaseController
 
   def update
     @ticket = Helpdesk::Ticket.find(params[:id])
-    if @ticket.update_attributes(params[:ticket])
+    if @ticket.update_attributes(ticket_params)
       unless @ticket.assignee
         @ticket.update_column(:assignee_id, helpdesk_user)
       end
@@ -65,5 +65,12 @@ class Helpdesk::Admin::TicketsController < Helpdesk::Admin::BaseController
       render action: "new"
     end
   end
+
+
+   private
+
+    def ticket_params
+      params.require(:ticket).permit(:status, :assignee_id,:ticket_type_id, :subject, :description,comments_attributes:[:author_id, :comment, :public])
+    end
 
 end
