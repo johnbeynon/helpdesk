@@ -5,8 +5,8 @@ class CreateHelpdeskSubscribers < ActiveRecord::Migration
       t.string :email
       t.string :lang
       t.string :hashcode
-      t.boolean :confirmed,:default=>0,:null=>false
-      
+      t.boolean :confirmed,:default=>false,:null=>false
+
       t.timestamps
     end
   end

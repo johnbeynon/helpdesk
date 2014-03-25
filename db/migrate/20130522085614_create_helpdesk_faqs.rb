@@ -2,7 +2,7 @@ class CreateHelpdeskFaqs < ActiveRecord::Migration
   def up
     create_table :helpdesk_faqs do |t|
       t.integer :position
-      t.boolean :active,:default=>0,:null=>false
+      t.boolean :active,:default=>false,:null=>false
 
       t.timestamps
     end
