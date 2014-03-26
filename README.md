@@ -3,14 +3,10 @@ Helpdesk is a Rails engine that provides simple helpdesk functionality directly 
 
 It should be considered a Work in progress if you find it and attempt to install it.
 
-## <a name="features"></a>Features
-
-* Tickets
-*
 
 ## <a name="demo"></a>Demo
 
-[Live demo](http://helpdesk-demo.herokuapp.com)
+[http://helpdesk-demo.herokuapp.com](http://helpdesk-demo.herokuapp.com)
 
 Source of demo: [https://github.com/wacaw/helpdesk-demo](https://github.com/wacaw/helpdesk-demo).
 
