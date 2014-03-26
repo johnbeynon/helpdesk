@@ -1,7 +1,7 @@
 require 'helpdesk'
 
 ::Helpdesk.setup do |config|
-  # Class that represents the user
+  # Class that represents the user/admin
   config.user_class = "User"
 
   # Method usign to display information about user for users
@@ -14,7 +14,7 @@ require 'helpdesk'
   config.require_user = true
 
   # Base application sign in route name
-  config.sign_in_url = 'sign_in_url'
+  config.sign_in_url = 'new_user_session_path'
 
   # Helpdesk email for notification
   config.email = 'helpdesk@example.com'

@@ -1,7 +1,7 @@
 PATH
   remote: ../../
   specs:
-    helpdesk (0.0.14)
+    helpdesk (0.0.20)
       batch_translations
       bootstrap-sass (~> 3.1.0)
       chosen-rails
