@@ -1,7 +1,14 @@
-script: spec/ci.sh
 language: ruby
 rvm:
   - 2.0.0
   - 2.1.1
 env:
   - "CI_DB_ADAPTER=sqlite3"
+before_script:
+  - cd spec/dummy
+  - bundle install --without debug
+  - bundle exec rake helpdesk:prepare_ci_env
+  - bundle exec db:create db:migrate
+  - cd ../..
+script:
+  - bundle exec rspec -bfs spec
