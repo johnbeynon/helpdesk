@@ -70,7 +70,7 @@ class Helpdesk::Admin::TicketsController < Helpdesk::Admin::BaseController
    private
 
     def ticket_params
-      params.require(:ticket).permit(:status, :assignee_id,:ticket_type_id, :subject, :description,comments_attributes:[:author_id, :comment, :public])
+      params.require(:ticket).permit(:status,:requester_id,:assignee_id,:ticket_type_id, :subject, :description,comments_attributes:[:author_id, :comment, :public])
     end
 
 end

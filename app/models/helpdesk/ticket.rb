@@ -31,7 +31,7 @@ module Helpdesk
     .includes(:ticket_type)
     .order('id DESC')}
 
-    validates_presence_of :description,:requester_id,:ticket_type_id
+    validates_presence_of :description,:requester,:ticket_type_id
 
     accepts_nested_attributes_for :comments,:reject_if => lambda { |a| a[:comment].blank? }
 

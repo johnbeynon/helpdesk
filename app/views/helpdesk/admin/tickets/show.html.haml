@@ -33,4 +33,4 @@
                 = tickets_form.input :author_id, :as => :hidden, :input_html => { :value => helpdesk_user.id }
             %div.form-actions
               = f.button :submit, :class => 'btn btn-primary'
-              = submit_tag 'Anuluj', :type => :reset, :class => "btn btn-danger"
+              = submit_tag t('helpdesk..tickets.cancel'), :type => :reset, :class => "btn btn-danger"

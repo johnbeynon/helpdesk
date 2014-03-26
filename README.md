@@ -5,11 +5,14 @@ It should be considered a Work in progress if you find it and attempt to install
 
 ## <a name="features"></a>Features
 
-* Coming Soon!
+* Tickets
+*
 
 ## <a name="demo"></a>Demo
 
-* Coming Soon!
+[Live demo](http://helpdesk-demo.herokuapp.com)
+
+Source of demo: [https://github.com/wacaw/helpdesk-demo](https://github.com/wacaw/helpdesk-demo).
 
 ## Installation
 ### 1. Install helpdesk gem
@@ -58,3 +61,11 @@ end
 
 ### 4. Restart app
 and visit http://localhost:3000/helpdesk
+
+
+
+License
+-------
+
+MIT
+

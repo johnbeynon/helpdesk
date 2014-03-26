@@ -4,7 +4,7 @@ module Helpdesk
     belongs_to :ticket
 
     default_scope -> {includes(:author).order('id ASC')}
-    scope :pub,  -> { where(:public, true)}
+    scope :pub,  -> { where(public: true)}
 
     after_create :send_email
     after_create :check_reopen

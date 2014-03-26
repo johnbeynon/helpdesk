@@ -7,10 +7,10 @@
         - @ticket.errors.full_messages.each do |msg|
           %li
             = msg
-  = f.input :requester_id, :collection => (Helpdesk.user_class).all,:label_method=>Helpdesk.display_user_uniq_info.to_sym, input_html: { class: 'chosen-select' }
+  = f.association :requester, :collection => (Helpdesk.user_class).all,:label_method=>Helpdesk.display_user_uniq_info.to_sym, input_html: { class: 'chosen-select' }
   = f.input :subject
   = f.input :status, :collection => tickets_statuses_for_select, include_blank: false
-  = f.input :assignee_id, :collection => helpdesk_admin_collection
+  = f.input :assignee, :collection => helpdesk_admin_collection
   = f.input :ticket_type_id, :collection => Helpdesk::TicketType.active,include_blank: false
   - if @ticket.new_record?
     = f.input :description,input_html:{rows:4}
@@ -20,4 +20,4 @@
 
   %div.form-actions
     = f.button :submit, :class => 'btn btn-primary'
-    = submit_tag 'Anuluj', :type => :reset, :class => "btn btn-danger"
+    = submit_tag t('helpdesk..tickets.cancel'), :type => :reset, :class => "btn btn-danger"
