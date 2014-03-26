@@ -1,9 +1,9 @@
 - content_for :title do
   -if params[:tickets] && params[:tickets] == 'closed'
     = t('helpdesk.tickets.closed')
-
   -else
     = t('helpdesk.tickets.active')
+  ="(#{@tickets.total_count})"
 
 
 = render 'menu'

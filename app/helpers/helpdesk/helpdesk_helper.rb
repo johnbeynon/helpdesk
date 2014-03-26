@@ -6,7 +6,6 @@ module Helpdesk
       panel_menu(title,'default',&block)
     end
 
-
     def panel_menu(title,type,&block)
       content_tag(:div,class: "panel panel-#{type}") do
         content_tag(:div ,class: 'panel-heading') do
@@ -17,19 +16,6 @@ module Helpdesk
         end
       end
     end
-
-
-    def panel(title,type,&block)
-      content_tag(:div,class: "panel panel-#{type}") do
-        content_tag(:div ,class: 'panel-heading') do
-          content_tag(:h3 ,title,class:'panel-title')
-        end +
-        content_tag( :div, class: 'panel-body') do
-          capture(&block)
-        end
-      end
-    end
-
 
     def menu_li(lbl, path, *args)
       options = args.extract_options!

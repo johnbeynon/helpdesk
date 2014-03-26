@@ -8,10 +8,8 @@ module Helpdesk
     def index
       if params[:tickets] == 'closed'
         @tickets = Helpdesk::Ticket.where(:requester_id => helpdesk_user.id).closed.page(params[:page])
-        @tickets_count = Helpdesk::Ticket.where(:requester_id => helpdesk_user.id).active.count
       else
         @tickets = Helpdesk::Ticket.where(:requester_id => helpdesk_user.id).active.page(params[:page])
-        @tickets_count = @tickets.size
       end
 
 
@@ -69,9 +67,7 @@ module Helpdesk
 
       respond_to do |format|
         if @ticket.update_attributes(ticket_params)
-          puts ticket_params
-          puts paramsp
-          format.html { redirect_to @ticket, notice: 'Ticket was successfully updated.' }
+          format.html { redirect_to @ticket, notice: 'Ticket was successfully updated.'}
           format.json { head :no_content }
         else
           format.html { render action: "edit" }
