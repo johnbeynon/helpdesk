@@ -2,9 +2,9 @@
 ENV["RAILS_ENV"] ||= 'test'
 require File.expand_path("../dummy/config/environment", __FILE__)
 require 'rspec/rails'
-require 'rspec/autorun'
 require 'shoulda-matchers'
 require 'factory_girl'
+require 'email_spec'
 
 #ENGINE_RAILS_ROOT=File.join(File.dirname(__FILE__), '../')
 
@@ -18,6 +18,14 @@ require 'factory_girl'
 RSpec.configure do |config|
   config.include Helpdesk::Engine.routes.url_helpers
   config.include Capybara::DSL
+
+
+  config.include(EmailSpec::Helpers)
+  config.include(EmailSpec::Matchers)
+
+
+  config.include(MailerMacros)
+  config.before(:each) { reset_email }
   # If you prefer to use mocha, flexmock or RR, uncomment the appropriate line:
   #
   # config.mock_with :mocha

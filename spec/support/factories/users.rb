@@ -1,11 +1,11 @@
 FactoryGirl.define do
-  factory :user do |f|
-    f.email { "bob#{rand(100000)}@boblaw.com" }
-    f.password "password"
-    f.password_confirmation "password"
+  factory :user do
+    email { "bob#{rand(100000)}@boblaw.com" }
+    password "password"
+    password_confirmation "password"
 
-    factory :admin do |f|
-      f.helpdesk_admin true
+    factory :admin do
+      helpdesk_admin true
     end
   end
 end

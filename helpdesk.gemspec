@@ -21,7 +21,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'rspec-rails'
   s.add_development_dependency 'capybara'
   s.add_development_dependency 'devise'
-  s.add_development_dependency "factory_girl"
+  s.add_development_dependency "factory_girl_rails"
   s.add_development_dependency "foreman"
   s.add_development_dependency "sqlite3"
   s.add_development_dependency "shoulda-matchers"
@@ -30,7 +30,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency "haml-rails"
   s.add_development_dependency 'sass', '~> 3.2.10'
   s.add_development_dependency 'compass', '0.12.2'
-
+  s.add_development_dependency 'email_spec'
   s.add_dependency "kaminari"
   s.add_dependency "jquery-ui-rails"
 

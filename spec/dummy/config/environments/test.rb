@@ -33,4 +33,15 @@ Dummy::Application.configure do
 
   # Print deprecation notices to the stderr.
   config.active_support.deprecation = :stderr
+  config.action_mailer.default_url_options = { :host => 'localhost:3000'}
+
+   config.action_mailer.smtp_settings = {
+        :address => '',
+        :port => 465,
+        :domain => '',
+        :user_name => '',
+        :password => '',
+        :enable_starttls_auto => false,
+        :openssl_verify_mode => 'none',
+        :ssl => true  }
 end
