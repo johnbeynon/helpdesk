@@ -1,7 +1,6 @@
-# Helpdesk [![Code Climate](https://codeclimate.com/github/wacaw/helpdesk.png)](https://codeclimate.com/github/wacaw/helpdesk) [![Build Status](https://travis-ci.org/wacaw/helpdesk.svg?branch=master)](https://travis-ci.org/wacaw/helpdesk)
+# Helpdesk [![Code Climate](https://codeclimate.com/github/wacaw/helpdesk.png)](https://codeclimate.com/github/wacaw/helpdesk) [![Build Status](https://travis-ci.org/wacaw/helpdesk.svg?branch=master)](https://travis-ci.org/wacaw/helpdesk)[![Gem Version](https://badge.fury.io/rb/helpdesk.png)](http://badge.fury.io/rb/helpdesk)
 Helpdesk is a Rails engine that provides simple helpdesk functionality directly into your site.
 
-It should be considered a Work in progress if you find it and attempt to install it.
 
 
 ## <a name="demo"></a>Demo
