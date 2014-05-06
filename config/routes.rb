@@ -1,6 +1,6 @@
 Helpdesk::Engine.routes.draw do
 # Rails.application.routes.draw do
-  scope "(:locale)", :locale => /pl|en/ do
+  scope "(:locale)", :locale => /pl|pt|en/ do
     # Admin only roots
     namespace :admin do
       resources :tickets do
