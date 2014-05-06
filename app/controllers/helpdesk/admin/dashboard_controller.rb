@@ -1,6 +1,6 @@
 class Helpdesk::Admin::DashboardController < Helpdesk::Admin::BaseController
 
       def index
-        #@tickets = Ticket.all
+        #@tickets = Helpdesk::Ticket.all
       end
 end
