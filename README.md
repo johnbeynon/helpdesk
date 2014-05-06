@@ -55,7 +55,7 @@ end
 ```
 
 ### 4. Restart app
-and visit http://localhost:3000/helpdesk
+and visit [http://localhost:3000/helpdesk](http://localhost:3000/helpdesk)
 
 
 
