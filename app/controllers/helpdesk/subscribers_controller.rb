@@ -2,8 +2,9 @@ module Helpdesk
   class SubscribersController < Helpdesk::ApplicationController
 
 
-    def new
+    def index
       @subscriber = Subscriber.new
+      @subscriber.lang = locale
 
       respond_to do |format|
         format.html # new.html.erb
@@ -25,21 +26,6 @@ module Helpdesk
       end
     end
 
-    # PUT /subscribers/1
-    # PUT /subscribers/1.json
-    def update
-      @subscriber = Subscriber.find(params[:id])
-
-      respond_to do |format|
-        if @subscriber.update_attributes(subscriber_params)
-          format.html { redirect_to @subscriber, notice: 'Subscriber was successfully updated.' }
-          format.json { head :no_content }
-        else
-          format.html { render action: "edit" }
-          format.json { render json: @subscriber.errors, status: :unprocessable_entity }
-        end
-      end
-    end
 
     # DELETE /subscribers/1
     # DELETE /subscribers/1.json

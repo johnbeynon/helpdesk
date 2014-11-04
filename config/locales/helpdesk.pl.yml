@@ -110,6 +110,7 @@ pl:
         comment: Dodatkowy opis
         public: Widoczny/Wyślij
       helpdesk/ticket:
+        ticket_type: Rodzaj zgłoszenia
         requester_id: Zgłaszający
         subject: Temat
         status: Status

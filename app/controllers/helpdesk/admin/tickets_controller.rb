@@ -1,21 +1,22 @@
 class Helpdesk::Admin::TicketsController < Helpdesk::Admin::BaseController
 
   def index
-    if params[:tickets] == 'unassigned'
-      @tickets = Helpdesk::Ticket.unassigned.scoped
-    elsif params[:tickets] == 'closed'
-      @tickets = Helpdesk::Ticket.closed.scoped
-    elsif params[:tickets] == 'active'
-      @tickets = Helpdesk::Ticket.active.scoped
-    elsif params[:tickets] == 'all'
-      @tickets = Helpdesk::Ticket.scoped
+    case params[:tickets]
+    when 'unassigned'
+      @tickets = Helpdesk::Ticket.unassigned
+    when'closed'
+      @tickets = Helpdesk::Ticket.closed
+    when 'active'
+      @tickets = Helpdesk::Ticket.active
+    when 'all'
+      @tickets = Helpdesk::Ticket
     else
       @tickets = my_tickets.active
     end
     @tickets = @tickets.includes(:requester)
-                        .includes(:assignee)
-                        .includes(:ticket_type)
-                        .page(params[:page])
+    .includes(:assignee)
+    .includes(:ticket_type)
+    .page(params[:page])
 
     render 'list'
   end
@@ -67,10 +68,10 @@ class Helpdesk::Admin::TicketsController < Helpdesk::Admin::BaseController
   end
 
 
-   private
+  private
 
-    def ticket_params
-      params.require(:ticket).permit(:status,:requester_id,:assignee_id,:ticket_type_id, :subject, :description,comments_attributes:[:author_id, :comment, :public])
-    end
+  def ticket_params
+    params.require(:ticket).permit(:status,:requester_id,:assignee_id,:ticket_type_id, :subject, :description,comments_attributes:[:author_id, :comment, :public])
+  end
 
 end

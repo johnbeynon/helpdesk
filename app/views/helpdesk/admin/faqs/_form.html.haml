@@ -12,9 +12,9 @@
   - I18n.available_locales.each do |locale|
     %h1
       = locale
-      = f.globalize_fields_for locale do |g|
-        = g.input :title
-        = g.input :text, :as => :ckeditor, :input_html => { :ckeditor => {:width=>'100%',:height => 200,:toolbar => 'Full'} }
+    = f.globalize_fields_for locale do |g|
+      = g.input :title
+      = g.input :text, :as => :ckeditor, :input_html => { :ckeditor => {:width=>'100%',:height => 200,:toolbar => 'Full'} }
 
 
   = f.submit 'Save', :class=>'btn btn-primary'

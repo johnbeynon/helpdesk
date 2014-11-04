@@ -30,4 +30,8 @@ require 'helpdesk'
 
   # Helpdesk title
   config.helpdesk_name = "Example Helpdesk"
+
+  # Helpdesk root controller for users: faqs or tickets
+  config.root_controller = 'faqs'
+
 end

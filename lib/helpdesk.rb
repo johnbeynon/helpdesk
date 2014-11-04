@@ -26,6 +26,9 @@ module Helpdesk
   mattr_accessor :helpdesk_name
   @@helpdesk_name = "Helpdesk"
 
+  mattr_accessor :root_controller
+  @@root_controller = "faqs"
+
   def self.setup
     yield self
   end

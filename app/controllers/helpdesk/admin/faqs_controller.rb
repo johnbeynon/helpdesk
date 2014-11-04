@@ -2,7 +2,7 @@ class Helpdesk::Admin::FaqsController < Helpdesk::Admin::BaseController
 
   def sort
     params[:faqs].each_with_index do |id, index|
-      Helpdesk::Faq.update_all(['position=?', index+1], ['id=?', id])
+      Helpdesk::Faq.find(id).update_column(:position, index+1)
     end
     render :nothing => true
   end

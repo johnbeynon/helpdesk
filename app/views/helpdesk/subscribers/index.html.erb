@@ -1,31 +1,5 @@
-<h1>Listing subscribers</h1>
+<h1>New subscriber</h1>
 
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Email</th>
-    <th>Lang</th>
-    <th>Hashcode</th>
-    <th>Confirmed</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+<%= render 'form' %>
 
-<% @subscribers.each do |subscriber| %>
-  <tr>
-    <td><%= subscriber.send Helpdesk.display_user.to_sym %></td>
-    <td><%= subscriber.email %></td>
-    <td><%= subscriber.lang %></td>
-    <td><%= subscriber.hashcode %></td>
-    <td><%= subscriber.confirmed %></td>
-    <td><%= link_to 'Show', subscriber %></td>
-    <td><%= link_to 'Edit', edit_subscriber_path(subscriber) %></td>
-    <td><%= link_to 'Destroy', subscriber, confirm: 'Are you sure?', method: :delete %></td>
-  </tr>
-<% end %>
-</table>
-
-<br />
-
-<%= link_to 'New Subscriber', new_admin_subscriber_path %>
+<%= link_to 'Back', subscribers_path %>

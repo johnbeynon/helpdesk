@@ -8,18 +8,13 @@
           - @ticket.errors.full_messages.each do |msg|
             %li
               = msg
-    / = f.input :subject
+    = f.input :subject
     / = f.input :ticket_type_id, collection: Helpdesk::TicketType.active, include_blank: false
-    %div.subject
-      %input{:value=>@ticket.subject,:name=>"ticket[subject]",:type => "text",:placeholder => t('helpdesk.tickets.subject')}
-      %select{:name=>"ticket[ticket_type_id]"}
-        - Helpdesk::TicketType.includes(:translations).all.each do |type|
-          %option{:value=>type.id, selected: type.id == @ticket.ticket_type_id}
-            = type.title
+    = f.input :ticket_type_id, collection: Helpdesk::TicketType.active.includes(:translations).all, include_blank: false
 
+    %hr
     - if @ticket.new_record?
-      %div.content
-        %textarea{:value=>@ticket.description,:name=>"ticket[description]",:type => "text",:placeholder => t('helpdesk.tickets.description')}
+      = f.input :description,:placeholder => t('helpdesk.tickets.description'),label:false, input_html:{rows:5}
     - else
       = @ticket.description
 
