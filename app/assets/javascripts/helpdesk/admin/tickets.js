@@ -9,12 +9,7 @@ $(document).ready(function(){
 
 (function() {
   $(function() {
-    return $('.chosen-select').chosen({
-      allow_single_deselect: true,
-      placeholder_text: 'Wybierz',
-      no_results_text: 'Nie znaleziono pasujÄcych',
-      width: '220px'
-    });
+    return $('.chosen-select').select2({width:'resolve'});
   });
 
 }).call(this)

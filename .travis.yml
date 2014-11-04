@@ -14,4 +14,4 @@ before_script:
   - bundle exec rake db:migrate
   - cd ../..
 script:
-  - bundle exec rspec -bfs spec
+  - bundle exec rspec
