@@ -7,7 +7,7 @@ require 'simple_form'
 require 'globalize'
 require 'batch_translations'
 require 'ckeditor'
-require 'chosen-rails'
+require 'select2-rails'
 require 'kaminari'
 require 'jquery-ui-rails'
 

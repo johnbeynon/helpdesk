@@ -11,7 +11,7 @@ Gem::Specification.new do |s|
   s.email       = ["john@beynon.org.uk, waclaw@luczak.it"]
   s.homepage    = "http://github.com/wacaw/helpdesk"
   s.summary     = "Rails mountable engine providing basic helpdesk functionality for your applications"
-  s.description = "Helpesk includes: tickets, ticket_types, faq, subscribers"
+  s.description = "Helpesk includes: tickets, ticket types, email-notification, FAQ, subscribers"
   s.license     = 'MIT'
 
   s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile"]
@@ -28,17 +28,16 @@ Gem::Specification.new do |s|
   s.add_development_dependency "letter_opener"
   s.add_development_dependency "bullet"
   s.add_development_dependency "haml-rails"
-  s.add_development_dependency 'sass', '~> 3.2.10'
-  s.add_development_dependency 'compass', '0.12.2'
+  s.add_development_dependency 'compass'
   s.add_development_dependency 'email_spec'
-  s.add_dependency "kaminari"
-  s.add_dependency "jquery-ui-rails"
 
-  s.add_dependency "chosen-rails"
-  s.add_dependency "rails_autolink"
-  s.add_dependency "bootstrap-sass",'~> 3.1.0'
-  s.add_dependency "rails", ">= 4.0.0"
-  s.add_dependency 'sass-rails', '>= 3.2.3'
+  s.add_dependency 'kaminari'
+  s.add_dependency 'jquery-ui-rails'
+  s.add_dependency 'select2-rails'
+  s.add_dependency 'rails_autolink'
+  s.add_dependency 'bootstrap-sass'
+  s.add_dependency 'rails'
+  s.add_dependency 'sass-rails'
   s.add_dependency 'simple_form'
   s.add_dependency 'state_machine'
   s.add_dependency 'globalize'

@@ -9,8 +9,8 @@ describe "tickets" do
 
     it "should show the admin dashboad" do
       visit admin_root_path
-      current_path.should == admin_root_path
-      page.should have_content "www.example.com"
+      expect(current_path).to eql(admin_root_path)
+      expect(page).to have_content "www.example.com"
     end
   end
 end

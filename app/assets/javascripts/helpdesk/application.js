@@ -15,5 +15,5 @@
 //= require bootstrap
 //= require ckeditor/init
 //= require jquery-ui
-//= require chosen-jquery
+//= require select2
 //= require_tree .
