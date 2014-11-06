@@ -1,6 +1,7 @@
 module Helpdesk
   class Ticket < ActiveRecord::Base
 
+
     STATUSES = [
       [ :new,        'label-primary',3],
       [ :open,        'label-warning',2],
@@ -61,8 +62,6 @@ module Helpdesk
       self.subject.strip!
     end
 
-
-
     def send_email
       Helpdesk::NotificationsMailer.ticket_created_notification(self).deliver
       unless requester.email.empty?
@@ -77,9 +76,6 @@ module Helpdesk
         false
       end
     end
-
-
-
 
   end
 end

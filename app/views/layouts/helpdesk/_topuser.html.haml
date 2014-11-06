@@ -11,7 +11,11 @@
     %ul.nav.navbar-nav
       = menu_li t('helpdesk.tickets.title'),tickets_path
       = menu_li t('helpdesk.faq'),faqs_path
-
+    %form.navbar-form.navbar-left{role:'search',action:search_faqs_url}
+      .form-group
+        %input.form-control{type:'text', placeholder:t('helpdesk.faqs.search_in_faqs'),name:'search',value:params[:search]}
+        %button.btn.btn-default{type:"submit"}
+          = t('helpdesk.faqs.search')
     %ul.nav.navbar-nav.navbar-right
       %li.dropdown.user
         = link_to current_user.send(Helpdesk.display_user.to_sym), "#",:class=>"dropdown-toggle",data:{toggle:"dropdown"}

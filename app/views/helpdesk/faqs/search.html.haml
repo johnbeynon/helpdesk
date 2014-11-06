@@ -1,0 +1,27 @@
+= content_for :left do
+  %nav.bs-docs-sidebar.col
+    %ul#sidebar.nav.nav-stacked
+      = render partial: 'menu', locals:{faqs:Helpdesk::Faq.roots,link_type:'link'}
+
+%div.content
+  %div.pageContainer
+    - if params[:search]
+      .alert.alert-info
+        = t('helpdesk.faqs.search_count', count: @faqs.size, query:params[:search])
+
+    %h1
+      = t('helpdesk.faqs.title_s')
+    %ol#faq
+      - @faqs.each do |faq|
+        %li.callout
+          %span.title
+            = link_to faqs_url(anchor:faq.to_param) do
+              = highlight(faq.title,  params[:search], highlighter: '<strong>\1</strong>')
+          %span.body
+            - if faq.text.index(params[:search])
+              - start_index = [0, faq.text.index(params[:search])-30].max
+            - else
+              - start_index = 0
+
+            = highlight("..."+faq.text[start_index,params[:search].length+40].strip+"...", params[:search], highlighter: '<strong>\1</strong>')
+

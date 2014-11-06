@@ -1,0 +1,15 @@
+= content_for :left do
+  %nav.bs-docs-sidebar
+    %ul#sidebar.nav.nav-stacked.fixed
+      = render partial: 'menu', locals:{lvl:1,tree:[0],faqs:Helpdesk::Faq.roots,link_type:''}
+
+%ol.breadcrumb
+  = menu_li 'FAQ',faqs_url
+  - @faq.ancestors.reverse_each do |faq|
+    = menu_li faq.title, faq_url(faq)
+  = menu_li @faq.title, faq_url(@faq)
+
+
+%ol#faq
+  = render partial:'/helpdesk/faqs/faq', locals:{faqs:[@faq]}
+

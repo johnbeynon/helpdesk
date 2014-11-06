@@ -43,5 +43,6 @@ Gem::Specification.new do |s|
   s.add_dependency 'globalize'
   s.add_dependency 'batch_translations'
   s.add_dependency 'ckeditor'
+  s.add_dependency 'acts_as_ordered_tree'
   #s.add_dependency 'kaminari'
 end

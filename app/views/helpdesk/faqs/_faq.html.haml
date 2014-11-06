@@ -1,0 +1,8 @@
+- faqs.each do |faq|
+  %li{:id=>faq.to_param}
+    %h3
+      = link_to faq.title, faqs_path(anchor:faq)
+    = raw faq.text
+    - if faq.children.present?
+      %ul
+        = render partial:'/helpdesk/faqs/faq', locals:{ faqs:faq.children }

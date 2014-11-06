@@ -5,5 +5,8 @@
     = menu_li ico('envelope') + "#{t('helpdesk.faqs.active')} (#{Helpdesk::Faq.active.count})", admin_faqs_url(:faqs => 'active')
 
     = menu_li ico('info-sign') + "#{t('helpdesk.faqs.inactive')} (#{Helpdesk::Faq.inactive.count})", admin_faqs_url(:faqs => 'inactive')
+
+    = menu_li ico('signal') + "#{t('helpdesk.faqs.sorting')}", sorting_admin_faq_url(:all)
+
     %li.divider
     = menu_li ico('list') + t('helpdesk.faqs.all'), admin_faqs_url(:faqs => 'all')

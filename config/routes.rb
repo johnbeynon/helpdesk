@@ -11,13 +11,16 @@ Helpdesk::Engine.routes.draw do
       resources :ticket_types
       resources :faqs do
         post :sort, on: :collection
+        get :sorting, on: :member
       end
       resources :subscribers
       root :to => 'tickets#index'
     end
 
     resources :subscribers, :only => [:index, :create, :destroy]
-    resources :faqs, :only => [ :index ]
+    resources :faqs, :only => [ :index, :show ] do
+      get :search, on: :collection
+    end
     resources :tickets, :except => [ :edit, :destroy ]
 
 

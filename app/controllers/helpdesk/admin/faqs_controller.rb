@@ -6,15 +6,26 @@ class Helpdesk::Admin::FaqsController < Helpdesk::Admin::BaseController
     end
     render :nothing => true
   end
+
+  def sorting
+    if params[:id]=='all'
+
+      @faqs = Helpdesk::Faq.roots
+    else
+      @faq = Helpdesk::Faq.find(params[:id])
+      @faqs = @faq.children
+    end
+  end
+
   # GET /faqs
   # GET /faqs.json
   def index
     if params[:faqs] == 'active'
-      @faqs = Helpdesk::Faq.active
+      @faqs = Helpdesk::Faq.roots.active
     elsif params[:faqs] == 'inactive'
-      @faqs = Helpdesk::Faq.inactive
+      @faqs = Helpdesk::Faq.roots.inactive
     else
-      @faqs = Helpdesk::Faq.all
+      @faqs = Helpdesk::Faq.roots
     end
     respond_to do |format|
       format.html # index.html.erb
@@ -95,6 +106,6 @@ class Helpdesk::Admin::FaqsController < Helpdesk::Admin::BaseController
 
   private
   def faq_params
-    params.require(:faq).permit(:active, :position, :title, :text, translations_attributes:[:id,:locale,:title,:text])
+    params.require(:faq).permit(:active, :position, :title, :text,:parent_id, translations_attributes:[:id,:locale,:title,:text])
   end
 end

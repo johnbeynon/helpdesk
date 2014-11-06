@@ -1,0 +1,10 @@
+- faqs.each do |faq|
+  %li
+    = faq.title
+    %div
+      = link_to t('helpdesk.show'), faqs_path(anchor:faq.to_param), class: 'btn btn-info btn-xs', target: :faq_preview
+      = link_to t('helpdesk.edit'), edit_admin_faq_path(faq),class: 'btn btn-primary btn-xs'
+      = link_to t('helpdesk.destroy'), admin_faq_path(faq), method: :delete, data: { confirm: 'Are you sure?' },class: 'btn btn-danger btn-xs'
+    - if faq.children.present?
+      %ol
+        = render partial:'/helpdesk/admin/faqs/faq', locals:{ faqs:faq.children }

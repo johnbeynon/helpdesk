@@ -6,6 +6,7 @@
         - @faq.errors.full_messages.each do |msg|
           %li= msg
   = f.input :active
+  = f.input :parent_id, collection: Helpdesk::Faq.collection,label_method: :name_with_depth
 
 
 
