@@ -8,7 +8,6 @@ env:
   - "CI_DB_ADAPTER=sqlite3"
 before_script:
   - cd spec/dummy
-  - bundle update helpdesk --without debug
   - bundle install --without debug
   - bundle exec rake helpdesk:prepare_ci_env
   - bundle exec rake db:create
