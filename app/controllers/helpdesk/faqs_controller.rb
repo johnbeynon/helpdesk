@@ -2,7 +2,7 @@ module Helpdesk
   class FaqsController < Helpdesk::ApplicationController
 
     def search
-      @faqs = Helpdesk::Faq.search(params[:search])
+      @faqs = Helpdesk::Faq.search(params[:search],params[:page])
     end
 
     def index

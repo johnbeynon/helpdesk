@@ -23,7 +23,7 @@ module Helpdesk
       arel_faqs_t = Arel::Table.new(:helpdesk_faq_translations)
       name_match = arel_faqs_t[:title].matches(query)
       postal_match = arel_faqs_t[:text].matches(query)
-      with_translations.active.where(name_match.or(postal_match)).page(page).per_page(5)
+      with_translations.active.where(name_match.or(postal_match)).page(page)
     end
 
     def anchor

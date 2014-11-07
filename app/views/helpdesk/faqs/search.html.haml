@@ -7,7 +7,7 @@
   %div.pageContainer
     - if params[:search]
       .alert.alert-info
-        = t('helpdesk.faqs.search_count', count: @faqs.size, query:params[:search])
+        = t('helpdesk.faqs.search_count', count: @faqs.total_count, query:params[:search])
 
     %h1
       = t('helpdesk.faqs.title_s')
@@ -25,3 +25,4 @@
 
             = highlight("..."+faq.text[start_index,params[:search].length+40].strip+"...", params[:search], highlighter: '<strong>\1</strong>')
 
+      =paginate @faqs
