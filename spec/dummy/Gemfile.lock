@@ -1,7 +1,7 @@
 PATH
   remote: ../../
   specs:
-    helpdesk (0.0.31)
+    helpdesk (0.0.32)
       acts_as_ordered_tree
       batch_translations
       bootstrap-sass
