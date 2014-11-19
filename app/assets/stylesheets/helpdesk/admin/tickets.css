@@ -17,14 +17,6 @@
   margin-left: 100px;
 }
 
-:target {
-    background-color: #ffa;
-    -webkit-transition: background-color 1s linear;
-    -moz-transition: background-color 1s linear;
-    -o-transition: background-color 1s linear;
-    transition: background-color 1s linear;
-}
-
 a.anchor{
   opacity: 0;
   -moz-transition: opacity .25s linear, visibility .1s linear .5s;

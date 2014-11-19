@@ -29,6 +29,9 @@ module Helpdesk
   mattr_accessor :root_controller
   @@root_controller = "faqs"
 
+  mattr_accessor :menu_items
+  @@menu_items = ['app_root','helpdesk_root','tickets','faqs','subscribers','search','user','language']
+
   def self.setup
     yield self
   end

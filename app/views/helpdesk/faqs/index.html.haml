@@ -4,8 +4,8 @@
       = render partial: 'menu', locals:{faqs:@faqs,link_type:'anchor'}
 
 %div.content
-  %div.pageContainer
+  %div#pageContainer
     %h2
       = t('helpdesk.faqs.title_s')
     %ul#faq
-      = render partial:'/helpdesk/faqs/faq', locals:{faqs:@faqs}
+      = render partial:'/helpdesk/faqs/faq', locals:{faqs:@faqs,link_type:'anchor'}

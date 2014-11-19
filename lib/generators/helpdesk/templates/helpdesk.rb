@@ -34,4 +34,7 @@ require 'helpdesk'
   # Helpdesk root controller for users: faqs or tickets
   config.root_controller = 'faqs'
 
+  # Helpdesk user top menu item
+  config.menu_items = ['app_root','helpdesk_root','tickets','faqs','subscribers','search','user','language']
+
 end

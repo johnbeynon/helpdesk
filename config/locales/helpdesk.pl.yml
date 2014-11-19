@@ -55,7 +55,7 @@ pl:
     dashboard: Dashboard
 
     subscribers:
-      title: Subskrybenci
+      title: Subskrybcja
       confirmed: Potwierdzeni subskrynenci
       unconfirmed: Niepotwierdzeni
       all: Wszyscy subskrybenci

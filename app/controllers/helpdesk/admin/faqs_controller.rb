@@ -47,7 +47,10 @@ class Helpdesk::Admin::FaqsController < Helpdesk::Admin::BaseController
   # GET /faqs/new
   # GET /faqs/new.json
   def new
-    @faq = Helpdesk::Faq.new
+    @faq = Helpdesk::Faq.active.new
+    if params[:faq] && params[:faq][:parent_id]
+      @faq.parent_id = params[:faq][:parent_id]
+    end
 
     respond_to do |format|
       format.html # new.html.erb

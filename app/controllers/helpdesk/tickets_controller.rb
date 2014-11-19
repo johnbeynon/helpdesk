@@ -1,6 +1,7 @@
 module Helpdesk
   class TicketsController < Helpdesk::ApplicationController
 
+    before_filter :ensure_user
     helper TicketsHelper
 
     # GET /tickets

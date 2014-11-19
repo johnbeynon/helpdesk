@@ -4,6 +4,7 @@ module Helpdesk
 
       helper Helpdesk::Engine.helpers
       # helper Helpdesk::ApplicationHelper
+      before_filter :ensure_user
       before_filter :authenticate_helpdesk_admin
       before_filter :my_tickets
 
