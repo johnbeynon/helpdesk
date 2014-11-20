@@ -9,8 +9,11 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
 
- *= require_tree .
+ *= require helpdesk/admin
  *= require helpdesk/admin/bootstrap_overrides
  *= require helpdesk/admin/tickets
+ *= require helpdesk/faqs
+ *= require helpdesk/tickets
  *= require_self
+ *= require helpdesk/custom
 */
