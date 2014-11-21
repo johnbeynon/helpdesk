@@ -9,7 +9,7 @@
     =link_to Helpdesk.helpdesk_name, root_path, :class=>'navbar-brand', :title => Helpdesk.helpdesk_name
   #bs-navbar-collapse-1.collapse.navbar-collapse.in
     %ul.nav.navbar-nav
-      = menu_li t('helpdesk.tickets.title'),tickets_path if Helpdesk.menu_items.include?('ticekts')
+      = menu_li t('helpdesk.tickets.title'),tickets_path if Helpdesk.menu_items.include?('tickets')
       = menu_li t('helpdesk.faqs.title'),faqs_path  if Helpdesk.menu_items.include?('faqs')
       = menu_li t('helpdesk.subscribers.title'),subscribers_path  if Helpdesk.menu_items.include?('subscribers')
     - if Helpdesk.menu_items.include?('search')
