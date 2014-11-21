@@ -1,42 +1,30 @@
 module Helpdesk
   class SubscribersController < Helpdesk::ApplicationController
 
-
     def index
       @subscriber = Subscriber.new
       @subscriber.lang = locale
-
-      respond_to do |format|
-        format.html # new.html.erb
-        format.json { render json: @subscriber }
-      end
     end
 
     def create
       @subscriber = Subscriber.new(subscriber_params)
-
-      respond_to do |format|
-        if @subscriber.save
-          format.html { redirect_to @subscriber, notice: 'Subscriber was successfully created.' }
-          format.json { render json: @subscriber, status: :created, location: @subscriber }
-        else
-          format.html { render action: "new" }
-          format.json { render json: @subscriber.errors, status: :unprocessable_entity }
-        end
+      if @subscriber.save
+        redirect_to root_path, notice: 'Subscriber was successfully created.'
+      else
+        render action: "index"
       end
     end
 
+    def activation
+      @subscriber = Subscriber.where(hashcode:params[:hashcode],confirmed:false).first
+      @subscriber.update_attributes(hashcode:nil,confirmed:true) if @subscriber
+      redirect_to root_path,notice: 'Subscriber was successfully activated.'
+    end
 
-    # DELETE /subscribers/1
-    # DELETE /subscribers/1.json
     def destroy
-      @subscriber = Subscriber.find(params[:id])
-      @subscriber.destroy
-
-      respond_to do |format|
-        format.html { redirect_to subscribers_url }
-        format.json { head :no_content }
-      end
+      @subscriber = Subscriber.where(hashcode:params[:hashcode],confirmed:true).first
+      @subscriber.destroy if @subscriber
+      redirect_to root_path,notice: 'Subscriber was successfully deleted.'
     end
 
     private

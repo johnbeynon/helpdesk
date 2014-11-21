@@ -39,4 +39,10 @@ class Helpdesk::NotificationsMailer < ActionMailer::Base
          :to => Helpdesk.email)
   end
 
+  def send_activate_subscription(subscriber)
+    @subscriber = subscriber
+    mail(:subject=>"#{t('helpdesk.name')}: Please Confirm Subscription",
+         :to => @subscriber.email)
+  end
+
 end

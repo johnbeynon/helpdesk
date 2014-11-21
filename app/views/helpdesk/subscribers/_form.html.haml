@@ -1,0 +1,18 @@
+= simple_form_for @subscriber do |f|
+  .form-inputs
+    - if @subscriber.errors.any?
+      #error_explanation
+      %ul
+        - @subscriber.errors.full_messages.each do |msg|
+          %li= msg
+    = f.input :name
+    = f.input :email
+    = f.input :lang, collections: I18n.available_locales
+
+
+
+  .form-actions
+    = f.submit 'Save', class:'btn btn-primary'
+    = link_to 'Back', admin_faqs_path,class: 'btn btn-default'
+
+

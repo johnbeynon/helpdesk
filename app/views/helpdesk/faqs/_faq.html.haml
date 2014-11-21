@@ -5,4 +5,4 @@
     = raw faq.text
     - if faq.children.present?
       %ul
-        = render partial:'/helpdesk/faqs/faq', locals:{ faqs:faq.children,link_type:link_type}
+        = render partial:'/helpdesk/faqs/faq', locals:{ faqs:faq.children.active,link_type:link_type}

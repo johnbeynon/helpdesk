@@ -1,0 +1,9 @@
+- content_for :title do
+  Please Confirm Subscription
+%p
+  = link_to 'Yes, subscribe me to this list.',subscribers_activation_url(locale:I18n.locale,hashcode: @subscriber.hashcode)
+%p
+  If you received this email by mistake, simply delete it. You won't be subscribed if you don't click the confirmation link above.
+
+%p
+  = "For questions about this list, please contact: #{Helpdesk.email}"

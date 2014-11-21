@@ -17,6 +17,7 @@ Helpdesk::Engine.routes.draw do
       root :to => 'tickets#index'
     end
 
+    get 'subscribers/a/:hashcode'=>'subscribers#activation',as:'subscribers_activation'
     resources :subscribers, :only => [:index, :create, :destroy]
     resources :faqs, :only => [ :index, :show ] do
       get :search, on: :collection

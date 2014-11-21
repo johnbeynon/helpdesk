@@ -7,6 +7,7 @@ pl:
     destroy: Usuń
     name: Helpdesk
     new_ticket: Nowe zgłoszenie
+    add: Dodaj
     tickets:
       new: Nowe zgłoszenie
       my: Moje zgłoszenia

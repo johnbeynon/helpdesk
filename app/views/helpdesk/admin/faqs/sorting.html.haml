@@ -9,14 +9,15 @@
     = menu_li @faq.title, sorting_admin_faq_url(@faq)
 
 
-%ul.unstyled#faqs
+%ul.faqs_list#faqs
   - @faqs.each do |faq|
-    %li.row{id:"faqs_#{faq.id}",style:'padding:5px 0px;'}
-      %div.handle.span2{style:'cursor:move'}
+    %li{id:"faqs_#{faq.id}",style:'padding:5px 0px;'}
+      %span.handle.span2{style:'cursor:move'}
         %span
           = ico('move')
-        %span
-          = faq.title
+      %span.title
+        = faq.title
+      %span.buttons
         - if faq.children.present?
           = link_to t('helpdesk.sort_this_childs'), sorting_admin_faq_url(faq), class: 'btn btn-info btn-xs'
 

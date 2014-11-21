@@ -22,14 +22,13 @@ class Helpdesk::Admin::FaqsController < Helpdesk::Admin::BaseController
   def index
     if params[:faqs] == 'active'
       @faqs = Helpdesk::Faq.roots.active
+      render action: 'index'
     elsif params[:faqs] == 'inactive'
-      @faqs = Helpdesk::Faq.roots.inactive
+      @faqs = Helpdesk::Faq.inactive
+      render action: 'inactive'
     else
       @faqs = Helpdesk::Faq.roots
-    end
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @faqs }
+      render action: 'index'
     end
   end
 
