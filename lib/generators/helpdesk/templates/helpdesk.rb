@@ -35,6 +35,7 @@ require 'helpdesk'
   config.root_controller = 'faqs'
 
   # Helpdesk user top menu item
+  # possible options= ['app_root','helpdesk_root','tickets','faqs','subscribers','search','user','language']
   config.menu_items = ['app_root','helpdesk_root','tickets','faqs','subscribers','search','user','language']
 
 end
