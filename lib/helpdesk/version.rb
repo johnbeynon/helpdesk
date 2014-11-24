@@ -1,3 +1,1 @@
-module Helpdesk
-  VERSION = "0.0.37"
-end
+  VERSION = "0.0.39"
