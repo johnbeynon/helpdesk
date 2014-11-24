@@ -15,15 +15,7 @@ module Helpdesk
     end
 
     def to_param
-      id ? "#{id}-#{nname}" : nil
-    end
-
-    def nname
-      if parent
-        "#{parent.nname}--#{title.parameterize}"
-      else
-        "#{title.parameterize}"
-      end
+      id ? "#{id}-#{title.parameterize}" : nil
     end
 
     def self.search(query, page=1)
