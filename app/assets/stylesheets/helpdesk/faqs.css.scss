@@ -2,6 +2,10 @@ body {
   position: relative;
 }
 
+ul#faq{
+    margin-bottom: 200px;
+}
+
 .affix{
     top: 0px;
     width:inherit;
@@ -68,7 +72,7 @@ body {
 }
 
 /* hide inactive nested list */
-.bs-docs-sidebar .nav ul.nav {
+.bs-docs-sidebar .nav  ul.nav {
     display: none;
 }
 /* show active nested list */

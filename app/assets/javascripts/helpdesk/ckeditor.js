@@ -18,7 +18,7 @@ CKEDITOR.config.toolbar = [
 ];
 
 CKEDITOR.config.allowedContent = true;
-
+CKEDITOR.config.contentsCss = '/assets/helpdesk/application.css';
 /* Filebrowser routes */
 // The location of an external file browser, that should be launched when "Browse Server" button is pressed.
 CKEDITOR.config.filebrowserBrowseUrl = "/ckeditor/attachment_files";
