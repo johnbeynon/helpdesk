@@ -1,0 +1,30 @@
+= render 'menu'
+
+- content_for :title do
+  -if params[:ticket_types] && params[:ticket_types] == 'active'
+    = t('helpdesk.ticket_types.active')
+  -elsif params[:ticket_types] && params[:ticket_types] == 'inactive'
+    = t('helpdesk.ticket_types.inactive')
+  -else
+    = t('helpdesk.ticket_types.all')
+
+
+%table.table.table-hover
+  %tr
+    %th Active
+    %th Title
+    %th
+    %th
+    %th
+
+  - @ticket_types.each do |ticket_type|
+    %tr{:class=>ticket_type.tr_class}
+      %td= ticket_type.active
+      %td= ticket_type.title
+      %td= link_to 'Show', admin_ticket_type_path(ticket_type)
+      %td= link_to 'Edit', edit_admin_ticket_type_path(ticket_type)
+      %td= link_to 'Destroy', admin_ticket_type_path(ticket_type), :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Sugestion type', new_admin_ticket_type_path

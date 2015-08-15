@@ -1,8 +1,6 @@
-module Helpdesk
-  class Admin::DashboardController < Admin::BaseController
-    
-    def index
-      #@tickets = Ticket.all
-    end
-  end
+class Helpdesk::Admin::DashboardController < Helpdesk::Admin::BaseController
+
+      def index
+        #@tickets = Helpdesk::Ticket.all
+      end
 end

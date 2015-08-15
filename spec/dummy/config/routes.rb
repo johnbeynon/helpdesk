@@ -1,9 +1,9 @@
 Dummy::Application.routes.draw do
 
   devise_for :users
-  match '/users/sign_in', :to => "devise/sessions#new", :as => "sign_in"
+  get '/users/sign_in', :to => "devise/sessions#new", :as => "sign_in"
 
-  mount Helpdesk::Engine => '/support' #, :constraints => { :subdomain => 'support' } 
+  mount Helpdesk::Engine => '/support' #, :constraints => { :subdomain => 'support' }
   # The priority is based upon order of creation:
   root :to => "base#index"
   # first created -> highest priority.

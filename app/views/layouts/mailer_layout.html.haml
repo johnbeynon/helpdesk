@@ -1,0 +1,20 @@
+:plain
+  <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+%html
+  %head
+  %body
+    %div{:style=>'margin: 0px; padding: 20px 0px; background-color: #f0f0f0;'}
+      %div{:style=>'margin: 0px auto; width: 600px; background-color: #fafafa; padding: 20px; border-radius: 2px; box-shadow:  0px 1px 3px 0px rgba(0, 0, 0, 0.3);'}
+        %h2
+          =yield :title
+        %div
+          = yield
+          %p
+            = t('helpdesk.mailer.footer_nice')
+            %br
+              = Helpdesk.site_name
+            %br
+              %a{:href=>'http://'+Helpdesk.site_address}
+                = Helpdesk.site_address
+          %div{:style=>'padding: 8px 0px; font-size: 12px; font-family: "Helvetica", "Arial", Sans-serif; text-align: justify; border-top: 0px solid #c0c0c0; color: #808080; '}
+            = t('helpdesk.mailer.footer_info', url: root_url).html_safe

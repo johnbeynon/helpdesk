@@ -1,0 +1,36 @@
+= render 'menu'
+
+= render 'ticket', :ticket=>@ticket, show_button:false,edit_button:true
+
+%table.table
+  %tbody
+    %tr{:class=>@ticket.ticket_type.tr_class}
+
+      %td
+
+        - unless @ticket.open?
+          = t('helpdesk.tickets.ticket_closed')
+        -else
+          = simple_form_for([:admin, @ticket]) do |f|
+            - if @ticket.errors.any?
+              %div.error_explanation
+                %h2
+                  = "#{pluralize(@ticket.errors.count, "error")} prohibited this ticket from being saved:"
+                %ul
+                  - @ticket.errors.full_messages.each do |msg|
+                    %li
+                      = msg
+            = f.input :status, :collection => tickets_statuses_for_select, include_blank: false
+            = f.input :assignee_id, :collection => helpdesk_admin_collection
+
+
+            = f.simple_fields_for :comments,@ticket.comments.build do |tickets_form|
+              - unless tickets_form.object.persisted?
+                = tickets_form.input :comment, :input_html=>{class: 'comment-textarea'}
+                / , :as => :ckeditor, :input_html => { :ckeditor => {:toolbar => 'mini'},:language => I18n.locale}
+
+                = tickets_form.input :public, :hint => t('helpdesk.tickets.visible_to_autor')
+                = tickets_form.input :author_id, :as => :hidden, :input_html => { :value => helpdesk_user.id }
+            %div.form-actions
+              = f.button :submit, :class => 'btn btn-primary'
+              = submit_tag t('helpdesk..tickets.cancel'), :type => :reset, :class => "btn btn-danger"

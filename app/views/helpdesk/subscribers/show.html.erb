@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @subscriber.send Helpdesk.display_user.to_sym %>
+</p>
+
+<p>
+  <b>Email:</b>
+  <%= @subscriber.email %>
+</p>
+
+<p>
+  <b>Lang:</b>
+  <%= @subscriber.lang %>
+</p>
+
+<p>
+  <b>Hashcode:</b>
+  <%= @subscriber.hashcode %>
+</p>
+
+<p>
+  <b>Confirmed:</b>
+  <%= @subscriber.confirmed %>
+</p>
+
+
+<%= link_to 'Edit', edit_subscriber_path(@subscriber) %> |
+<%= link_to 'Back', subscribers_path %>

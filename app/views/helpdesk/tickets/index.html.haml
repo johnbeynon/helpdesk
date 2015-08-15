@@ -1,0 +1,16 @@
+- content_for :title do
+  -if params[:tickets] && params[:tickets] == 'closed'
+    = t('helpdesk.tickets.closed')
+  -else
+    = t('helpdesk.tickets.active')
+  ="(#{@tickets.count})"
+
+
+= render 'menu'
+
+
+- if @tickets.size == 0
+  = t('helpdesk.tickets.you_have_no_tickets')
+- @tickets.each do |ticket|
+  = render 'ticket', ticket: ticket, show_button:true
+= paginate @tickets

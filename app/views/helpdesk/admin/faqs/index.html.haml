@@ -1,0 +1,18 @@
+= render 'menu'
+
+- content_for :title do
+  -if params[:faqs] && params[:faqs] == 'active'
+    = t('helpdesk.faqs.active')
+  -elsif params[:faqs] && params[:faqs] == 'inactive'
+    = t('helpdesk.faqs.inactive')
+  -else
+    = t('helpdesk.faqs.all')
+
+
+
+
+
+%ul.faqs_list.faqs_list_main
+  = render partial:'/helpdesk/admin/faqs/faq', locals:{ faqs:@faqs }
+
+

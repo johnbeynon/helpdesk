@@ -12,12 +12,24 @@ module Helpdesk
       end
 
       def copy_locale
-        copy_file "../../../../config/locales/en.yml", "config/locales/helpdesk.en.yml"
+        copy_file "../../../../config/locales/helpdesk.en.yml", "config/locales/helpdesk.en.yml"
+        copy_file "../../../../config/locales/helpdesk.pl.yml", "config/locales/helpdesk.pl.yml"
+      end
+
+      def run_rake
+        rake "helpdesk:install:migrations"
+        rake "db:migrate"
+      end
+
+      def add_engine_to_route
+        route "mount Helpdesk::Engine, :at => '/helpdesk'"
       end
 
       def show_readme
         readme "README" if behavior == :invoke
       end
+
+
     end
   end
 end

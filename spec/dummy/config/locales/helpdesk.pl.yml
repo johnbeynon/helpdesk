@@ -1,0 +1,119 @@
+pl:
+
+  helpdesk:
+    lang: Język
+    show: Pokaż
+    edit: Edytuj
+    destroy: Usuń
+    name: Helpdesk
+    new_ticket: Nowe zgłoszenie
+    tickets:
+      new: Nowe zgłoszenie
+      my: Moje zgłoszenia
+      unassigned: Nieprzypisane zgłoszenia
+      closed: Zamknięte zgłoszenia
+      all: Wszystkie zgłoszenia
+      title: Zgłoszenia
+      active: Aktywne zgłoszenia
+      assignee_to: Przypisane do
+      assign_me: Biore to
+      not_assigned: Nie przypisany
+      is_now_assigned: "Zgłoszenie %{subject} zostało przypisane do Ciebie"
+      visible_to_autor: Widoczny dla zgłaszającego - wyślij emaila
+      you_have_no_tickets: "Brak zgłoszeń"
+      ticket_closed: Zgłoszenie zamknięte
+      subject: Temat zgłoszenia
+      description: Treść
+      cancel: Anuluj
+      send: Wyślij
+      statuses:
+        new: "Nowe"
+        open: "Otwarte"
+        waiting: "Otwarte: oczekujące"
+        solved: "Zamknięte: problem rozwiązany"
+        not_fixable: "Zamknięte: nienaprawialne"
+        unreachable: "Zamknięte: klient nieosiągalny"
+        bug: "Zamknięte: Przeniesione do bug tracker'a"
+
+    ticket: Zgłoszenie
+    faq: FAQ
+    comments:
+      title: Komentarze
+      note: Notatka
+      send: Wysłane
+      received: Odebrane
+      note: notatka
+      author: Odp. autora
+      helpdesk: Odp. BOK
+    ticket_types:
+      title: Rodzaje zgłoszeń
+      new: Nowy rodzaj zgłoszenia
+      all: Wszystkie rodzaje zgłoszeń
+      active: Aktywne rodzaje zgłoszeń
+      inactive: Nieaktywne rodzaje zgłoszeń
+
+    dashboard: Dashboard
+
+    subscribers:
+      title: Subskrybenci
+      confirmed: Potwierdzeni subskrynenci
+      unconfirmed: Niepotwierdzeni
+      all: Wszyscy subskrybenci
+      new: Dodaj subskrybenta
+
+    faqs:
+      title: FAQ
+      title_s: Często zadawane pytania
+      active: Aktywne pytania
+      inactive: Nieaktywne pytania
+      all: Wszystkie pytania
+      new: Nowe pytanie
+      by: przez
+      faq:
+        active: aktywne
+        inactive: nieaktywne
+
+    mailer:
+      comment_by_helpdesk_confirmation:
+        title: "Wysłano odpowiedź do zgłoszenia"
+        re_ticket: "Odpowiedź dotyczy zgłoszenia"
+        response_content: "Treść odpowiedzi:"
+      comment_by_requester_notification:
+        title: "Pojawiła się nowa odpowiedź do zgłoszenie:"
+        comment_content: "Treść odpowiedzi:"
+      comment_by_requester_confirmation:
+        title:  "%{user}, dziękujemy za przesłanie odpowiedzi do zgłoszenia"
+        subject: "Odpowiedź dotyczy Twojego zgłoszenia - %{subject}"
+        comment_content: "Treść odpowiedzi:"
+      ticket_created_confirmation:
+        title: "%{user}, dziękujemy za przesłanie zgłoszenia"
+        subject: Temat Twojego zgłoszenia to
+        ticket_content: "Treść zgłoszenia:"
+        info_time: "Cenimy Twój czas, dlatego staramy się odpowiadać, tak szybko jak to możliwe."
+      ticket_created_notification:
+        title: "Pojawiło się nowe zgłoszenie:"
+        requester_info: "Informacje o zgłaszającym:"
+        ticket_content: "Treść zgłoszenia:"
+      ticket_url_title: "Pod tym adresem można śledzić zgłoszenie:"
+      footer_info: "Ta wiadomość została wygenerowana automatycznie. Nie odpowiadaj na nią. Jeśli nie zainicjowałeś akcji wysyłania tej wiadomości zgłoś to nam <a href=\"%{url}\">klikając tutaj</a>."
+      footer_nice: "Życzymy miłego dnia"
+
+
+
+  activerecord:
+    models:
+      helpdesk: helpdesk
+      helpdesk/ticket: Zgłoszenie
+      helpdesk/comment: Komentarz
+    attributes:
+      helpdesk/comment:
+        comment: Dodatkowy opis
+        public: Widoczny/Wyślij
+      helpdesk/ticket:
+        requester_id: Zgłaszający
+        subject: Temat
+        status: Status
+        assignee_id: Przypisane
+        ticket_type_id: Rodzaj zgłoszenia
+        description: Opis
+        comments: Dodatkowy opis

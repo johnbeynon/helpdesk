@@ -12,4 +12,8 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require bootstrap-sprockets
+//= require ckeditor/init
+//= require jquery-ui
+//= require select2
 //= require_tree .

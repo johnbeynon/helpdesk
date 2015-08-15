@@ -1,0 +1,23 @@
+= simple_form_for([:admin, @ticket]) do |f|
+  - if @ticket.errors.any?
+    %div.error_explanation
+      %h2
+        = "#{pluralize(@ticket.errors.count, "error")} prohibited this ticket from being saved:"
+      %ul
+        - @ticket.errors.full_messages.each do |msg|
+          %li
+            = msg
+  = f.association :requester, :collection => (Helpdesk.user_class).all,:label_method=>Helpdesk.display_user_uniq_info.to_sym, input_html: { class: 'chosen-select' }
+  = f.input :subject
+  = f.input :status, :collection => tickets_statuses_for_select, include_blank: false
+  = f.input :assignee, :collection => helpdesk_admin_collection
+  = f.input :ticket_type_id, :collection => Helpdesk::TicketType.active,include_blank: false
+  - if @ticket.new_record?
+    = f.input :description,input_html:{rows:4}
+  - else
+    = simple_format @ticket.description
+
+
+  %div.form-actions
+    = f.button :submit, :class => 'btn btn-primary'
+    = submit_tag t('helpdesk..tickets.cancel'), :type => :reset, :class => "btn btn-danger"

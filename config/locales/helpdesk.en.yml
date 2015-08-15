@@ -1,0 +1,119 @@
+en:
+
+  helpdesk:
+    lang: Language
+    Show: Show
+    edit: Edit
+    Destroy: Delete
+    name: Helpdesk
+    new_ticket: New
+    tickets:
+      new: New Issue
+      my: My Issue
+      unassigned: Unassigned
+      closed: Closed Issues
+      all: All issues
+      title: Issues
+      active: Active Issues
+      assignee_to: Assigned to
+      assign_me: I take it
+      not_assigned: Not assigned
+      is_now_assigned: "Issue %{subject} has been assigned to you"
+      visible_to_autor: Visible to the author - send an email
+      you_have_no_tickets: "No issues "
+      ticket_closed: Issues closed
+      subject: Subject of
+      description: Content
+      cancel: cancel
+      send: Send
+    ticket: Issue
+    faq: FAQ
+    comments:
+      title: Comments
+      note: Memo
+      send: Sent
+      received: Received
+      note: note
+      author: Re. author
+      helpdesk: Re. BOK
+    ticket_types:
+      title: Types of issues
+      new: A new type of issues
+      all: All kinds of issues
+      active: Active types of issues
+      inactive: Inactive types of issues
+
+    dashboard: Dashboard
+
+    subscribers:
+      title: Subscribers
+      confirmed: Confirmed Subscribers
+      unconfirmed: Unconfirmed
+      all: All Subscribers
+      new: Add Subscriber
+
+    faqs:
+      sorting: Sorting
+      search: Search
+      search_in_faqs: Search in FAQs
+      title: FAQ
+      title_s: Frequently Asked Questions
+      active: Active Questions
+      inactive: Inactive questions
+      all: All the questions
+      new: New Question
+      by: by
+      faq:
+        active: active
+        inactive: inactive
+      search_count:
+        zero: 'We could not find anything matching your query: "%{query}"'
+        one: 'Found one result matching your query: "%{query}"'
+        other: 'Found %{count} results matching your query: "%{query}"'
+      back_to_fasq: '« Back to FAQ list'
+
+    mailer:
+      comment_by_helpdesk_confirmation:
+        title: "Response to the issue was sent"
+        re_ticket: "New comment for Issue:"
+        response_content: "Content of the comment:"
+      comment_by_helpdesk_notification:
+        title: "%{user}, new reply received for issue:"
+        comment_content: "Content of the comment:"
+      comment_by_requester_notification:
+        title: "New reply received for issue:"
+        comment_content: "Content of the comment:"
+      comment_by_requester_confirmation:
+        title: "%{user}, thank you for submitting a comment to the Issue"
+        subject: "New comment for Issie - %{subject}"
+        comment_content: "Content of the comment:"
+      ticket_created_confirmation:
+        title: "%{user}, thank you for submitting"
+        subject: "Your issue subject is:"
+        ticket_content: "Content of the issue:"
+        info_time: "We appreciate your time, so we will try to respond as quickly as possible."
+      ticket_created_notification:
+        title: "New Issue was created"
+        requester_info: "Author"
+        ticket_content: "The content of the issue:"
+      ticket_url_title: "At this address you can track the issue:"
+      footer_info: "This message has been generated automatically. Do not answer it. If you do not have initiated action to send this message please report it to us <a href=\"%{url}\"> clicking here </a>."
+      footer_nice: "Have a nice day"
+
+  activerecord:
+    models:
+      Helpdesk: helpdesk
+      helpdesk/ticket: Issue
+      helpdesk/comment: Comment
+    attributes:
+      helpdesk/comment:
+        comment: Additional description
+        public: Visible/Send Email
+      helpdesk/ticket:
+        requester_id: Requester
+        subject: Subject
+        Status: Status
+        assignee_id: Assigned
+        ticket_type_id: Type of notification
+        Description: Description
+        comments: More details

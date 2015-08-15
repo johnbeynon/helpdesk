@@ -1,0 +1,27 @@
+- content_for :title do
+  = t('helpdesk.mailer.comment_by_requester_notification.title')
+  = @comment.ticket.subject
+%p
+  = t('helpdesk.mailer.comment_by_requester_notification.comment_content')
+  %br
+  = simple_format(@comment.comment)
+%br
+%br
+%p
+  = t('helpdesk.mailer.ticket_created_notification.requester_info')
+  %br
+  = @comment.author.send Helpdesk.display_user.to_sym
+  %br
+  = @comment.author.send Helpdesk.display_user_uniq_info.to_sym
+%br
+%p
+  = t('helpdesk.mailer.ticket_url_title')
+  %a{:href=>admin_ticket_url(:locale=>I18n.locale, :id=>@comment.ticket)}<>
+    = admin_ticket_url(:locale=>I18n.locale, :id=>@comment.ticket)
+
+
+
+
+
+
+

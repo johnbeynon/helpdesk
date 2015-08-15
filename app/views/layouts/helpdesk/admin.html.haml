@@ -1,0 +1,35 @@
+!!!
+%html
+  %head
+    %title
+      = t :name, :scope => :helpdesk
+    = javascript_include_tag "helpdesk/application"
+    = stylesheet_link_tag    "helpdesk/admin", :media => "all"
+    = javascript_tag "$(document).ready(function(){ $('.dropdown-toggle').dropdown();$('.alert').alert();})"
+    = csrf_meta_tags
+    = yield :head
+  %body
+    .container
+      = render 'layouts/helpdesk/topmenu'
+      .content
+        .row
+          .col.col-md-3#site_leftmenu
+            =yield :left
+          .col.col-md-9#site_leftmenu
+            .flash
+            - flash.each do |type, message|
+              %div{:class => "alert alert-#{type}", "data-alert"=>"alert"}
+                =link_to "x",'#', :class=>'close', :'data-dismiss'=>"alert"
+                %p= message
+            - if content_for?(:title)
+              .panel.panel-default
+                .panel-heading
+                  %h3.panel-title
+                    = content_for?(:title) ? content_for(:title) : ''
+                .panel-body
+                  = yield
+            - else
+              = yield
+  =yield :scripts
+
+

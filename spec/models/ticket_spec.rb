@@ -5,22 +5,35 @@ describe Helpdesk::Ticket do
   it { should belong_to :requester }
   it { should belong_to :assignee }
   it { should have_many :comments }
-  it { should allow_mass_assignment_of :subject }
-  it { should allow_mass_assignment_of :description }
-  it { should allow_mass_assignment_of :requester_id }
-  it { should allow_mass_assignment_of :assignee_id }
-  it { should allow_mass_assignment_of :status }
-  it { should allow_mass_assignment_of :issue_type }
-  it { should allow_mass_assignment_of :comments_attributes }
+  it { should belong_to :ticket_type }
+
 
   describe "Validations" do
-    it { should validate_presence_of :description } 
+    it { should validate_presence_of :description }
   end
 
-  describe "States" do
-    describe "should be new for a new ticket" do
+  describe "Status" do
+    it "should be :new for a new ticket" do
+      expect(FactoryGirl.create(:ticket).status).to eq(:new)
+    end
+  end
 
+  describe "Mailers" do
+
+    it "confirmation email is sent to the user" do
+      ticket = FactoryGirl.create(:ticket)
+      expect(all_email_addresses).to include ticket.requester.email
+    end
+    if Helpdesk.send_confirmation_emails
+      it "confirmation email is sent to the helpdesk" do
+        FactoryGirl.create(:ticket)
+        expect(all_email_addresses).to include Helpdesk.email
+      end
+    else
+      it "confirmation email is not sent to the helpdesk" do
+        FactoryGirl.create(:ticket)
+        expect(all_email_addresses).not_to include Helpdesk.email
+      end
     end
   end
 end
-

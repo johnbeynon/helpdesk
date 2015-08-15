@@ -1,0 +1,110 @@
+pt-BR:
+
+  helpdesk:
+    lang: Idioma
+    Show: Detalhes
+    edit: Editar
+    Destroy: Deletar
+    name: Helpdesk
+    new_ticket: Novo
+    tickets:
+      new: Novo Chamado
+      my: Meu Chamado
+      unassigned: Não atribuido
+      closed: Chamados finalizados
+      all: Todos chamados
+      title: Chamados
+      active: Chamados ativos
+      assignee_to: Atribuido para
+      assign_me: Eu faço isso
+      not_assigned: Não atribuido
+      is_now_assigned: "Chamado %{subject} foi atribuido a você com sucesso"
+      visible_to_autor: Visivel para o autor - enviar um e-mail
+      you_have_no_tickets: "Sem chamados "
+      ticket_closed: Chamados finalizados
+      subject: Assunto
+      description: Conteúdo
+      cancel: cancelar
+      send: Enviar
+    ticket: Chamado
+    faq: FAQ
+    comments:
+      title: Comentários
+      note: Nota
+      send: Enviado
+      received: Recebido
+      note: note
+      author: Re. autor
+      helpdesk: Re.
+    ticket_types:
+      title: Tipos de chamados
+      new: Um novo tipo de chamado
+      all: Todos tipos de chamados
+      active: Tipos ativos de chamados
+      inactive: Tipos inativos de chamados
+
+    dashboard: Dashboard
+
+    subscribers:
+      title: Inscritos
+      confirmed: Inscrição confirmada
+      unconfirmed: Sem confirmação
+      all: Todos inscritos
+      new: Adcionar inscrito
+
+    faqs:
+      title: FAQ
+      active: Questões Ativas
+      inactive: Questões Inativas
+      all: Todas as questões
+      new: Nova questão
+      by: para
+      faq:
+        active: ativo
+        inactive: inativo
+
+    mailer:
+      comment_by_helpdesk_confirmation:
+        title: "Resposta para o chamado foi enviado"
+        re_ticket: "Novo comentário no chamado:"
+        response_content: "Conteúdo do comentário:"
+      comment_by_helpdesk_notification:
+        title: "%{user}, nova resposta recebida para o chamado:"
+        comment_content: "Conteúdo do comentário:"
+      comment_by_requester_notification:
+        title: "Nova resposta recebida para o chamado:"
+        comment_content: "Conteúdo do comentário:"
+      comment_by_requester_confirmation:
+        title: "%{user}, obrigado por enviar um comentário para o chamado"
+        subject: "Novo comentário para o chamado - %{subject}"
+        comment_content: "Conteúdo do comentário:"
+      ticket_created_confirmation:
+        title: "%{user}, obrigado por enviar"
+        subject: "O assunto do seu chamado é:"
+        ticket_content: "Conteúdo do chamado:"
+        info_time: "Obrigado pela solicitação, nós responderemos o mais breve possível."
+      ticket_created_notification:
+        title: "Novo chamado criado"
+        requester_info: "Autor"
+        ticket_content: "O conteúdo do chamado:"
+      ticket_url_title: "Segue link para verificar o andamento do seu chamado:"
+      footer_info: "Esta mensagem foi gerada automaticamente. Não responsa isso. Se você não iniciou uma solicitação de chamado, reporte a nós <a href=\"%{url}\"> clicando aqui </a>."
+      footer_nice: "Tenha um bom dia"
+
+  activerecord:
+    models:
+      Helpdesk: helpdesk
+      helpdesk/ticket: Chamado
+      helpdesk/comment: Comentário
+    attributes:
+      helpdesk/comment:
+        comment: Descrição adcional
+        public: Visivel/Enviar e-mail
+      helpdesk/ticket:
+        requester_id: Solicitante
+        subject: Assunto
+        Status: Status
+        assignee_id: Atribuído
+        ticket_type_id: Tipo da notificação
+        Description: Descrição
+        comments: Mais detalhes

@@ -1,0 +1,11 @@
+= render 'menu'
+
+%p#notice= notice
+
+%p
+  = @ticket_type.title
+  
+
+= link_to 'Edit', edit_admin_ticket_type_path(@ticket_type)
+\|
+= link_to 'Back', admin_ticket_types_path

@@ -1,0 +1,11 @@
+= content_for :left do
+  %nav.bs-docs-sidebar.col
+    %ul#sidebar.nav.nav-stacked
+      = render partial: 'menu', locals:{faqs:@faqs,link_type:'anchor'}
+
+%div.content
+  %div#pageContainer
+    %h2
+      = t('helpdesk.faqs.title_s')
+    %ul#faq
+      = render partial:'/helpdesk/faqs/faq', locals:{faqs:@faqs,link_type:'anchor'}

@@ -1,4 +1,6 @@
 module Helpdesk
-  module Admin::DashboardHelper
+  module Admin
+    module DashboardHelper
+    end
   end
 end

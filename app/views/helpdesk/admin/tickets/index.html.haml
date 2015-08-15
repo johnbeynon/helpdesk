@@ -1,0 +1,42 @@
+= render 'menu'
+
+%h1
+  -if params[:tickets] && params[:tickets] == 'unassigned'
+    = t('helpdesk.unassigned_ticketes')
+  -else
+    = t('helpdesk.my_tickets')
+
+%table.table.table-hover
+  %thead
+    %tr
+      %th= t('helpdesk.status')
+      %th ID
+      %th Issue Type
+      %th Subject
+      %th Requester
+      %th Requested
+      %th Assignee
+      %th
+
+  %tbody
+    - @tickets.each do |ticket|
+      %tr{:class=>ticket.ticket_type.tr_class}
+        %td
+          = Helpdesk::Ticket::STATUS_BY_KEY[ticket.status.to_sym]
+        %td= ticket.id
+        %td= ticket.ticket_type.title
+        %td= ticket.subject
+        %td
+          - if ticket.requester
+            = ticket.requester.send Helpdesk.display_user.to_sym
+            %br
+            = ticket.requester.phone
+            %br
+            = ticket.requester.email
+        %td= I18n::l(ticket.created_at, :format=>:short)
+        %td= ticket.assignee if ticket.assignee
+        %td= link_to 'Show', admin_ticket_url(ticket)
+%br
+
+= paginate @tickets
+

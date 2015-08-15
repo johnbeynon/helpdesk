@@ -1,0 +1,11 @@
+- content_for :left do
+  = menu_left t('helpdesk.ticket_types.title') do
+    = menu_li ico('pencil') + t('helpdesk.ticket_types.new'), new_admin_ticket_type_url
+    %li.divider
+    = menu_li ico('eye-open') + "#{t('helpdesk.ticket_types.active')} ", admin_ticket_types_url(:ticket_types => 'active')
+    = menu_li ico('folder-open') + "#{t('helpdesk.tickets.unassigned')} ", admin_ticket_types_url(:ticket_types => 'inactive')
+    %li.divider
+    = menu_li ico('list') + t('helpdesk.ticket_types.all'), admin_ticket_types_url(:ticket_types => 'all')
+
+/ (#{Helpdesk::TicketType.active.count})
+/ (#{Helpdesk::TicketType.inactive.count})

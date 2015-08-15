@@ -1,0 +1,31 @@
+= simple_form_for @ticket,html:{class: :feedback} do |f|
+  %fieldset<>
+    - if @ticket.errors.any?
+      %div.error_explanation
+        %h2
+          = "#{pluralize(@ticket.errors.count, "error")} prohibited this ticket from being saved:"
+        %ul
+          - @ticket.errors.full_messages.each do |msg|
+            %li
+              = msg
+    = f.input :subject
+    / = f.input :ticket_type_id, collection: Helpdesk::TicketType.active, include_blank: false
+    = f.input :ticket_type_id, collection: Helpdesk::TicketType.active.includes(:translations).all, include_blank: false
+
+    %hr
+    - if @ticket.new_record?
+      = f.input :description,:placeholder => t('helpdesk.tickets.description'),label:false, input_html:{rows:5}
+    - else
+      = @ticket.description
+
+      = f.simple_fields_for :comments do |tickets_form|
+        - unless tickets_form.object.persisted?
+          = tickets_form.input :comment
+          = tickets_form.input :public, :hint => 'Requester can see this comment (public comment)'
+          = tickets_form.input :author_id, :as => :hidden, :input_html => { :value => helpdesk_user.id }
+    %hr
+    %div.textRight
+      %a.class.btn.btn-default{href: root_path }
+        = t('helpdesk.tickets.cancel')
+      %input{:type => "submit",:value => t('helpdesk.tickets.send'), :class=>"btn btn-primary"}
+    %div.clearBoth

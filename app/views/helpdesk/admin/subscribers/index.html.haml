@@ -1,0 +1,31 @@
+= render 'menu'
+
+- content_for :title do
+  Subscribers
+
+%table.table.table-hover
+  %tr
+    %th Confirmed
+    %th Name
+    %th Email
+    %th Lang
+    %th Created
+    %th
+    %th
+
+  - @subscribers.each do |subscriber|
+    %tr
+      %td
+        - if subscriber.confirmed
+          = ico('ok')
+      %td= subscriber.send Helpdesk.display_user.to_sym
+      %td= subscriber.email
+
+      %td= subscriber.lang
+      %td= I18n::l(subscriber.created_at, :format=>:short)
+      / %td= link_to 'Show', admin_subscriber_path(subscriber)
+      %td= link_to 'Edit', edit_admin_subscriber_path(subscriber)
+      %td= link_to 'Destroy', admin_subscriber_path(subscriber), method: :delete, data: { confirm: 'Are you sure?' }
+= paginate @subscribers
+%br
+

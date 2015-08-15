@@ -1,0 +1,30 @@
+%nav.navbar.navbar-default#site_topmmenu{role: 'navigation'}
+  .navbar-header
+    %button.navbar-toggle{"data-target" => "#bs-navbar-collapse-1", "data-toggle" => "collapse", type: "button"}
+      %span.sr-only Toggle navigation
+      %span.icon-bar
+      %span.icon-bar
+      %span.icon-bar
+    =link_to Helpdesk.site_address, main_app.root_path, :class=>'navbar-brand', :title => t('helpdesk.name')
+    =link_to t('helpdesk.name'), admin_root_path, :class=>'navbar-brand', :title => t('helpdesk.name')
+  #bs-navbar-collapse-1.collapse.navbar-collapse.in
+    %ul.nav.navbar-nav
+      = menu_li t('helpdesk.tickets.title'),admin_tickets_path
+      = menu_li t('helpdesk.ticket_types.title'),admin_ticket_types_path
+      = menu_li t('helpdesk.subscribers.title'),admin_subscribers_path
+      = menu_li t('helpdesk.faqs.title'),admin_faqs_path
+
+
+
+    %ul.nav.navbar-nav.navbar-right
+      %li.dropdown.user
+        = link_to current_user.send(Helpdesk.display_user.to_sym), "#",:class=>"dropdown-toggle",data:{toggle:"dropdown"}
+        %ul.dropdown-menu
+          %li=link_to 'Home',main_app.root_path
+          %li=link_to t('users.sign_out'),main_app.destroy_user_session_path, :method => :delete, :class => 'icon exit blue'
+
+      %li.dropdown
+        = link_to t('helpdesk.lang'),"#",:class=>"dropdown-toggle",data:{toggle:"dropdown"}
+        %ul.dropdown-menu
+          %li= link_to "English", params.merge({:locale => :en})
+          %li= link_to "Polski", params.merge({:locale => :pl})

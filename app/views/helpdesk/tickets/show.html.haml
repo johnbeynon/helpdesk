@@ -1,0 +1,38 @@
+= render 'menu'
+
+= render 'ticket', :ticket=>@ticket, show_button:false
+
+
+- unless @ticket.open?
+  %table.table
+    %tbody
+      %tr{:class=>@ticket.ticket_type.tr_class}
+        %td{style:'width:100px'}
+        %td
+          = t('helpdesk.tickets.ticket_closed')
+- if @ticket.open? || helpdesk_user == @ticket.requester
+  %table.table
+    %tbody
+      %tr{:class=>@ticket.ticket_type.tr_class}
+        %td{style:'width:100px'}
+        %td
+          = simple_form_for(@ticket, :html => {:class => 'form-vertical' }) do |f|
+            - if @ticket.errors.any?
+              %div.error_explanation
+                %h2
+                  = "#{pluralize(@ticket.errors.count, "error")} prohibited this ticket from being saved:"
+                %ul
+                  - @ticket.errors.full_messages.each do |msg|
+                    %li
+                      = msg
+
+            = f.simple_fields_for :comments,@ticket.comments.build do |tickets_form|
+              - unless tickets_form.object.persisted?
+                = tickets_form.input :comment, :input_html=>{class: 'comment-textarea',rows: 5}
+                / , :as => :ckeditor, :input_html => { :ckeditor => {:toolbar => 'mini'},:language => I18n.locale}
+
+                = tickets_form.input :public, :input_html => {:value=>1},:as=>:hidden
+                = tickets_form.input :author_id, :as => :hidden, :input_html => { :value => helpdesk_user.id }
+            %div
+              = f.button :submit, :class => 'btn btn-primary'
+              = submit_tag t('helpdesk..tickets.cancel'), :type => :reset, :class => "btn btn-default"

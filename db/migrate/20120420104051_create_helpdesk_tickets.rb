@@ -6,7 +6,7 @@ class CreateHelpdeskTickets < ActiveRecord::Migration
       t.integer :requester_id
       t.integer :assignee_id
       t.string :status
-      t.string :issue_type
+      t.integer :ticket_type_id
       
       t.timestamps
     end

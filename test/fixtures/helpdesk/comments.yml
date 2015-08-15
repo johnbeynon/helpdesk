@@ -1,0 +1,8 @@
+
+one:
+  public: true
+  text: MyString
+
+two:
+  public: false
+  text: MyString

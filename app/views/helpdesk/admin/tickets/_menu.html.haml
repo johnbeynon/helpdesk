@@ -1,0 +1,17 @@
+- content_for :left do
+  = menu_left t('helpdesk.tickets.title') do
+    = menu_li ico('pencil') + t('helpdesk.ticket.new'), new_admin_ticket_url
+    %li.divider
+    = menu_li ico('eye-open') + "#{t('helpdesk.tickets.my')} (#{@my_tickets.size})", admin_tickets_url 
+    = menu_li ico('bullhorn') + "#{t('helpdesk.tickets.active')} ", admin_tickets_url(:tickets => 'active')
+    /(#{Helpdesk::Ticket.active.count})
+
+    %li.divider
+    = menu_li ico('folder-open') + "#{t('helpdesk.tickets.unassigned')} (#{Helpdesk::Ticket.unassigned.count})", admin_tickets_url(:tickets => 'unassigned')
+    = menu_li ico('hdd') + "#{t('helpdesk.tickets.closed')} ", admin_tickets_url(:tickets => 'closed')
+    / (#{Helpdesk::Ticket.closed.count})
+    = menu_li ico('list-alt') + t('helpdesk.tickets.all'), admin_tickets_url(:tickets => 'all')
+
+    %li.divider
+    %li.divider
+      = menu_li ico('edit') + t('helpdesk.ticket_types.title'), admin_ticket_types_url    

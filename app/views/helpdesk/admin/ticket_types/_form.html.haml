@@ -1,0 +1,20 @@
+= simple_form_for [:admin, @ticket_type] do |f|
+  - if @ticket_type.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@ticket_type.errors.count, "error")} prohibited this ticket_type from being saved:"
+      %ul
+        - @ticket_type.errors.full_messages.each do |msg|
+          %li= msg
+
+
+
+  - I18n.available_locales.each do |locale|
+    %h1
+      = locale
+      = f.globalize_fields_for locale do |g|
+        = g.input :title
+
+  
+  = f.input :tr_class
+  = f.input :active
+  = f.submit 'Save',:class=>'btn btn-promary'
