@@ -47,6 +47,6 @@ class Helpdesk::Admin::TicketTypesController < Helpdesk::Admin::BaseController
   private
 
   def ticket_type_params
-    params.require(:ticket_type).permit(:active,:position,:title,:tr_class,translations_attributes:[:title, :id, :locale]])
+    params.require(:ticket_type).permit(:active,:position,:title,:tr_class,translations_attributes:[:title, :id, :locale])
   end
 end

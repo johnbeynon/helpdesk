@@ -2,6 +2,8 @@ language: ruby
 rvm:
   - 2.0.0
   - 2.1.1
+  - 2.1.2
+
 env:
   - "CI_DB_ADAPTER=sqlite3"
 before_script:
@@ -12,4 +14,4 @@ before_script:
   - bundle exec rake db:migrate
   - cd ../..
 script:
-  - bundle exec rspec -bfs spec
+  - bundle exec rspec

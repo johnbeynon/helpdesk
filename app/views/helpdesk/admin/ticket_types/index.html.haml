@@ -11,6 +11,7 @@
 
 %table.table.table-hover
   %tr
+    %th Active
     %th Title
     %th
     %th
@@ -18,6 +19,7 @@
 
   - @ticket_types.each do |ticket_type|
     %tr{:class=>ticket_type.tr_class}
+      %td= ticket_type.active
       %td= ticket_type.title
       %td= link_to 'Show', admin_ticket_type_path(ticket_type)
       %td= link_to 'Edit', edit_admin_ticket_type_path(ticket_type)

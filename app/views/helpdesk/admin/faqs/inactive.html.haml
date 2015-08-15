@@ -1,0 +1,27 @@
+= render 'menu'
+
+- content_for :title do
+  -if params[:faqs] && params[:faqs] == 'active'
+    = t('helpdesk.faqs.active')
+  -elsif params[:faqs] && params[:faqs] == 'inactive'
+    = t('helpdesk.faqs.inactive')
+  -else
+    = t('helpdesk.faqs.all')
+
+%ul.faqs_list.faqs_list_main
+  - @faqs.each do |faq|
+    %li
+      %span.title
+        = faq.title
+      %span.buttons
+        = link_to t('helpdesk.show'), faqs_path(anchor:faq.to_param), class: 'icon btn btn-info btn-xs', target: :faq_preview
+        = link_to t('helpdesk.edit'), edit_admin_faq_path(faq),class: 'icon btn btn-primary btn-xs'
+        = link_to t('helpdesk.add'), new_admin_faq_path(faq:{parent_id:faq.id}),class: 'icon btn btn-success btn-xs'
+        = link_to t('helpdesk.destroy'), admin_faq_path(faq), method: :delete, data: { confirm: 'Are you sure?' },class: 'icon btn btn-danger btn-xs'
+
+      - if faq.children.present?
+        %ul.faqs_list
+          = render partial:'/helpdesk/admin/faqs/faq', locals:{ faqs:faq.children }
+
+
+

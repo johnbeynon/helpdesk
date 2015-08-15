@@ -14,7 +14,7 @@ describe Helpdesk::Ticket do
 
   describe "Status" do
     it "should be :new for a new ticket" do
-      FactoryGirl.create(:ticket).status.should == :new
+      expect(FactoryGirl.create(:ticket).status).to eq(:new)
     end
   end
 

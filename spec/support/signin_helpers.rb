@@ -3,7 +3,7 @@ module SignInHelpers
     visit '/users/sign_in'
     fill_in 'Email', :with => user.email
     fill_in 'Password', :with => 'password'
-    click_button 'Sign in'
+    click_button 'Log in'
     #page.should have_content("Signed in successfully")
   end
 
@@ -14,5 +14,5 @@ module SignInHelpers
 end
 
 RSpec.configure do |c|
-  c.include SignInHelpers, :type => :request
+  c.include SignInHelpers#, :type => :controller
 end

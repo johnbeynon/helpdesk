@@ -94,19 +94,16 @@ SimpleForm.setup do |config|
     end
   end
 
-  config.wrappers :checkbox, tag: :div, class: "checkbox", error_class: "has-error" do |b|
-
-    # Form extensions
+  config.wrappers :inline_checkbox, :tag => 'div', :class => 'control-group', :error_class => 'error' do |b|
     b.use :html5
-
-    # Form components
-    b.wrapper tag: :label do |ba|
-      ba.use :input
-      ba.use :label_text
+    b.wrapper :tag => 'div', :class => 'controls' do |ba|
+      ba.wrapper :tag => 'label', :class => 'checkbox' do |bb|
+        bb.use :label_text
+        bb.use :input
+      end
+      ba.use :error, :wrap_with => { :tag => 'span', :class => 'help-inline' }
+      ba.use :hint,  :wrap_with => { :tag => 'p', :class => 'help-block' }
     end
-
-    b.use :hint,  wrap_with: { tag: :p, class: "help-block" }
-    b.use :error, wrap_with: { tag: :span, class: "help-block text-danger" }
   end
 
   # Wrappers for forms and inputs using the Twitter Bootstrap toolkit.

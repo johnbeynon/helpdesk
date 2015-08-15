@@ -14,6 +14,8 @@
       = menu_li t('helpdesk.subscribers.title'),admin_subscribers_path
       = menu_li t('helpdesk.faqs.title'),admin_faqs_path
 
+
+
     %ul.nav.navbar-nav.navbar-right
       %li.dropdown.user
         = link_to current_user.send(Helpdesk.display_user.to_sym), "#",:class=>"dropdown-toggle",data:{toggle:"dropdown"}

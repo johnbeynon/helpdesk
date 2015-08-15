@@ -18,16 +18,22 @@ In <b>Rails 3</b>, add this to your Gemfile and run the +bundle+ command.
 gem "helpdesk", '0.0.14'
 ```
 
-In <b>Rails 4</b>, add this to your Gemfile and run the +bundle+ command.
+In <b>Rails 4.1</b>, add this to your Gemfile and run the +bundle+ command.
 
 ```ruby
-gem "helpdesk", ">= 0.0.20"
+gem "helpdesk", ">= 0.0.31"
 ```
-### 2. Run installation
+### 2. Run installation/or migration if updated
 
 ```
 rails g helpdesk:install
 ```
+
+for update only
+```
+rake helpdesk:install:migrations
+```
+
 That creates a Helpdesk initializer and copy locale files to your application.
 
 ### 3. Add 3 methods to your applications application_controller.rb
@@ -55,7 +61,7 @@ end
 ```
 
 ### 4. Restart app
-and visit [http://localhost:3000/helpdesk](http://localhost:3000/helpdesk)
+and visit [http://0.0.0.0:3000/helpdesk](http://localhost:3000/helpdesk)
 
 
 

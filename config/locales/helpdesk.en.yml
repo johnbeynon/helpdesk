@@ -53,6 +53,9 @@ en:
       new: Add Subscriber
 
     faqs:
+      sorting: Sorting
+      search: Search
+      search_in_faqs: Search in FAQs
       title: FAQ
       title_s: Frequently Asked Questions
       active: Active Questions
@@ -63,6 +66,11 @@ en:
       faq:
         active: active
         inactive: inactive
+      search_count:
+        zero: 'We could not find anything matching your query: "%{query}"'
+        one: 'Found one result matching your query: "%{query}"'
+        other: 'Found %{count} results matching your query: "%{query}"'
+      back_to_fasq: '« Back to FAQ list'
 
     mailer:
       comment_by_helpdesk_confirmation:

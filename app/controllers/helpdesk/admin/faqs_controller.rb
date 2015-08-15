@@ -2,23 +2,33 @@ class Helpdesk::Admin::FaqsController < Helpdesk::Admin::BaseController
 
   def sort
     params[:faqs].each_with_index do |id, index|
-      Helpdesk::Faq.update_all(['position=?', index+1], ['id=?', id])
+      Helpdesk::Faq.find(id).update_column(:position, index+1)
     end
     render :nothing => true
   end
+
+  def sorting
+    if params[:id]=='all'
+
+      @faqs = Helpdesk::Faq.roots
+    else
+      @faq = Helpdesk::Faq.find(params[:id])
+      @faqs = @faq.children
+    end
+  end
+
   # GET /faqs
   # GET /faqs.json
   def index
     if params[:faqs] == 'active'
-      @faqs = Helpdesk::Faq.active
+      @faqs = Helpdesk::Faq.roots.active
+      render action: 'index'
     elsif params[:faqs] == 'inactive'
       @faqs = Helpdesk::Faq.inactive
+      render action: 'inactive'
     else
-      @faqs = Helpdesk::Faq.all
-    end
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @faqs }
+      @faqs = Helpdesk::Faq.roots
+      render action: 'index'
     end
   end
 
@@ -36,7 +46,10 @@ class Helpdesk::Admin::FaqsController < Helpdesk::Admin::BaseController
   # GET /faqs/new
   # GET /faqs/new.json
   def new
-    @faq = Helpdesk::Faq.new
+    @faq = Helpdesk::Faq.active.new
+    if params[:faq] && params[:faq][:parent_id]
+      @faq.parent_id = params[:faq][:parent_id]
+    end
 
     respond_to do |format|
       format.html # new.html.erb
@@ -95,6 +108,6 @@ class Helpdesk::Admin::FaqsController < Helpdesk::Admin::BaseController
 
   private
   def faq_params
-    params.require(:faq).permit(:active, :position, :title, :text, translations_attributes:[:id,:locale,:title,:text])
+    params.require(:faq).permit(:active, :position, :title, :text,:parent_id, translations_attributes:[:id,:locale,:title,:text])
   end
 end

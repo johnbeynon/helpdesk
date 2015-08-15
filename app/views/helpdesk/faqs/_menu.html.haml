@@ -1,0 +1,11 @@
+- faqs.each do |faq|
+  %li
+    - link = link_type=='anchor' ? faq.anchor : faqs_path(anchor:faq)
+    - if(faq.id==params[:id].to_i)
+      = link_to faq.title, link, class: :active
+    - else
+      = link_to faq.title, link
+    -if faq.children.present?
+      %ul.nav.nav-stacked
+        = render partial:'/helpdesk/faqs/menu', locals:{faqs:faq.children, link_type:link_type}
+

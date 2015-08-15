@@ -6,24 +6,34 @@
       %span.icon-bar
       %span.icon-bar
     =link_to Helpdesk.site_address, main_app.root_path, :class=>'navbar-brand', :title => Helpdesk.site_address
-    =link_to Helpdesk.name, root_path, :class=>'navbar-brand', :title => Helpdesk.name
+    =link_to Helpdesk.helpdesk_name, root_path, :class=>'navbar-brand', :title => Helpdesk.helpdesk_name
   #bs-navbar-collapse-1.collapse.navbar-collapse.in
     %ul.nav.navbar-nav
-      = menu_li t('helpdesk.tickets.title'),tickets_path
-      = menu_li t('helpdesk.faq'),faqs_path
+      = menu_li t('helpdesk.tickets.title'),tickets_path if Helpdesk.menu_items.include?('tickets')
+      = menu_li t('helpdesk.faqs.title'),faqs_path  if Helpdesk.menu_items.include?('faqs')
+      = menu_li t('helpdesk.subscribers.title'),subscribers_path  if Helpdesk.menu_items.include?('subscribers')
+    - if Helpdesk.menu_items.include?('search')
+      %form.navbar-form.navbar-left{role:'search',action:search_faqs_url}
+        .form-group
+          %input.form-control{type:'text', placeholder:t('helpdesk.faqs.search_in_faqs'),name:'search',value:params[:search]}
+          %button.btn.btn-default{type:"submit"}
+            = t('helpdesk.faqs.search')
 
     %ul.nav.navbar-nav.navbar-right
-      %li.dropdown.user
-        = link_to current_user.send(Helpdesk.display_user.to_sym), "#",:class=>"dropdown-toggle",data:{toggle:"dropdown"}
-        %ul.dropdown-menu
-          %li=link_to 'Home',main_app.root_path
-          %li=link_to t('users.sign_out'),main_app.destroy_user_session_path, :method => :delete, :class => 'icon exit blue'
+      - if Helpdesk.menu_items.include?('user')
+        - if helpdesk_user
+          %li.dropdown.user
+            = link_to helpdesk_user.send(Helpdesk.display_user.to_sym), "#",:class=>"dropdown-toggle",data:{toggle:"dropdown"}
+            %ul.dropdown-menu
+              %li=link_to 'Home',main_app.root_path
+              %li=link_to t('users.sign_out'),main_app.destroy_user_session_path, :method => :delete, :class => 'icon exit blue'
 
-      %li.dropdown
-        = link_to t('helpdesk.lang'),"#",:class=>"dropdown-toggle",data:{toggle:"dropdown"}
-        %ul.dropdown-menu
-          %li= link_to "English", params.merge({:locale => :en})
-          %li= link_to "Polski", params.merge({:locale => :pl})
+      - if Helpdesk.menu_items.include?('language')
+        %li.dropdown
+          = link_to t('helpdesk.lang'),"#",:class=>"dropdown-toggle",data:{toggle:"dropdown"}
+          %ul.dropdown-menu
+            %li= link_to "English", params.merge({:locale => :en})
+            %li= link_to "Polski", params.merge({:locale => :pl})
 
 
 

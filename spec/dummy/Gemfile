@@ -4,7 +4,7 @@ gem 'jquery-rails'
 gem "devise"
 gem 'kaminari'
 gem 'haml-rails'
-gem 'sass'
+gem 'sass-rails'
 
 
 gem 'helpdesk', :path => '../../'
